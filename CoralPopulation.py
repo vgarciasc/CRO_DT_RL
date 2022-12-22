@@ -1,5 +1,6 @@
 import random
 
+import pdb
 import numpy as np
 from numba import jit
 
@@ -36,7 +37,6 @@ class Coral:
         new_solution = self.substrate.evolve(self, population, self.objfunc)
         new_solution = self.objfunc.check_bounds(new_solution)
         return Coral(new_solution, self.objfunc, self.substrate)
-
 
 """
 Population of corals
@@ -112,8 +112,8 @@ class CoralPopulation:
     Generates a random population of corals
     """
     def generate_random(self):
-        amount = int(self.size*self.rho)
-        self.population = []
+        amount = int(self.size*self.rho) - len(self.population)
+        # self.population = []
 
         for i in range(amount):
             substrate_idx = self.substrate_list[i]

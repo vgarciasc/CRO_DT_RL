@@ -10,7 +10,7 @@ from sklearn.tree import DecisionTreeClassifier
 from AbsObjetiveFunc import AbsObjetiveFunc
 from CRO_SL import CRO_SL
 from CoralPopulation import Coral
-from SubstrateReal import SubstrateReal
+from SubstrateDiscreteTree import SubstrateDiscreteTree
 from sup_configs import get_config, load_dataset
 import pdb
 import time
@@ -51,7 +51,6 @@ def get_initial_pop(data_config, popsize, X_train, y_train,
         for _ in range(len(cart_pop), popsize // 3):
             dt = DecisionTreeClassifier(max_depth=desired_depth, splitter="random")
             dt.fit(X_train, y_train)
-
             W = get_cart_as_W(data_config, dt, desired_depth)
             cart_pop.append(W)
 
@@ -83,7 +82,6 @@ def save_histories_to_file(configs, histories, output_path_summary, output_path_
 
         string_summ += "--------------------------------------------------\n\n"
         string_summ += f"DATASET: {config['name']}\n"
-        string_summ += f"{len(elapsed_times)} simulations executed.\n"
         string_summ += f"Average in-sample multivariate accuracy: {'{:.3f}'.format(np.mean(multiv_acc_in))} ± {'{:.3f}'.format(np.std(multiv_acc_in))}\n"
         string_summ += f"Average in-sample univariate accuracy: {'{:.3f}'.format(np.mean(univ_acc_in))} ± {'{:.3f}'.format(np.std(univ_acc_in))}\n"
         string_summ += f"Average test multivariate accuracy: {'{:.3f}'.format(np.mean(multiv_acc_test))} ± {'{:.3f}'.format(np.std(multiv_acc_test))}\n"
@@ -129,10 +127,10 @@ def save_histories_to_file(configs, histories, output_path_summary, output_path_
     with open(output_path_full, "w", encoding="utf-8") as text_file:
         text_file.write(string_full)
 
-def get_substrates_real(cro_configs):
+def get_substrates(cro_configs):
     substrates = []
-    for substrate_real in cro_configs["substrates_real"]:
-        substrates.append(SubstrateReal(substrate_real["name"], substrate_real["params"]))
+    for substrate in cro_configs["substrates_real"]:
+        substrates.append(SubstrateDiscreteTree(substrate["name"], substrate["params"]))
     return substrates
 
 if __name__ == "__main__":
@@ -151,7 +149,6 @@ if __name__ == "__main__":
     parser.add_argument('--should_use_threshold', help='Should ignore weights under a certain threshold?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--threshold', help="Under which threshold should weights be ignored?", required=False, default=0.05, type=float)
     parser.add_argument('--should_use_univariate_accuracy', help='Should use univariate tree\'s accuracy when measuring fitness?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
-    parser.add_argument('--start_from', help='Should start from where?', required=False, default=0, type=int)
     parser.add_argument('--verbose', help='Is verbose?', required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     args = vars(parser.parse_args())
 
@@ -162,38 +159,38 @@ if __name__ == "__main__":
     popsize = cro_configs["general"]["popSize"]
 
     command_line = str(args)
-    command_line += "\n\npython main3.py " + " ".join([f"--{key} {val}" for (key, val) in args.items()]) + "\n\n---\n\n"
+    command_line += "\n\npython main_discrete-tree.py " + " ".join([f"--{key} {val}" for (key, val) in args.items()]) + "\n\n---\n\n"
     command_line += str(cro_configs)
     curr_time = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
     output_path_summ = f"results/log_{curr_time}_summary.txt"
     output_path_full = f"results/log_{curr_time}_full.txt"
 
-    dataset_list = ["breast_cancer", "car", "banknote", "balance", "acute-1", "acute-2", "transfusion", "climate", "sonar", "optical", "drybean", "avila", "wine-red", "wine-white"]
     if args['dataset'] == 'all':
-        data_configs = [get_config(d) for d in dataset_list]
-    elif args['dataset'].endswith("onwards"):
-        dataset_start = dataset_list.index(args['dataset'][:-len("_onwards")])
-        data_configs = [get_config(d) for d in dataset_list[dataset_start:]]
+        data_configs = [
+            get_config("breast_cancer"),
+            get_config("car"),
+            get_config("banknote"),
+            get_config("balance"),
+            get_config("acute-1"),
+            get_config("acute-2"),
+            get_config("transfusion"),
+            get_config("climate"),
+            get_config("sonar"),
+            get_config("optical"),
+        ]
     else:
         data_configs = [get_config(args['dataset'])]
 
     histories = []
     for data_config in data_configs:
-        X, y = load_dataset(data_config)
-        mask = vt.create_mask(depth)
-
         n_attributes = data_config["n_attributes"]
-        n_classes = data_config["n_classes"]
         max_penalty = (n_attributes - 1) * (2 ** depth - 1)
 
         histories.append([])
-        
-        start_idx = args['start_from'] if data_config == data_configs[0] else 0
-        simulations = range(args["simulations"])[start_idx:]
-
-        for simulation in simulations:
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=simulation, stratify=y)
-            X_test, _, y_test, _ = train_test_split(X_test, y_test, test_size=0.5, random_state=simulation, stratify=y_test)
+        for iteration in range(args['simulations']):
+            X, y = load_dataset(data_config)
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=iteration, stratify=y)
+            X_test, _, y_test, _ = train_test_split(X_test, y_test, test_size=0.5, random_state=iteration, stratify=y_test)
             
             if args["should_normalize_dataset"]:
                 scaler = StandardScaler().fit(X_train)
@@ -202,45 +199,35 @@ if __name__ == "__main__":
                 # X_val = scaler.transform(X_val)
             else:
                 scaler = None
-            
-            # X_prepared = np.vstack((np.ones(len(X_train)).T, X_train.T)).T
-            # y_prepared = np.tile(y_train + vt.MAGIC_NUMBER, (2 ** depth, 1))
-            
-            M = vt.create_mask_dx(depth)
-            X_ = np.vstack((np.ones(len(X_train)).T, X_train.T)).T
-            Y_ = np.tile(y_train, (2**depth, 1))
 
-            print(f"Iteration #{simulation}:")
+            print(f"Iteration #{iteration}:")
 
             class SupervisedObjectiveFunc(AbsObjetiveFunc):
                 def __init__(self, size, opt="max"):
                     self.size = size
+                    self.n_attributes = n_attributes
                     super().__init__(self.size, opt)
 
                 def objetive(self, solution):
-                    W = solution.reshape((2**depth - 1, n_attributes + 1))
-
-                    if args["should_use_univariate_accuracy"]:
-                        W = vt.get_W_as_univariate(W)
-
-                    if args["should_use_threshold"]:
-                        W[:,1:][abs(W[:,1:]) < args["threshold"]] = 0
-                        W[:,0][W[:,0] == 0] += 0.01
+                    # W = solution.reshape((2**depth - 1, n_attributes + 1))
                     
-                    # accuracy, _ = vt.dt_matrix_fit(X_train, y_train, W, mask, X_prepared, y_prepared)
-                    accuracy, _ = vt.dt_matrix_fit_dx(X_train, y_train, W, depth, n_classes, X_, Y_, M)
+                    # This shouldn't be necessary.
+                    # W = vt.get_W_as_univariate(W)
                     
-                    if args["should_use_univariate_accuracy"]:
-                        return accuracy
-                    else:
-                        penalty = vt.get_penalty(W, max_penalty, alpha=args["alpha"], 
-                            should_normalize_rows=args["should_normalize_rows"], \
-                            should_normalize_penalty=args["should_normalize_penalty"], \
-                            should_apply_exp=args["should_apply_exponential"])
-                        return accuracy - penalty
+                    accuracy, _ = vt.dt_matrix_fit(X_train, y_train, solution)
+                    return accuracy
+
+                    # penalty = vt.get_penalty(solution, max_penalty, alpha=args["alpha"], 
+                    #     should_normalize_rows=args["should_normalize_rows"], \
+                    #     should_normalize_penalty=args["should_normalize_penalty"], \
+                    #     should_apply_exp=args["should_apply_exponential"])
+
+                    # return accuracy - penalty
                 
                 def random_solution(self):
-                    return vt.generate_random_weights(n_attributes, depth)
+                    solution = vt.generate_random_weights(n_attributes, depth)
+                    solution = solution.reshape((2**depth - 1, n_attributes + 1))
+                    return solution
                 
                 def check_bounds(self, solution):
                     return np.clip(solution.copy(), -1, 1)
@@ -251,17 +238,16 @@ if __name__ == "__main__":
             initial_pop = get_initial_pop(data_config, popsize, X_train, y_train,
                 args["should_cart_init"], args["depth"], args["initial_pop"], objfunc)
             
-            c = CRO_SL(objfunc, get_substrates_real(cro_configs), cro_configs["general"])
+            c = CRO_SL(objfunc, get_substrates(cro_configs), cro_configs["general"])
             if initial_pop is not None:
                 c.population.population = []
                 for tree in initial_pop:
-                    coral = Coral(tree.flatten(), objfunc=objfunc)
+                    tree = tree.reshape((2**depth - 1, n_attributes + 1))
+                    tree = vt.get_W_as_univariate(tree)
+                    coral = Coral(tree, objfunc=objfunc)
                     coral.get_fitness()
                     c.population.population.append(coral)
-
-            print(f"Average accuracy in CART seeding: {np.mean([f.fitness for f in c.population.population])}")
-            print(f"Best accuracy in CART seeding: {np.max([f.fitness for f in c.population.population])}")
-
+            
             start_time = time.time()
             _, fit = c.optimize()
             end_time = time.time()

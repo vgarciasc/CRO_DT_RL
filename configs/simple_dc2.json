@@ -1,0 +1,37 @@
+{
+    "general": {
+        "popSize": 200,
+        "rho": 0.8,
+        "Fb": 0.98,
+        "Fd": 0.1,
+        "Pd": 0.4,
+        "k": 3,
+        "K": 1,
+        "group_subs": true,
+
+        "stop_cond": "neval",
+        "time_limit": 4000.0,
+        "Ngen": 3500,
+        "Neval": 1e7,
+        "fit_target": 1000,
+
+        "verbose": true,
+        "v_timer": 1,
+
+        "dynamic": true,
+        "dyn_method": "success",
+        "dyn_metric": "avg",
+        "dyn_steps": 100,
+        "prob_amp": 0.01
+    },
+    
+    "substrates_real": [
+        {"name": "switch_attribute", "params": {"F": 1}},
+        {"name": "switch_attribute", "params": {"F": 3}},
+        {"name": "modify_threshold", "params": {"F": 0.7}},
+        {"name": "switch_attribute", "params": {"F": 5}},
+        {"name": "modify_threshold", "params": {"F": 0.2}},
+        {"name": "reset_threshold", "params": {}},
+        {"name": "reset_split", "params": {}}
+    ]
+}

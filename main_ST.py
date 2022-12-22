@@ -2,6 +2,7 @@ import math
 import argparse
 import copy
 from datetime import datetime
+from SoftTree import SoftTree
 import json
 import pickle
 
@@ -10,7 +11,7 @@ from sklearn.tree import DecisionTreeClassifier
 from AbsObjetiveFunc import AbsObjetiveFunc
 from CRO_SL import CRO_SL
 from CoralPopulation import Coral
-from SubstrateReal import SubstrateReal
+from SubstrateSoftTree import SubstrateSoftTree
 from sup_configs import get_config, load_dataset
 import pdb
 import time
@@ -51,7 +52,6 @@ def get_initial_pop(data_config, popsize, X_train, y_train,
         for _ in range(len(cart_pop), popsize // 3):
             dt = DecisionTreeClassifier(max_depth=desired_depth, splitter="random")
             dt.fit(X_train, y_train)
-
             W = get_cart_as_W(data_config, dt, desired_depth)
             cart_pop.append(W)
 
@@ -76,51 +76,30 @@ def save_histories_to_file(configs, histories, output_path_summary, output_path_
     string_full = prefix + "\n"
 
     for config, history in zip(configs, histories):
-        # elapsed_times, multiv_info, univ_info = zip(*history)
-        elapsed_times, scalers, multiv_info, univ_info = zip(*history)
-        multiv_acc_in, multiv_acc_test, multiv_W, multiv_labels = zip(*multiv_info)
-        univ_acc_in, univ_acc_test, univ_W, univ_labels = zip(*univ_info)
+        elapsed_times, accs = zip(*history)
+        acc_in, acc_test = zip(*accs)
 
         string_summ += "--------------------------------------------------\n\n"
         string_summ += f"DATASET: {config['name']}\n"
-        string_summ += f"{len(elapsed_times)} simulations executed.\n"
-        string_summ += f"Average in-sample multivariate accuracy: {'{:.3f}'.format(np.mean(multiv_acc_in))} ± {'{:.3f}'.format(np.std(multiv_acc_in))}\n"
-        string_summ += f"Average in-sample univariate accuracy: {'{:.3f}'.format(np.mean(univ_acc_in))} ± {'{:.3f}'.format(np.std(univ_acc_in))}\n"
-        string_summ += f"Average test multivariate accuracy: {'{:.3f}'.format(np.mean(multiv_acc_test))} ± {'{:.3f}'.format(np.std(multiv_acc_test))}\n"
-        string_summ += f"Average test univariate accuracy: {'{:.3f}'.format(np.mean(univ_acc_test))} ± {'{:.3f}'.format(np.std(univ_acc_test))}\n"
-        string_summ += "\n"
-        string_summ += f"Best test multivariate accuracy: {'{:.3f}'.format(multiv_acc_test[np.argmax(multiv_acc_test)])}\n"
-        string_summ += f"Best test univariate accuracy: {'{:.3f}'.format(univ_acc_test[np.argmax(univ_acc_test)])}\n"
+        string_summ += f"{len(elapsed_times)} simulations executed."
+        string_summ += f"Average in-sample accuracy: {'{:.3f}'.format(np.mean(acc_in))} ± {'{:.3f}'.format(np.std(acc_in))}\n"
+        string_summ += f"Average test accuracy: {'{:.3f}'.format(np.mean(acc_test))} ± {'{:.3f}'.format(np.std(acc_test))}\n"
         string_summ += f"Average elapsed time: {'{:.3f}'.format(np.mean(elapsed_times))} ± {'{:.3f}'.format(np.std(elapsed_times))}\n"
 
         string_full += "--------------------------------------------------\n\n"
         string_full += f"DATASET: {config['name']}\n"
         
         for (elapsed_time, \
-            (scaler), \
-            (multiv_acc_in, multiv_acc_test, multiv_labels, multiv_W), \
-            (univ_acc_in, univ_acc_test, univ_labels, univ_W)) in history:
+            (univ_acc_in, univ_acc_test)) in history:
 
             string_full += f"In-sample:" + "\n"
-            string_full += f"        Multivariate accuracy: {multiv_acc_in}" + "\n"
             string_full += f"        Univariate accuracy: {univ_acc_in}" + "\n"
             string_full += f"Test:" + "\n"
-            string_full += f"        Multivariate accuracy: {multiv_acc_test}" + "\n"
             string_full += f"        Univariate accuracy: {univ_acc_test}" + "\n"
             # if scaler is not None:
             #     string_full += f"Scaler: (mean, {scaler.mean_})\n"
             #     string_full += f"        (var,  {scaler.var_})\n"
             string_full += f"Elapsed time: {elapsed_time}" + "\n"
-            string_full += "\n"
-            string_full += "Multivariate tree:\n" + vt.weights2treestr(multiv_W, multiv_labels, config, use_attribute_names=False, scaler=scaler)
-            string_full += f"\n"
-            string_full += f"Multivariate labels: {multiv_labels}\n"
-            string_full += str(multiv_W)
-            string_full += f"\n\n"
-            string_full += "Univariate tree:\n" + vt.weights2treestr(univ_W, univ_labels, config, use_attribute_names=False, scaler=scaler)
-            string_full += f"\n"
-            string_full += f"Univariate labels: {univ_labels}\n"
-            string_full += str(univ_W)
             string_full += "\n\n--------\n\n"
 
     with open(output_path_summary, "w", encoding="utf-8") as text_file:
@@ -132,7 +111,7 @@ def save_histories_to_file(configs, histories, output_path_summary, output_path_
 def get_substrates_real(cro_configs):
     substrates = []
     for substrate_real in cro_configs["substrates_real"]:
-        substrates.append(SubstrateReal(substrate_real["name"], substrate_real["params"]))
+        substrates.append(SubstrateSoftTree(substrate_real["name"], substrate_real["params"]))
     return substrates
 
 if __name__ == "__main__":
@@ -162,11 +141,11 @@ if __name__ == "__main__":
     popsize = cro_configs["general"]["popSize"]
 
     command_line = str(args)
-    command_line += "\n\npython main3.py " + " ".join([f"--{key} {val}" for (key, val) in args.items()]) + "\n\n---\n\n"
+    command_line += "\n\npython main_ST.py " + " ".join([f"--{key} {val}" for (key, val) in args.items()]) + "\n\n---\n\n"
     command_line += str(cro_configs)
     curr_time = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
-    output_path_summ = f"results/log_{curr_time}_summary.txt"
-    output_path_full = f"results/log_{curr_time}_full.txt"
+    output_path_summ = f"results/log_ST_{curr_time}_summary.txt"
+    output_path_full = f"results/log_ST_{curr_time}_full.txt"
 
     dataset_list = ["breast_cancer", "car", "banknote", "balance", "acute-1", "acute-2", "transfusion", "climate", "sonar", "optical", "drybean", "avila", "wine-red", "wine-white"]
     if args['dataset'] == 'all':
@@ -179,12 +158,8 @@ if __name__ == "__main__":
 
     histories = []
     for data_config in data_configs:
-        X, y = load_dataset(data_config)
-        mask = vt.create_mask(depth)
-
         n_attributes = data_config["n_attributes"]
         n_classes = data_config["n_classes"]
-        max_penalty = (n_attributes - 1) * (2 ** depth - 1)
 
         histories.append([])
         
@@ -192,6 +167,7 @@ if __name__ == "__main__":
         simulations = range(args["simulations"])[start_idx:]
 
         for simulation in simulations:
+            X, y = load_dataset(data_config)
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=simulation, stratify=y)
             X_test, _, y_test, _ = train_test_split(X_test, y_test, test_size=0.5, random_state=simulation, stratify=y_test)
             
@@ -202,13 +178,6 @@ if __name__ == "__main__":
                 # X_val = scaler.transform(X_val)
             else:
                 scaler = None
-            
-            # X_prepared = np.vstack((np.ones(len(X_train)).T, X_train.T)).T
-            # y_prepared = np.tile(y_train + vt.MAGIC_NUMBER, (2 ** depth, 1))
-            
-            M = vt.create_mask_dx(depth)
-            X_ = np.vstack((np.ones(len(X_train)).T, X_train.T)).T
-            Y_ = np.tile(y_train, (2**depth, 1))
 
             print(f"Iteration #{simulation}:")
 
@@ -218,77 +187,43 @@ if __name__ == "__main__":
                     super().__init__(self.size, opt)
 
                 def objetive(self, solution):
-                    W = solution.reshape((2**depth - 1, n_attributes + 1))
+                    solution.update_leaves_by_dataset(X_train, y_train)
+                    y_pred = solution.predict_batch(X_train)
+                    accuracy = np.mean([(1 if y_pred[i] == y_train[i] else 0) for i in range(len(X_train))])
+                    return accuracy
 
-                    if args["should_use_univariate_accuracy"]:
-                        W = vt.get_W_as_univariate(W)
-
-                    if args["should_use_threshold"]:
-                        W[:,1:][abs(W[:,1:]) < args["threshold"]] = 0
-                        W[:,0][W[:,0] == 0] += 0.01
-                    
-                    # accuracy, _ = vt.dt_matrix_fit(X_train, y_train, W, mask, X_prepared, y_prepared)
-                    accuracy, _ = vt.dt_matrix_fit_dx(X_train, y_train, W, depth, n_classes, X_, Y_, M)
-                    
-                    if args["should_use_univariate_accuracy"]:
-                        return accuracy
-                    else:
-                        penalty = vt.get_penalty(W, max_penalty, alpha=args["alpha"], 
-                            should_normalize_rows=args["should_normalize_rows"], \
-                            should_normalize_penalty=args["should_normalize_penalty"], \
-                            should_apply_exp=args["should_apply_exponential"])
-                        return accuracy - penalty
+                    # accuracy, _ = solution.dt_matrix_fit(X_train, y_train)
+                    # return accuracy
                 
                 def random_solution(self):
-                    return vt.generate_random_weights(n_attributes, depth)
+                    solution = SoftTree(n_attributes, n_classes)
+                    solution.randomize(depth)
+                    solution.update_leaves_by_dataset(X_train, y_train)
+                    solution.X_ = np.vstack((np.ones(len(X)).T, X.T)).T
+                    solution.Y_ = np.tile(y + 42, (2 ** depth, 1))
+                    return solution
                 
                 def check_bounds(self, solution):
-                    return np.clip(solution.copy(), -1, 1)
+                    return solution
 
             sol_size = len(vt.generate_random_weights(n_attributes, depth).flatten())
             objfunc = SupervisedObjectiveFunc(sol_size)
 
-            initial_pop = get_initial_pop(data_config, popsize, X_train, y_train,
-                args["should_cart_init"], args["depth"], args["initial_pop"], objfunc)
-            
             c = CRO_SL(objfunc, get_substrates_real(cro_configs), cro_configs["general"])
-            if initial_pop is not None:
-                c.population.population = []
-                for tree in initial_pop:
-                    coral = Coral(tree.flatten(), objfunc=objfunc)
-                    coral.get_fitness()
-                    c.population.population.append(coral)
-
-            print(f"Average accuracy in CART seeding: {np.mean([f.fitness for f in c.population.population])}")
-            print(f"Best accuracy in CART seeding: {np.max([f.fitness for f in c.population.population])}")
-
+            
             start_time = time.time()
             _, fit = c.optimize()
             end_time = time.time()
             elapsed_time = end_time - start_time
             # c.display_report()
 
-            multiv_W, _ = c.population.best_solution()
-            multiv_W = multiv_W.reshape((2**depth - 1, n_attributes + 1))
-            if args["should_use_threshold"]:
-                multiv_W[:,1:][abs(multiv_W[:,1:]) < args["threshold"]] = 0
-                multiv_W[:,0][multiv_W[:,0] == 0] += 0.01
-            univ_W = vt.get_W_as_univariate(multiv_W)
-            if args["should_use_univariate_accuracy"]:
-                multiv_W = vt.get_W_as_univariate(univ_W)
-            
-            _, multiv_labels = vt.dt_matrix_fit(X_train, y_train, multiv_W)
-            multiv_acc_in = vt.calc_accuracy(X_train, y_train, multiv_W, multiv_labels)
-            multiv_acc_test = vt.calc_accuracy(X_test, y_test, multiv_W, multiv_labels)
+            best_tree, _ = c.population.best_solution()
+            y_pred = best_tree.predict_batch(X_train)
+            accuracy_in = np.mean([(1 if y_pred[i] == y_train[i] else 0) for i in range(len(X_train))])
+            y_pred = best_tree.predict_batch(X_test)
+            accuracy_test = np.mean([(1 if y_pred[i] == y_test[i] else 0) for i in range(len(X_test))])
 
-            _, univ_labels = vt.dt_matrix_fit(X_train, y_train, univ_W)
-            univ_acc_in = vt.calc_accuracy(X_train, y_train, univ_W, univ_labels)
-            univ_acc_test = vt.calc_accuracy(X_test, y_test, univ_W, univ_labels)
-
-            histories[-1].append((elapsed_time, 
-                (scaler), \
-                (multiv_acc_in, multiv_acc_test, multiv_labels, multiv_W), \
-                (univ_acc_in, univ_acc_test, univ_labels, univ_W)))
+            histories[-1].append((elapsed_time, (accuracy_in, accuracy_test)))
             save_histories_to_file(data_configs, histories, output_path_summ, output_path_full, command_line)
         
         print(f"Saved to '{output_path_summ}'.")

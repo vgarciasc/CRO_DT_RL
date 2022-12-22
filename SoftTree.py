@@ -1,8 +1,11 @@
 import pdb
 import numpy as np
+from copy import deepcopy
+
+MAGIC_NUMBER = 42
 
 class SoftTree:
-    def __init__(self, num_attributes=2, num_classes=2, weights=[], labels=[]):
+    def __init__(self, num_attributes=2, num_classes=2, depth=2, weights=[], labels=[]):
         self.num_attributes = num_attributes
         self.num_classes = num_classes
         self.weights = weights
@@ -10,7 +13,9 @@ class SoftTree:
         
         self.num_nodes = len(weights)
         self.num_leaves = len(labels)
-        self.depth = np.log2(len(weights) + 1)
+        self.depth = depth
+
+        self.mask = self.create_mask()
     
     def randomize(self, depth):
         self.num_nodes = 2 ** depth - 1
@@ -64,6 +69,94 @@ class SoftTree:
     def predict_batch(self, X):
         return np.array([self.predict(x) for x in X])
     
+    def predict_batch_matrix(self, X):
+        X = np.vstack((np.ones(len(X)).T, X.T)).T
+
+        K = self.mask @ np.sign(- self.weights @ X.T)
+        L = np.clip(K - (np.max(K) - 1), 0, 1)
+        leaves = np.argmax(L.T, axis=1)
+        y = np.array([self.labels[l] for l in leaves])
+
+        return y
+
+    def dt_matrix_fit(self, X, y, default_label=0):
+        W = self.weights
+        
+        num_leaves = len(W) + 1
+
+        X = self.X_ 
+        Y = self.Y_
+
+        # Mask to detect the given leaf for each observation
+        m = self.mask
+
+        # Matrix composed of one-hot vectors defining the leaf index of each input
+        K = m @ np.sign(- W @ X.T)
+        L = np.clip(K - (np.max(K) - 1), 0, 1)
+
+        # Creating optimal label vector
+        optimal_labels = np.ones(num_leaves) * (default_label + MAGIC_NUMBER)
+
+        # Label matrix
+        labeled_leaves = np.int_(L * Y)
+        
+        correct_inputs = 0
+        for i, leaf in enumerate(labeled_leaves):
+            # Array with the count for each label in given leaf
+            bincount = np.bincount(leaf)
+
+            # Get the most common label, excluding 0
+            if len(bincount) > 1:
+                optimal_label = np.argmax(bincount[1:]) + 1
+                optimal_labels[i] = optimal_label
+            
+            total_in_leaf = np.sum(bincount[1:])
+            if total_in_leaf == 0:
+                continue
+
+            correct_inputs += bincount[optimal_label]
+
+        accuracy = correct_inputs / len(X)
+        optimal_labels = optimal_labels - MAGIC_NUMBER
+
+        return accuracy, optimal_labels
+    
+    def create_mask(self):
+        depth = self.depth
+        
+        m = np.zeros((2**depth, 2**depth - 1))
+        m[0] = np.concatenate([np.ones(depth), np.zeros(2**depth - 1 - depth)])
+
+        for i in range(1, 2 ** depth):
+            m[i] = m[i-1]
+
+            last_pos = 0
+            for j in range(2 ** depth - 1):
+                if m[i-1][j] != 0:
+                    last_pos = j
+
+            if m[i-1][last_pos] == 1:
+                m[i][last_pos] = -1
+                continue
+                
+            inverted_count = 0
+            for j in range(2 ** depth - 2, -1, -1):
+                if m[i-1][j] == -1:
+                    m[i][j] = 0
+
+                    if last_pos + 1 + inverted_count < 2 ** depth - 1:
+                        m[i][last_pos + 1 + inverted_count] = 1
+                        inverted_count += 1
+                elif m[i-1][j] == 1:
+                    break
+                    
+            for j in range(last_pos - 1, -1, -1):
+                if m[i][j] == 1:
+                    m[i][j] = -1
+                    break
+            
+        return m
+        
     def get_used_split_mask(self):
         stack = [(0, 1)]
         output = []
@@ -134,6 +227,14 @@ class SoftTree:
             output += "\n"
 
         return output
+    
+    def get_splits(self):
+        if self.is_leaf():
+            return []
+        return [self] + self.left.get_splits() + self.right.get_splits()
+
+    def copy(self):
+        return deepcopy(self)
 
     def __str__(self):
         stack = [(0, 1)]

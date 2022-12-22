@@ -1,6 +1,8 @@
 import pdb
 import numpy as np
 
+import time
+
 from rich import print
 from AbsObjetiveFunc import AbsObjetiveFunc
 from CRO_SL import CRO_SL
@@ -80,7 +82,7 @@ if __name__ == "__main__":
     # X, y = make_moons(n_samples=1000)
     y = np.array([y_i % 2 for y_i in y])
 
-    def get_accuracy(weights):
+    def dt_matrix_fit(weights):
         tree.weights = weights.reshape((tree.num_nodes, tree.num_attributes + 1))
 
         tree.update_leaves_by_dataset(X, y)
@@ -90,8 +92,8 @@ if __name__ == "__main__":
         return accuracy
 
     alpha = 1
-    def get_accuracy_with_penalty(weights):
-        accuracy = get_accuracy(weights)
+    def dt_matrix_fit_with_penalty(weights):
+        accuracy = dt_matrix_fit(weights)
         penalty = np.sum([np.sum(row[1:]) - np.max(row[1:]) for row in np.abs(tree.weights)])
 
         return accuracy - alpha * penalty
@@ -127,12 +129,13 @@ if __name__ == "__main__":
     sol_size = len(tree.weights.flatten())
     c = CRO_SL(SupervisedObjectiveFunc(sol_size), substrates_real, params)
     _, fit = c.optimize()
+
     x, _ = c.population.best_solution()
     
     tree.weights = x.reshape((tree.num_nodes, tree.num_attributes + 1))
     tree.update_leaves_by_dataset(X, y)
     print(tree)
-    print(f"Accuracy: {get_accuracy(tree.weights)}")
+    print(f"Accuracy: {dt_matrix_fit(tree.weights)}")
 
     plot_decision_surface_model(X, y, tree)
 

@@ -4,6 +4,7 @@ import pdb
 import numpy as np
 
 config_BC = {
+    "code": "breast_cancer",
     "name": "Breast cancer",
     "filepath": "datasets/breast-cancer-wisconsin.data",
     "n_attributes": 9,
@@ -16,6 +17,7 @@ config_BC = {
 }
 
 config_CE = {
+    "code": "car",
     "name": "Car evaluation",
     "filepath": "datasets/car.data",
     "n_attributes": 6,
@@ -25,6 +27,7 @@ config_CE = {
 }
 
 config_BN = {
+    "code": "banknote",
     "name": "Banknote authentication",
     "filepath": "datasets/data_banknote_authentication.txt",
     "n_attributes": 4,
@@ -34,6 +37,7 @@ config_BN = {
 }
 
 config_BS = {
+    "code": "balance",
     "name": "Balance scale",
     "filepath": "datasets/balance-scale.data",
     "n_attributes": 4,
@@ -43,6 +47,7 @@ config_BS = {
 }
 
 config_AI1 = {
+    "code": "acute-1",
     "name": "Acute inflammations 1",
     "filepath": "datasets/acute-inflammations-1.data",
     "n_attributes": 6,
@@ -52,6 +57,7 @@ config_AI1 = {
 }
 
 config_AI2 = {
+    "code": "acute-2",
     "name": "Acute inflammations 2",
     "filepath": "datasets/acute-inflammations-2.data",
     "n_attributes": 6,
@@ -61,6 +67,7 @@ config_AI2 = {
 }
 
 config_BT = {
+    "code": "transfusion",
     "name": "Blood transfusion",
     "filepath": "datasets/blood-transfusion.data",
     "n_attributes": 4,
@@ -70,6 +77,7 @@ config_BT = {
 }
 
 config_CC = {
+    "code": "climate",
     "name": "Climate model crashes",
     "filepath": "datasets/climate-crashes.data",
     "n_attributes": 18,
@@ -79,6 +87,7 @@ config_CC = {
 }
 
 config_CB = {
+    "code": "sonar",
     "name": "Connectionist bench sonar",
     "filepath": "datasets/sonar.all-data",
     "n_attributes": 60,
@@ -88,6 +97,7 @@ config_CB = {
 }
 
 config_OC = {
+    "code": "optical",
     "name": "Optical recognition",
     "filepath": "datasets/optdigits.tra",
     "n_attributes": 64,
@@ -96,29 +106,55 @@ config_OC = {
     "classes": [(0, "Number 0"), (1, "Number 1"), (2, "Number 2"), (3, "Number 3"), (4, "Number 4"), (5, "Number 5"), (6, "Number 6"), (7, "Number 7"), (8, "Number 8"), (9, "Number 9")]
 }
 
-def get_config(dataset_name):
-    if dataset_name == "breast_cancer":
-        return config_BC
-    elif dataset_name == "car":
-        return config_CE
-    elif dataset_name == "banknote":
-        return config_BN
-    elif dataset_name == "balance":
-        return config_BS
-    elif dataset_name == "acute-1":
-        return config_AI1
-    elif dataset_name == "acute-2":
-        return config_AI2
-    elif dataset_name == "transfusion":
-        return config_BT
-    elif dataset_name == "climate":
-        return config_CC
-    elif dataset_name == "sonar":
-        return config_CB
-    elif dataset_name == "optical":
-        return config_OC
+config_DB = {
+    "code": "drybean",
+    "name": "Drybeans",
+    "filepath": "datasets/drybean_data.txt",
+    "n_attributes": 16,
+    "attributes": ["Area","Perimeter","MajorAxisLength","MinorAxisLength","AspectRation","Eccentricity","ConvexArea","EquivDiameter","Extent","Solidity","roundness","Compactness","ShapeFactor1","ShapeFactor2","ShapeFactor3","ShapeFactor4"],
+    "n_classes": 7,
+    "classes": [(0, "Seker"), (1, "Barbunya"), (2, "Bombay"), (3, "Cali"), (4, "Dermosan"), (5, "Horoz"), (6, "Sira")]
+}
+
+config_AB = {
+    "code": "avila",
+    "name": "Avila bible",
+    "filepath": "datasets/avila-tr.txt",
+    "n_attributes": 10,
+    "attributes": ["intercolumnar distance","upper margin","lower margin","exploitation","row number","modular ratio","interlinear spacing","weight","peak number","modular ratio/ interlinear spacing"],
+    "n_classes": 11,
+    "classes": [(0, "A"), (1, "B"), (2, "C"), (3, "D"), (4, "E"), (5, "F"), (6, "G"), (7, "H"), (8, "I"), (9, "W"), (10, "X"), (11, "Y")]
+}
+
+config_WQ1 = {
+    "code": "wine-red",
+    "name": "Wine quality red",
+    "filepath": "datasets/winequality-red.csv",
+    "n_attributes": 11,
+    "attributes": ["fixed acidity","volatile acidity","citric acid","residual sugar","chlorides","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol"],
+    "n_classes": 6,
+    "classes": [(3, "Score 3"), (4, "Score 4"), (5, "Score 5"), (6, "Score 6"), (7, "Score 7"), (8, "Score 8")]
+}
+
+config_WQ2 = {
+    "code": "wine-white",
+    "name": "Wine quality white",
+    "filepath": "datasets/winequality-white.csv",
+    "n_attributes": 11,
+    "attributes": ["fixed acidity","volatile acidity","citric acid","residual sugar","chlorides","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol"],
+    "n_classes": 7,
+    "classes": [(3, "Score 3"), (4, "Score 4"), (5, "Score 5"), (6, "Score 6"), (7, "Score 7"), (8, "Score 8"), (9, "Score 9")]
+}
+
+def get_config(dataset_code):
+    for config in [config_BC, config_CE, config_BN, config_BS, 
+        config_AI1, config_AI2, config_BT, config_CC, config_CB, 
+        config_OC, config_AB, config_DB, config_WQ1, config_WQ2]:
+
+        if config["code"] == dataset_code:
+            return config
         
-    raise Exception(f"Invalid dataset_name {dataset_name}.")
+    raise Exception(f"Invalid dataset code {dataset_code}.")
 
 def load_dataset(config):
     try:

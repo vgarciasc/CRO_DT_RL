@@ -12,7 +12,7 @@
         "stop_cond": "neval",
         "time_limit": 4000.0,
         "Ngen": 3500,
-        "Neval": 1e5,
+        "Neval": 1e4,
         "fit_target": 1000,
 
         "verbose": true,
