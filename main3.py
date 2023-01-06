@@ -167,6 +167,7 @@ if __name__ == "__main__":
     parser.add_argument('--should_use_univariate_accuracy', help='Should use univariate tree\'s accuracy when measuring fitness?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--start_from', help='Should start from where?', required=False, default=0, type=int)
     parser.add_argument('--evaluation_scheme', help='Which evaluation scheme to use?', required=False, default="dx", type=str)
+    parser.add_argument('--output_prefix', help='Which output name to use?', required=False, default="log", type=str)
     parser.add_argument('--verbose', help='Is verbose?', required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     args = vars(parser.parse_args())
 
@@ -180,8 +181,8 @@ if __name__ == "__main__":
     command_line += "\n\npython main3.py " + " ".join([f"--{key} {val}" for (key, val) in args.items()]) + "\n\n---\n\n"
     command_line += str(cro_configs)
     curr_time = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
-    output_path_summ = f"results/log_{curr_time}_summary.txt"
-    output_path_full = f"results/log_{curr_time}_full.txt"
+    output_path_summ = f"results/{args['output_prefix']}_{curr_time}_summary.txt"
+    output_path_full = f"results/{args['output_prefix']}_{curr_time}_full.txt"
     
     normal_dataset_list = ["breast_cancer", "car", "banknote", "balance", "acute-1", "acute-2", "transfusion", "climate", "sonar", "optical", "drybean", "avila", "wine-red", "wine-white"]
     artificial_dataset_list = ["artificial_100_3_2", "artificial_1000_3_2", "artificial_1000_3_10", "artificial_1000_10_10", "artificial_10000_3_10", "artificial_10000_3_10", "artificial_100000_10_10"]
