@@ -284,7 +284,6 @@ if __name__ == "__main__":
 
             print(f"Average accuracy in CART seeding: {np.mean([f.fitness for f in c.population.population])}")
             print(f"Best accuracy in CART seeding: {np.max([f.fitness for f in c.population.population])}")
-            pdb.set_trace()
 
             start_time = time.time()
             _, fit = c.optimize()
