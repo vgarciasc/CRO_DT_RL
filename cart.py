@@ -66,7 +66,7 @@ def get_cart_as_W(data_config, model, desired_depth):
 
         if is_split_node:
             weights = np.zeros(n_attributes + 1)
-            weights[features[node_id]] = 1
+            weights[features[node_id] + 1] = 1
             weights[0] = - thresholds[node_id]
             W.append(weights)
 

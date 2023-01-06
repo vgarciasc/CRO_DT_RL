@@ -1,6 +1,9 @@
 import pdb
 import numpy as np
 from functools import reduce
+from numba import jit
+import time
+from rich import print
 
 from sup_configs import load_dataset, config_CE
 
@@ -88,32 +91,157 @@ def predict_batch(X, W, labels, add_1=False):
 
     return y
 
-def dt_matrix_fit(X, y, W, mask=None, X_prepared=None, y_prepared=None, default_label=0):
+def dt_matrix_fit(X, y, W, depth, n_classes, X_=None, Y_=None, M=None, default_label=0):
+    num_leaves = len(W) + 1
+
+    # Mask to detect the given leaf for each observation
+    M = create_mask_dx(depth=depth) if M is None else M
+    X = np.vstack((np.ones(len(X)).T, X.T)).T if X_ is None else X_
+    Y = np.tile(y, (num_leaves, 1)) if Y_ is None else Y_
+
+    # Matrix composed of one-hot vectors defining the leaf index of each input
+    K = - M @ np.sign(- W @ X.T)
+    L = np.clip(K - (depth - 1), 0, 1)
+    zero_count = len(X) - np.sum(L, axis=1)
+
+    # Creating optimal label vector
+    optimal_labels = np.ones(num_leaves) * (default_label)
+
+    # Label matrix
+    labeled_leaves = np.int_(L * Y)
+    
+    correct_inputs = 0
+    for i, leaf in enumerate(labeled_leaves):
+        # Array with the count for each label in given leaf
+        bincount = np.bincount(leaf)
+        bincount[0] -= zero_count[i]
+
+        optimal_label = np.argmax(bincount)
+        optimal_labels[i] = optimal_label
+
+        correct_inputs += bincount[optimal_label]
+
+    accuracy = correct_inputs / len(X)
+
+    return accuracy, optimal_labels
+
+clipper = lambda A, d : reduce(np.multiply, [(i - A) / (i - d) for i in range(-d, d)])
+bincount = lambda A, i, k, N : reduce(np.multiply, [(j - A) / (j - i) for j in range(0, k) if j != i]) @ np.ones(N)
+
+def dt_matrix_fit_dx(X, y, W, depth, n_classes, X_=None, Y_=None, M=None, untie=False):
+    n_leaves = len(W) + 1
+    N = len(X)
+
+    M = create_mask_dx(depth) if M is None else M
+    X_ = np.vstack((np.ones(len(X)).T, X.T)).T if X_ is None else X_
+    Y_ = np.tile(y, (n_leaves, 1)) if Y_ is None else Y_
+    
+    Z = np.sign(W @ X_.T)
+    # Z = np.sign(np.sign(W @ X_.T) - 0.5) # Slightly more inefficient but guarantees that ties do not happen
+    # Z_ = clipper(M @ Z, depth)
+    Z_ = np.clip(M @ Z - (depth - 1), 0, 1)
+    R = Z_ * Y_
+    
+    count_0s = N - np.sum(Z_, axis=1)
+    R = np.int_(R)
+    H = np.zeros((n_leaves, n_classes))
+    labels = np.zeros(n_leaves)
+    correct_preds = 0
+    for l in range(n_leaves):
+        bc = np.bincount(R[l], minlength=n_classes)
+        bc[0] -= count_0s[l]
+
+        most_popular_class = np.argmax(bc)
+        labels[l] = most_popular_class
+        correct_preds += bc[most_popular_class]
+
+    accuracy = correct_preds / N
+    return accuracy, labels
+
+    # R = np.array(np.vstack((np.zeros(R.shape[0]), R.T)).T, dtype=np.int32)
+    # H = np.array([np.bincount(r, minlength=n_classes) for r in R], dtype=np.float64)
+    # H[:,0] -= (np.ones(n_leaves) * N - Z_ @ S) + 1 # removing false zeros
+
+    H = np.stack([bincount(R, i, n_classes, N) for i in range(n_classes)])
+    H[0] -= (np.ones(n_leaves) * N - np.sum(Z_, axis=1)) # removing false zeros
+
+    labels = np.argmax(H, axis=0)
+    accuracy = sum(np.max(H, axis=0)) / N
+
+    return accuracy, labels
+
+def dt_matrix_fit_dx2(X, y, W, depth, n_classes, X_=None, Y_=None, M=None):
+    n_leaves = len(W) + 1
+    N = len(X)
+
+    M = create_mask_dx(depth) if M is None else M
+    X_ = np.vstack((np.ones(len(X)).T, X.T)).T if X_ is None else X_
+    Y_ = np.tile(y, (n_leaves, 1)) if Y_ is None else Y_
+    S = np.ones(N)
+    
+    Z = np.sign(W @ X_.T)
+    Z_ = np.clip(M @ Z - (depth - 1), 0, 1)
+    R = Z_ * Y_
+
+    H = np.stack([bincount(R, i, n_classes, N) for i in range(n_classes)])
+    H[0] -= (np.ones(n_leaves) * N - Z_ @ S) # removing false zeros
+
+    labels = np.argmax(H, axis=0)
+    accuracy = sum(np.max(H, axis=0)) / N
+
+    return accuracy, labels
+
+def dt_matrix_fit_dx_numba(X, y, W, depth, n_classes, X_=None, Y_=None, M=None, untie=False):
+    n_leaves = len(W) + 1
+    N = len(X)
+
+    M = create_mask_dx(depth) if M is None else M
+    X_ = np.vstack((np.ones(len(X)).T, X.T)).T if X_ is None else X_
+    Y_ = np.tile(y, (n_leaves, 1)) if Y_ is None else Y_
+    S = np.ones(N)
+    
+    bc, Z_ = numba_subproc1(X_, Y_, M, S, W, depth, n_classes)
+    H = np.stack(bc) @ np.ones(N)
+    accuracy, labels = numba_subproc2(H, Z_, S, N, n_leaves)
+    return accuracy, labels
+
+@jit(nopython=True)
+def numba_subproc1(X_, Y_, M, S, W, depth, n_classes):
+    Z = np.sign(W @ X_.T)
+    # Z = np.sign(np.sign(W @ X_.T) - 0.5) # Slightly more inefficient but guarantees that ties do not happen
+    Z_ = np.clip(M @ Z - (depth - 1), 0, 1)
+    R = Z_ * Y_
+
+    bc = [np.ones_like(R) for _ in range(0, n_classes)]
+    for i in range(0, n_classes):
+        for j in range(0, n_classes):
+            if j != i:
+                bc[i] *= (j - R) / (j - i)
+    
+    return bc, Z_
+
+@jit(nopython=True)
+def numba_subproc2(H, Z_, S, N, n_leaves):
+    H[0] -= (np.ones(n_leaves) * N - Z_ @ S) # removing false zeros
+    
+    labels = [np.argmax(r) for r in H.T]
+    accuracy = sum([np.max(r) for r in H.T]) / N
+
+    return accuracy, labels
+
+def dt_matrix_fit_old(X, y, W, default_label=0):
     num_leaves = len(W) + 1
     depth = int(np.log2(len(W) + 1))
 
-    if mask is not None:
-        m = mask
-    else:
-        # Mask to detect the given leaf for each observation
-        m = create_mask(depth=depth)
+    X = np.vstack((np.ones(len(X)).T, X.T)).T
+    Y = np.tile(y + MAGIC_NUMBER, (num_leaves, 1))
 
-    if X_prepared is not None:
-        X = X_prepared
-    else:
-        X = np.vstack((np.ones(len(X)).T, X.T)).T
-
-    if y_prepared is not None:
-        Y = y_prepared
-    else:
-        Y = np.tile(y + MAGIC_NUMBER, (num_leaves, 1))
+    # Mask to detect the given leaf for each observation
+    m = create_mask(depth=depth)
 
     # Matrix composed of one-hot vectors defining the leaf index of each input
-    try:
-        K = m @ np.sign(- W @ X.T)
-        L = np.clip(K - (np.max(K) - 1), 0, 1)
-    except:
-        pdb.set_trace()
+    K = m @ np.sign(- W @ X.T)
+    L = np.clip(K - (np.max(K) - 1), 0, 1)
 
     # Creating optimal label vector
     optimal_labels = np.ones(num_leaves) * (default_label + MAGIC_NUMBER)
@@ -141,54 +269,6 @@ def dt_matrix_fit(X, y, W, mask=None, X_prepared=None, y_prepared=None, default_
     optimal_labels = optimal_labels - MAGIC_NUMBER
 
     return accuracy, optimal_labels
-
-clipper = lambda A, d : reduce(np.multiply, [(i - A) / (i - d) for i in range(-d, d)])
-bincount = lambda A, i, k, N : reduce(np.multiply, [(j - A) / (j - i) for j in range(0, k) if j != i]) @ np.ones(N)
-
-def dt_matrix_fit_dx(X, y, W, depth, n_classes, X_=None, Y_=None, M=None):
-    n_leaves = len(W) + 1
-    n_attrs = len(W[0]) - 1
-    N = len(X)
-
-    M = create_mask_dx(depth) if M is None else M
-    X_ = np.vstack((np.ones(len(X)).T, X.T)).T if X_ is None else X_
-    Y_ = np.tile(y, (n_leaves, 1)) if Y_ is None else Y_
-    S = np.ones(N)
-    
-    Z = np.sign(W @ X_.T)
-    Z_ = clipper(M @ Z, depth)
-    R = Z_ * Y_
-
-    H = np.stack([bincount(R, i, n_classes, N) for i in range(n_classes)])
-    H[0] -= (np.ones(n_leaves) * N - Z_ @ S) # removing false zeros
-
-    labels = np.argmax(H, axis=0)
-    accuracy = sum(np.max(H, axis=0)) / N
-    pdb.set_trace()
-
-    return accuracy, labels
-
-def dt_matrix_fit_dx2(X, y, W, depth, n_classes, X_=None, Y_=None, M=None):
-    n_leaves = len(W) + 1
-    n_attrs = len(W[0]) - 1
-    N = len(X)
-
-    M = create_mask_dx(depth) if M is None else M
-    X_ = np.vstack((np.ones(len(X)).T, X.T)).T if X_ is None else X_
-    Y_ = np.tile(y, (n_leaves, 1)) if Y_ is None else Y_
-    S = np.ones(N)
-    
-    Z = np.sign(W @ X_.T)
-    Z_ = np.clip(M @ Z - (depth - 1), 0, 1)
-    R = Z_ * Y_
-
-    H = np.stack([bincount(R, i, n_classes, N) for i in range(n_classes)])
-    H[0] -= (np.ones(n_leaves) * N - Z_ @ S) # removing false zeros
-
-    labels = np.argmax(H, axis=0)
-    accuracy = sum(np.max(H, axis=0)) / N
-
-    return accuracy, labels
 
 def generate_random_weights(n_attributes, depth):
     return np.random.uniform(-1, 1, size=(2**depth - 1) * (n_attributes + 1))
@@ -306,16 +386,82 @@ if __name__ == "__main__":
     # W = np.array([[0.228, 0.000, 0.478], [-0.633, 0.384, 0.000], [-0.986, 0.000, 0.043], [0.495, 0.065, 0.000], [-0.691, 0.000, 0.335], [0.065, 0.000, 0.000], [0.927, 0.000, -0.111]])
     # W = np.array([[6.820, -4.568, -5.836], [0.780, 5.135, -4.205], [13.503,  2.909,  1.977]])
     # W = np.array([[2, -1, 0], [-4, 0, 1], [5, -1, 0]])
-    W = np.array([[0.228, 0.000, -0.478], [-0.633, 0.384, 0.000], [-0.986, 0.000, 0.043], [0.495, 0.065, 0.000], [-0.691, 0.000, 0.335], [0.065, 0.000, 0.000], [0.927, 0.000, -0.111]])
+    # W = np.array([[0.228, 0.000, -0.478], [-0.633, 0.384, 0.000], [-0.986, 0.000, 0.043], [0.495, 0.065, 0.000], [-0.691, 0.000, 0.335], [0.065, 0.000, 0.000], [0.927, 0.000, -0.111]])
     
-    x1 = np.array([-10, 10])
-    x2 = np.array([ 10,  5])
-    x3 = np.array([-10,  0])
-    x4 = np.array([ 0,   0])
-    X = np.stack([x4, x3, x1, x3])
+    # x1 = np.array([-10, 10])
+    # x2 = np.array([ 10,  5])
+    # x3 = np.array([-10,  0])
+    # x4 = np.array([ 0,   0])
+    # X = np.stack([x4, x3, x1, x3])
 
-    y = np.array([0, 1, 2, 1])
-    accuracy, labels = dt_matrix_fit(X, y, W)
+    # y = np.array([0, 1, 2, 1])
+    # accuracy, labels = dt_matrix_fit(X, y, W)
 
-    labels = np.array([0, 1, 2, 3, 4, 5, 6, 7])
-    print(weights2treestr(W, labels))
+    # labels = np.array([0, 1, 2, 3, 4, 5, 6, 7])
+    # print(weights2treestr(W, labels))
+
+    X = np.array([[-3, -2], [4, -2], [3, 3], [-3, 1], [-2, -2], [-2, 0]], dtype=np.float64)
+    y = np.array([1, 1, 2, 1, 2, 1], dtype=np.float64) - 1
+    W = np.array([[2, 3, -4], [5, -5, -4], [6, -2, 3]], dtype=np.float64)
+    M = np.array([[-1, -1, 0], [-1, 1, 0], [1, 0, -1], [1, 0, 1]], dtype=np.float64)
+
+    # X = np.array([[-3, -2, 2], [4, -2, 5], [3, 3, 4], [-3, 1, 7], [-2, -2, 9], [-2, 0, 1]])
+    # y = np.array([1, 1, 2, 1, 2, 1]) - 1
+    # W = np.array([[0.4, 0.2, -0.7, 0.8], [0.2, 0.5, -0.5, 0.4], [-0.6, 0.1, 0.8, -0.5]])
+    # M = np.array([[-1, -1, 0], [-1, 1, 0], [1, 0, -1], [1, 0, 1]])
+
+    depth = int(np.log2(len(W) + 1))
+    n_leaves = 2**depth
+    n_classes = 2
+    N = len(X)
+
+    M = create_mask_dx(depth)
+    X_ = np.vstack((np.ones(len(X)).T, X.T)).T
+    Y_ = np.tile(y, (n_leaves, 1))
+
+    # Compile numba
+    dt_matrix_fit_dx_numba(X, y, W, depth, n_classes, X_, Y_, M)
+
+    num_evaluations = 10000
+    start_time = time.time()
+    for _ in range(num_evaluations):
+        dt_matrix_fit_dx_numba(X, y, W, depth, n_classes, X_, Y_, M)
+    end_time = time.time()
+    print(f"(Numba) Elapsed time: {end_time - start_time}")
+
+    start_time = time.time()
+    for _ in range(num_evaluations):
+        dt_matrix_fit(X, y, W, depth, n_classes, X_, Y_, M)
+    end_time = time.time()
+    print(f"(Old) Elapsed time: {end_time - start_time}")
+
+    start_time = time.time()
+    for _ in range(num_evaluations):
+        dt_matrix_fit_dx(X, y, W, depth, n_classes, X_, Y_, M)
+    end_time = time.time()
+    print(f"(Dx) Elapsed time: {end_time - start_time}")
+
+    start_time = time.time()
+    for _ in range(num_evaluations):
+        dt_matrix_fit_dx2(X, y, W, depth, n_classes, X_, Y_, M)
+    end_time = time.time()
+    print(f"(Dx2) Elapsed time: {end_time - start_time}")
+
+    # Testing whether the evaluation schemes are equal
+    for _ in range(1000):
+        n_classes = np.random.randint(2, 5)
+        n_samples = np.random.randint(1000, 10000)
+        W = np.random.uniform(-1, 1, (n_leaves - 1, 5))
+        X = np.random.uniform(-5, 5, (n_samples, 4))
+        y = np.random.randint(0, n_classes, (1, n_samples))
+
+        acc_old, _ = dt_matrix_fit(X, y, W, depth, n_classes)
+        acc_dx, _ = dt_matrix_fit_dx(X, y, W, depth, n_classes)
+        acc_dx2, _ = dt_matrix_fit_dx2(X, y, W, depth, n_classes)
+        acc_numba, _ = dt_matrix_fit_dx_numba(X, y, W, depth, n_classes)
+        print(f"ACCURACIES: (old: {acc_old}, dx: {acc_dx}, dx2: {acc_dx2}, numba: {acc_numba})")
+
+        if [acc_old, acc_dx, acc_dx2, acc_numba].count(acc_old) != 4:
+            pdb.set_trace()
+    
+    print("Evaluation schemes are the same.")

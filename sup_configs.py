@@ -11,7 +11,7 @@ config_BC = {
     "attributes": [
         "Clump Thickness", "Uniformity of Cell Size", "Uniformity of Cell Shape",
         "Marginal Adhesion", "Single Epithelial Cell Size", "Bare Nuclei",
-        "Bland Chromatin", "Normal Nucleoli", "Mitoses", "Class"],
+        "Bland Chromatin", "Normal Nucleoli", "Mitoses"],
     "n_classes": 2,
     "classes": [(2, "Benign"), (4, "Malignant")]
 }
@@ -71,7 +71,7 @@ config_BT = {
     "name": "Blood transfusion",
     "filepath": "datasets/blood-transfusion.data",
     "n_attributes": 4,
-    "attributes": ["recency", "frequency", "monetary", "time", "donated"],
+    "attributes": ["recency", "frequency", "monetary", "time"],
     "n_classes": 2,
     "classes": [(0, "Not donor"), (1, "Donor")]
 }
@@ -122,7 +122,7 @@ config_AB = {
     "filepath": "datasets/avila-tr.txt",
     "n_attributes": 10,
     "attributes": ["intercolumnar distance","upper margin","lower margin","exploitation","row number","modular ratio","interlinear spacing","weight","peak number","modular ratio/ interlinear spacing"],
-    "n_classes": 11,
+    "n_classes": 12,
     "classes": [(0, "A"), (1, "B"), (2, "C"), (3, "D"), (4, "E"), (5, "F"), (6, "G"), (7, "H"), (8, "I"), (9, "W"), (10, "X"), (11, "Y")]
 }
 
@@ -146,10 +146,82 @@ config_WQ2 = {
     "classes": [(3, "Score 3"), (4, "Score 4"), (5, "Score 5"), (6, "Score 6"), (7, "Score 7"), (8, "Score 8"), (9, "Score 9")]
 }
 
+config_ART1 = {
+    "code": "artificial_100_3_2",
+    "name": "Artificial N=100, C=3, P=2",
+    "filepath": "datasets/artificial/scikit_N-100_C-3_P-2.csv",
+    "n_attributes": 2,
+    "attributes": ["x1", "x2"],
+    "n_classes": 3,
+    "classes": [(0, "Class 0"), (1, "Class 1"), (2, "Class 2")]
+}
+
+config_ART2 = {
+    "code": "artificial_1000_3_2",
+    "name": "Artificial N=1000, C=3, P=2",
+    "filepath": "datasets/artificial/scikit_N-1000_C-3_P-2.csv",
+    "n_attributes": 2,
+    "attributes": ["x1", "x2"],
+    "n_classes": 3,
+    "classes": [(0, "Class 0"), (1, "Class 1"), (2, "Class 2")]
+}
+
+config_ART3 = {
+    "code": "artificial_1000_3_10",
+    "name": "Artificial N=1000, C=3, P=10",
+    "filepath": "datasets/artificial/scikit_N-1000_C-3_P-10.csv",
+    "n_attributes": 10,
+    "attributes": ["x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10"],
+    "n_classes": 3,
+    "classes": [(0, "Class 0"), (1, "Class 1"), (2, "Class 2")]
+}
+
+config_ART4 = {
+    "code": "artificial_1000_10_10",
+    "name": "Artificial N=1000, C=10, P=10",
+    "filepath": "datasets/artificial/scikit_N-1000_C-10_P-10.csv",
+    "n_attributes": 10,
+    "attributes": ["x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10"],
+    "n_classes": 10,
+    "classes": [(0, "Class 0"), (1, "Class 1"), (2, "Class 2"), (3, "Class 3"), (4, "Class 4"), (5, "Class 5"), (6, "Class 6"), (7, "Class 7"), (8, "Class 8"), (9, "Class 9")]
+}
+
+config_ART5 = {
+    "code": "artificial_10000_3_10",
+    "name": "Artificial N=10000, C=3, P=2",
+    "filepath": "datasets/artificial/scikit_N-10000_C-3_P-2.csv",
+    "n_attributes": 2,
+    "attributes": ["x1", "x2"],
+    "n_classes": 3,
+    "classes": [(0, "Class 0"), (1, "Class 1"), (2, "Class 2")]
+}
+
+config_ART6 = {
+    "code": "artificial_10000_3_10",
+    "name": "Artificial N=10000, C=3, P=10",
+    "filepath": "datasets/artificial/scikit_N-10000_C-3_P-10.csv",
+    "n_attributes": 10,
+    "attributes": ["x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10"],
+    "n_classes": 3,
+    "classes": [(0, "Class 0"), (1, "Class 1"), (2, "Class 2")]
+}
+
+config_ART7 = {
+    "code": "artificial_100000_10_10",
+    "name": "Artificial N=100000, C=10, P=10",
+    "filepath": "datasets/artificial/scikit_N-100000_C-10_P-10.csv",
+    "n_attributes": 10,
+    "attributes": ["x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10"],
+    "n_classes": 10,
+    "classes": [(0, "Class 0"), (1, "Class 1"), (2, "Class 2"), (3, "Class 3"), (4, "Class 4"), (5, "Class 5"), (6, "Class 6"), (7, "Class 7"), (8, "Class 8"), (9, "Class 9")]
+}
+
 def get_config(dataset_code):
     for config in [config_BC, config_CE, config_BN, config_BS, 
         config_AI1, config_AI2, config_BT, config_CC, config_CB, 
-        config_OC, config_AB, config_DB, config_WQ1, config_WQ2]:
+        config_OC, config_AB, config_DB, config_WQ1, config_WQ2,
+        config_ART1, config_ART2, config_ART3, config_ART4, 
+        config_ART5, config_ART6, config_ART7]:
 
         if config["code"] == dataset_code:
             return config

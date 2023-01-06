@@ -47,6 +47,7 @@ def get_initial_pop(data_config, popsize, X_train, y_train,
 
         cart_pop = np.unique(cart_pop, axis=0)
         cart_pop = [f for f in cart_pop]
+        print(f"Different CART solutions found: {len(cart_pop)}")
 
         for _ in range(len(cart_pop), popsize // 3):
             dt = DecisionTreeClassifier(max_depth=desired_depth, splitter="random")
@@ -70,6 +71,18 @@ def get_initial_pop(data_config, popsize, X_train, y_train,
         random_pop_continuous.append(objfunc.random_solution())
 
     return cart_pop + mutated_cart_pop + random_pop_continuous
+
+def get_W_from_solution(solution, depth, n_attributes, args):
+    W = solution.reshape((2**depth - 1, n_attributes + 1))
+
+    if args["should_use_univariate_accuracy"]:
+        W = vt.get_W_as_univariate(W)
+
+    if args["should_use_threshold"]:
+        W[:,1:][abs(W[:,1:]) < args["threshold"]] = 0
+        W[:,0][W[:,0] == 0] += 0.01
+    
+    return W
 
 def save_histories_to_file(configs, histories, output_path_summary, output_path_full, prefix=""):
     string_summ = prefix + "\n"
@@ -147,11 +160,13 @@ if __name__ == "__main__":
     parser.add_argument('--should_cart_init', help='Should initialize with CART trees?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--should_normalize_dataset', help='Should normalize dataset?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--should_normalize_penalty', help='Should normalize penalty?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
+    parser.add_argument('--should_get_best_from_validation', help='Should get best solution from validation set?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--should_apply_exponential', help='Should apply exponential penalty?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--should_use_threshold', help='Should ignore weights under a certain threshold?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--threshold', help="Under which threshold should weights be ignored?", required=False, default=0.05, type=float)
     parser.add_argument('--should_use_univariate_accuracy', help='Should use univariate tree\'s accuracy when measuring fitness?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--start_from', help='Should start from where?', required=False, default=0, type=int)
+    parser.add_argument('--evaluation_scheme', help='Which evaluation scheme to use?', required=False, default="dx", type=str)
     parser.add_argument('--verbose', help='Is verbose?', required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     args = vars(parser.parse_args())
 
@@ -167,15 +182,31 @@ if __name__ == "__main__":
     curr_time = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
     output_path_summ = f"results/log_{curr_time}_summary.txt"
     output_path_full = f"results/log_{curr_time}_full.txt"
+    
+    normal_dataset_list = ["breast_cancer", "car", "banknote", "balance", "acute-1", "acute-2", "transfusion", "climate", "sonar", "optical", "drybean", "avila", "wine-red", "wine-white"]
+    artificial_dataset_list = ["artificial_100_3_2", "artificial_1000_3_2", "artificial_1000_3_10", "artificial_1000_10_10", "artificial_10000_3_10", "artificial_10000_3_10", "artificial_100000_10_10"]
 
-    dataset_list = ["breast_cancer", "car", "banknote", "balance", "acute-1", "acute-2", "transfusion", "climate", "sonar", "optical", "drybean", "avila", "wine-red", "wine-white"]
-    if args['dataset'] == 'all':
+    if args['dataset'].startswith("artificial"):
+        dataset_list = artificial_dataset_list
+    else:
+        dataset_list = normal_dataset_list
+
+    if args['dataset'].endswith('all'):
         data_configs = [get_config(d) for d in dataset_list]
     elif args['dataset'].endswith("onwards"):
         dataset_start = dataset_list.index(args['dataset'][:-len("_onwards")])
         data_configs = [get_config(d) for d in dataset_list[dataset_start:]]
     else:
         data_configs = [get_config(args['dataset'])]
+
+    if args["evaluation_scheme"] == "numba":
+        fitness_evaluation = vt.dt_matrix_fit_dx_numba
+    elif args["evaluation_scheme"] == "dx":
+        fitness_evaluation = vt.dt_matrix_fit_dx
+    elif args["evaluation_scheme"] == "dx2":
+        fitness_evaluation = vt.dt_matrix_fit_dx
+    elif args["evaluation_scheme"] == "old":
+        fitness_evaluation = vt.dt_matrix_fit
 
     histories = []
     for data_config in data_configs:
@@ -193,7 +224,7 @@ if __name__ == "__main__":
 
         for simulation in simulations:
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=simulation, stratify=y)
-            X_test, _, y_test, _ = train_test_split(X_test, y_test, test_size=0.5, random_state=simulation, stratify=y_test)
+            X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size=0.5, random_state=simulation, stratify=y_test)
             
             if args["should_normalize_dataset"]:
                 scaler = StandardScaler().fit(X_train)
@@ -218,18 +249,9 @@ if __name__ == "__main__":
                     super().__init__(self.size, opt)
 
                 def objetive(self, solution):
-                    W = solution.reshape((2**depth - 1, n_attributes + 1))
+                    W = get_W_from_solution(solution, depth, n_attributes, args)
+                    accuracy, _ = fitness_evaluation(X_train, y_train, W, depth, n_classes, X_, Y_, M)
 
-                    if args["should_use_univariate_accuracy"]:
-                        W = vt.get_W_as_univariate(W)
-
-                    if args["should_use_threshold"]:
-                        W[:,1:][abs(W[:,1:]) < args["threshold"]] = 0
-                        W[:,0][W[:,0] == 0] += 0.01
-                    
-                    # accuracy, _ = vt.dt_matrix_fit(X_train, y_train, W, mask, X_prepared, y_prepared)
-                    accuracy, _ = vt.dt_matrix_fit_dx(X_train, y_train, W, depth, n_classes, X_, Y_, M)
-                    
                     if args["should_use_univariate_accuracy"]:
                         return accuracy
                     else:
@@ -261,6 +283,7 @@ if __name__ == "__main__":
 
             print(f"Average accuracy in CART seeding: {np.mean([f.fitness for f in c.population.population])}")
             print(f"Best accuracy in CART seeding: {np.max([f.fitness for f in c.population.population])}")
+            pdb.set_trace()
 
             start_time = time.time()
             _, fit = c.optimize()
@@ -268,7 +291,48 @@ if __name__ == "__main__":
             elapsed_time = end_time - start_time
             # c.display_report()
 
-            multiv_W, _ = c.population.best_solution()
+            if args["should_get_best_from_validation"]:
+                # GET BEST SOLUTION BASED ON VALIDATION SET
+                final_corals = [coral for coral in c.population.population]
+                final_corals.sort(key = lambda x : x.fitness, reverse=True)
+                aux = []
+                fitnesses = []
+                for coral in final_corals:
+                    if coral.fitness in fitnesses:
+                        continue
+                    aux.append(coral)
+                    fitnesses.append(coral.fitness)
+                final_corals = aux
+                final_corals = final_corals[:int(popsize*0.1)] if len(final_corals) > popsize*0.1 else final_corals 
+                for i, coral in enumerate(final_corals[:25]):
+                    print(f"Coral #{i+1}: (train: {coral.fitness})")
+
+                X_val_ = np.vstack((np.ones(len(X_val)).T, X_val.T)).T
+                Y_val_ = np.tile(y_val, (2**depth, 1))
+                for coral in final_corals:
+                    W = get_W_from_solution(coral.solution, depth, n_attributes, args)
+                    
+                    accuracy, _ = vt.dt_matrix_fit_dx(X_val, y_val, W, depth, n_classes, X_val_, Y_val_, M)
+                    
+                    if args["should_use_univariate_accuracy"]:
+                        coral.val_fitness = accuracy
+                    else:
+                        penalty = vt.get_penalty(W, max_penalty, alpha=args["alpha"], 
+                            should_normalize_rows=args["should_normalize_rows"], \
+                            should_normalize_penalty=args["should_normalize_penalty"], \
+                            should_apply_exp=args["should_apply_exponential"])
+                        coral.val_fitness = accuracy - penalty
+
+                final_corals.sort(key = lambda x : x.val_fitness, reverse=True)
+                for i, coral in enumerate(final_corals):
+                    print(f"Coral #{i+1}: (train: {coral.fitness}, val: {coral.val_fitness})")
+
+                multiv_W = final_corals[0].solution
+            else:
+                multiv_W, _ = c.population.best_solution()
+
+            # END REGION
+
             multiv_W = multiv_W.reshape((2**depth - 1, n_attributes + 1))
             if args["should_use_threshold"]:
                 multiv_W[:,1:][abs(multiv_W[:,1:]) < args["threshold"]] = 0
@@ -277,11 +341,11 @@ if __name__ == "__main__":
             if args["should_use_univariate_accuracy"]:
                 multiv_W = vt.get_W_as_univariate(univ_W)
             
-            _, multiv_labels = vt.dt_matrix_fit(X_train, y_train, multiv_W)
+            _, multiv_labels = vt.dt_matrix_fit_dx(X_train, y_train, multiv_W, depth, n_classes)
             multiv_acc_in = vt.calc_accuracy(X_train, y_train, multiv_W, multiv_labels)
             multiv_acc_test = vt.calc_accuracy(X_test, y_test, multiv_W, multiv_labels)
 
-            _, univ_labels = vt.dt_matrix_fit(X_train, y_train, univ_W)
+            _, univ_labels = vt.dt_matrix_fit_dx(X_train, y_train, univ_W, depth, n_classes)
             univ_acc_in = vt.calc_accuracy(X_train, y_train, univ_W, univ_labels)
             univ_acc_test = vt.calc_accuracy(X_test, y_test, univ_W, univ_labels)
 

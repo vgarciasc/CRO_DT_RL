@@ -76,12 +76,12 @@ def save_histories_to_file(configs, histories, output_path_summary, output_path_
     string_full = prefix + "\n"
 
     for config, history in zip(configs, histories):
-        elapsed_times, accs = zip(*history)
+        elapsed_times, trees, accs = zip(*history)
         acc_in, acc_test = zip(*accs)
 
         string_summ += "--------------------------------------------------\n\n"
         string_summ += f"DATASET: {config['name']}\n"
-        string_summ += f"{len(elapsed_times)} simulations executed."
+        string_summ += f"{len(elapsed_times)} simulations executed.\n"
         string_summ += f"Average in-sample accuracy: {'{:.3f}'.format(np.mean(acc_in))} ± {'{:.3f}'.format(np.std(acc_in))}\n"
         string_summ += f"Average test accuracy: {'{:.3f}'.format(np.mean(acc_test))} ± {'{:.3f}'.format(np.std(acc_test))}\n"
         string_summ += f"Average elapsed time: {'{:.3f}'.format(np.mean(elapsed_times))} ± {'{:.3f}'.format(np.std(elapsed_times))}\n"
@@ -89,7 +89,7 @@ def save_histories_to_file(configs, histories, output_path_summary, output_path_
         string_full += "--------------------------------------------------\n\n"
         string_full += f"DATASET: {config['name']}\n"
         
-        for (elapsed_time, \
+        for (elapsed_time, tree, \
             (univ_acc_in, univ_acc_test)) in history:
 
             string_full += f"In-sample:" + "\n"
@@ -100,6 +100,8 @@ def save_histories_to_file(configs, histories, output_path_summary, output_path_
             #     string_full += f"Scaler: (mean, {scaler.mean_})\n"
             #     string_full += f"        (var,  {scaler.var_})\n"
             string_full += f"Elapsed time: {elapsed_time}" + "\n"
+            string_full += "\n--------\n"
+            string_full += str(tree)
             string_full += "\n\n--------\n\n"
 
     with open(output_path_summary, "w", encoding="utf-8") as text_file:
@@ -147,8 +149,15 @@ if __name__ == "__main__":
     output_path_summ = f"results/log_ST_{curr_time}_summary.txt"
     output_path_full = f"results/log_ST_{curr_time}_full.txt"
 
-    dataset_list = ["breast_cancer", "car", "banknote", "balance", "acute-1", "acute-2", "transfusion", "climate", "sonar", "optical", "drybean", "avila", "wine-red", "wine-white"]
-    if args['dataset'] == 'all':
+    normal_dataset_list = ["breast_cancer", "car", "banknote", "balance", "acute-1", "acute-2", "transfusion", "climate", "sonar", "optical", "drybean", "avila", "wine-red", "wine-white"]
+    artificial_dataset_list = ["artificial_100_3_2", "artificial_1000_3_2", "artificial_1000_3_10", "artificial_1000_10_10", "artificial_10000_3_10", "artificial_10000_3_10"]
+
+    if args['dataset'].startswith("artificial"):
+        dataset_list = artificial_dataset_list
+    else:
+        dataset_list = normal_dataset_list
+
+    if args['dataset'].endswith('all'):
         data_configs = [get_config(d) for d in dataset_list]
     elif args['dataset'].endswith("onwards"):
         dataset_start = dataset_list.index(args['dataset'][:-len("_onwards")])
@@ -187,6 +196,9 @@ if __name__ == "__main__":
                     super().__init__(self.size, opt)
 
                 def objetive(self, solution):
+                    if args["should_use_univariate_accuracy"]:
+                        solution.turn_univariate()
+                    
                     solution.update_leaves_by_dataset(X_train, y_train)
                     y_pred = solution.predict_batch(X_train)
                     accuracy = np.mean([(1 if y_pred[i] == y_train[i] else 0) for i in range(len(X_train))])
@@ -196,11 +208,11 @@ if __name__ == "__main__":
                     # return accuracy
                 
                 def random_solution(self):
-                    solution = SoftTree(n_attributes, n_classes)
+                    solution = SoftTree(n_attributes, n_classes, depth)
                     solution.randomize(depth)
                     solution.update_leaves_by_dataset(X_train, y_train)
-                    solution.X_ = np.vstack((np.ones(len(X)).T, X.T)).T
-                    solution.Y_ = np.tile(y + 42, (2 ** depth, 1))
+                    solution.X_ = np.vstack((np.ones(len(X_train)).T, X_train.T)).T
+                    solution.Y_ = np.tile(y_train + 42, (2 ** depth, 1))
                     return solution
                 
                 def check_bounds(self, solution):
@@ -223,7 +235,7 @@ if __name__ == "__main__":
             y_pred = best_tree.predict_batch(X_test)
             accuracy_test = np.mean([(1 if y_pred[i] == y_test[i] else 0) for i in range(len(X_test))])
 
-            histories[-1].append((elapsed_time, (accuracy_in, accuracy_test)))
+            histories[-1].append((elapsed_time, best_tree, (accuracy_in, accuracy_test)))
             save_histories_to_file(data_configs, histories, output_path_summ, output_path_full, command_line)
         
         print(f"Saved to '{output_path_summ}'.")
