@@ -91,6 +91,54 @@ def predict_batch(X, W, labels, add_1=False):
 
     return y
 
+def create_nodes_tree_mapper(depth):
+    def process_node(node_idx, inners=[], leaves=[], curr_depth=0):
+        if curr_depth == depth:
+            return inners, leaves + [node_idx]
+        else:
+            inners += [node_idx]
+            inners, leaves = process_node(node_idx + 1, inners, leaves, curr_depth+1)
+            inners, leaves = process_node(node_idx + 2**(depth-curr_depth), inners, leaves, curr_depth+1)
+            return inners, leaves
+
+    inners, leaves = process_node(0)
+    inners = {x:i for i,x in enumerate(inners)}
+    leaves = {x:i for i,x in enumerate(leaves)}
+    return inners, leaves
+
+def dt_tree_fit(X, y, W, depth, n_classes, X_=None, Y_=None, M=None, default_label=0):
+    n_leaves = len(W) + 1
+
+    # M = M if M is not None else create_leaf_mapper(depth)
+    M_i, M_l = create_nodes_tree_mapper(depth)
+
+    def get_leaf_idx(x, M_i, M_l):
+        node_idx = 0
+        curr_depth_2go = depth
+        
+        while curr_depth_2go != 0:
+            if W[M_i[node_idx]] @ x <= 0:
+                node_idx += 1
+            else:
+                node_idx = node_idx + 2**(curr_depth_2go)
+            curr_depth_2go -= 1
+        
+        return M_l[node_idx]
+
+    count = [np.zeros(n_classes) for _ in range(n_leaves)]
+    
+    for x_i, y_i in zip(X_, y):
+        leaf = get_leaf_idx(x_i, M_i, M_l)
+        count[leaf][y_i] += 1
+    
+    labels = np.zeros((n_leaves, n_classes))
+    for leaf, samples in enumerate(count):
+        labels[leaf][np.argmax(samples)] = 1
+
+    accuracy = sum(np.max(np.array(count), axis=1)) / len(X)
+
+    return accuracy, labels
+
 def dt_matrix_fit(X, y, W, depth, n_classes, X_=None, Y_=None, M=None, default_label=0):
     num_leaves = len(W) + 1
 

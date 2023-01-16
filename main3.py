@@ -1,6 +1,7 @@
 import math
 import argparse
 import copy
+import sys
 from datetime import datetime
 import json
 import pickle
@@ -208,6 +209,11 @@ if __name__ == "__main__":
         fitness_evaluation = vt.dt_matrix_fit_dx
     elif args["evaluation_scheme"] == "old":
         fitness_evaluation = vt.dt_matrix_fit
+    elif args["evaluation_scheme"] == "tree":
+        fitness_evaluation = vt.dt_tree_fit
+    else:
+        print(f"Value '{args['evaluation_scheme']}' for 'evaluation scheme' is invalid.")
+        sys.exit(0)
 
     histories = []
     for data_config in data_configs:
