@@ -1,0 +1,49 @@
+{'dataset': 'artificial_all', 'cro_config': 'configs/time_test.json', 'simulations': 5, 'depth': 4, 'initial_pop': None, 'alpha': 1.0, 'should_normalize_rows': False, 'should_cart_init': False, 'should_normalize_dataset': False, 'should_normalize_penalty': False, 'should_apply_exponential': False, 'should_use_threshold': False, 'threshold': 0.05, 'should_use_univariate_accuracy': True, 'start_from': 0, 'verbose': True}
+
+python main_ST.py --dataset artificial_all --cro_config configs/time_test.json --simulations 5 --depth 4 --initial_pop None --alpha 1.0 --should_normalize_rows False --should_cart_init False --should_normalize_dataset False --should_normalize_penalty False --should_apply_exponential False --should_use_threshold False --threshold 0.05 --should_use_univariate_accuracy True --start_from 0 --verbose True
+
+---
+
+{'general': {'popSize': 200, 'rho': 0.8, 'Fb': 0.98, 'Fd': 0.1, 'Pd': 0.4, 'k': 3, 'K': 1, 'group_subs': True, 'stop_cond': 'neval', 'time_limit': 4000.0, 'Ngen': 3500, 'Neval': 10000.0, 'fit_target': 1000, 'verbose': True, 'v_timer': 1, 'dynamic': True, 'dyn_method': 'success', 'dyn_metric': 'avg', 'dyn_steps': 100, 'prob_amp': 0.01}, 'substrates_real': [{'name': 'DE/rand/1', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/best/1', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/rand/2', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/best/2', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/current-to-rand/1', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/current-to-best/1', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/current-to-pbest/1', 'params': {'F': 0.7, 'Cr': 0.8}}]}
+--------------------------------------------------
+
+DATASET: Artificial N=100, C=3, P=2
+5 simulations executed.
+Average in-sample accuracy: 0.980 ± 0.013
+Average test accuracy: 0.880 ± 0.051
+Average elapsed time: 15.933 ± 0.089
+--------------------------------------------------
+
+DATASET: Artificial N=1000, C=3, P=2
+5 simulations executed.
+Average in-sample accuracy: 0.885 ± 0.014
+Average test accuracy: 0.867 ± 0.027
+Average elapsed time: 140.211 ± 0.513
+--------------------------------------------------
+
+DATASET: Artificial N=1000, C=3, P=10
+5 simulations executed.
+Average in-sample accuracy: 0.798 ± 0.013
+Average test accuracy: 0.723 ± 0.030
+Average elapsed time: 143.193 ± 0.332
+--------------------------------------------------
+
+DATASET: Artificial N=1000, C=10, P=10
+5 simulations executed.
+Average in-sample accuracy: 0.445 ± 0.008
+Average test accuracy: 0.372 ± 0.019
+Average elapsed time: 143.423 ± 0.077
+--------------------------------------------------
+
+DATASET: Artificial N=10000, C=3, P=2
+5 simulations executed.
+Average in-sample accuracy: 0.876 ± 0.004
+Average test accuracy: 0.868 ± 0.006
+Average elapsed time: 1386.285 ± 3.821
+--------------------------------------------------
+
+DATASET: Artificial N=10000, C=3, P=2
+5 simulations executed.
+Average in-sample accuracy: 0.874 ± 0.003
+Average test accuracy: 0.866 ± 0.006
+Average elapsed time: 1387.350 ± 3.115

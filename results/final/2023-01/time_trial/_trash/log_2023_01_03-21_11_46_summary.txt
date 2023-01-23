@@ -1,0 +1,79 @@
+{'dataset': 'artificial_all', 'cro_config': 'configs/time_test.json', 'simulations': 10, 'depth': 3, 'initial_pop': None, 'alpha': 1.0, 'should_normalize_rows': False, 'should_cart_init': False, 'should_normalize_dataset': False, 'should_normalize_penalty': False, 'should_get_best_from_validation': False, 'should_apply_exponential': False, 'should_use_threshold': False, 'threshold': 0.05, 'should_use_univariate_accuracy': False, 'start_from': 0, 'should_use_numba': True, 'verbose': True}
+
+python main3.py --dataset artificial_all --cro_config configs/time_test.json --simulations 10 --depth 3 --initial_pop None --alpha 1.0 --should_normalize_rows False --should_cart_init False --should_normalize_dataset False --should_normalize_penalty False --should_get_best_from_validation False --should_apply_exponential False --should_use_threshold False --threshold 0.05 --should_use_univariate_accuracy False --start_from 0 --should_use_numba True --verbose True
+
+---
+
+{'general': {'popSize': 200, 'rho': 0.8, 'Fb': 0.98, 'Fd': 0.1, 'Pd': 0.4, 'k': 3, 'K': 1, 'group_subs': True, 'stop_cond': 'neval', 'time_limit': 4000.0, 'Ngen': 3500, 'Neval': 10000.0, 'fit_target': 1000, 'verbose': True, 'v_timer': 1, 'dynamic': True, 'dyn_method': 'success', 'dyn_metric': 'avg', 'dyn_steps': 100, 'prob_amp': 0.01}, 'substrates_real': [{'name': 'DE/rand/1', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/best/1', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/rand/2', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/best/2', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/current-to-rand/1', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/current-to-best/1', 'params': {'F': 0.7, 'Cr': 0.8}}, {'name': 'DE/current-to-pbest/1', 'params': {'F': 0.7, 'Cr': 0.8}}]}
+--------------------------------------------------
+
+DATASET: Artificial N=100, C=3, P=2
+10 simulations executed.
+Average in-sample multivariate accuracy: 0.896 ± 0.060
+Average in-sample univariate accuracy: 0.874 ± 0.076
+Average test multivariate accuracy: 0.840 ± 0.100
+Average test univariate accuracy: 0.828 ± 0.110
+
+Best test multivariate accuracy: 1.000
+Best test univariate accuracy: 0.960
+Average elapsed time: 0.648 ± 0.005
+--------------------------------------------------
+
+DATASET: Artificial N=1000, C=3, P=2
+10 simulations executed.
+Average in-sample multivariate accuracy: 0.774 ± 0.052
+Average in-sample univariate accuracy: 0.765 ± 0.059
+Average test multivariate accuracy: 0.772 ± 0.045
+Average test univariate accuracy: 0.761 ± 0.050
+
+Best test multivariate accuracy: 0.824
+Best test univariate accuracy: 0.828
+Average elapsed time: 0.987 ± 0.006
+--------------------------------------------------
+
+DATASET: Artificial N=1000, C=3, P=10
+10 simulations executed.
+Average in-sample multivariate accuracy: 0.575 ± 0.036
+Average in-sample univariate accuracy: 0.543 ± 0.074
+Average test multivariate accuracy: 0.568 ± 0.060
+Average test univariate accuracy: 0.528 ± 0.105
+
+Best test multivariate accuracy: 0.668
+Best test univariate accuracy: 0.648
+Average elapsed time: 1.028 ± 0.008
+--------------------------------------------------
+
+DATASET: Artificial N=1000, C=10, P=10
+10 simulations executed.
+Average in-sample multivariate accuracy: 0.256 ± 0.020
+Average in-sample univariate accuracy: 0.247 ± 0.019
+Average test multivariate accuracy: 0.234 ± 0.030
+Average test univariate accuracy: 0.225 ± 0.023
+
+Best test multivariate accuracy: 0.284
+Best test univariate accuracy: 0.252
+Average elapsed time: 1.027 ± 0.013
+--------------------------------------------------
+
+DATASET: Artificial N=10000, C=3, P=2
+10 simulations executed.
+Average in-sample multivariate accuracy: 0.797 ± 0.026
+Average in-sample univariate accuracy: 0.796 ± 0.027
+Average test multivariate accuracy: 0.797 ± 0.023
+Average test univariate accuracy: 0.793 ± 0.023
+
+Best test multivariate accuracy: 0.818
+Best test univariate accuracy: 0.819
+Average elapsed time: 14.344 ± 1.615
+--------------------------------------------------
+
+DATASET: Artificial N=10000, C=3, P=2
+10 simulations executed.
+Average in-sample multivariate accuracy: 0.753 ± 0.060
+Average in-sample univariate accuracy: 0.751 ± 0.067
+Average test multivariate accuracy: 0.749 ± 0.063
+Average test univariate accuracy: 0.747 ± 0.069
+
+Best test multivariate accuracy: 0.834
+Best test univariate accuracy: 0.840
+Average elapsed time: 16.109 ± 2.059

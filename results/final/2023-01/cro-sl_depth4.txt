@@ -1,0 +1,179 @@
+{'dataset': 'acute-1_onwards', 'cro_config': 'configs/simple_sa1.json', 'simulations': 100, 'depth': 4, 'initial_pop': None, 'alpha': 1.0, 'should_normalize_rows': False, 'should_cart_init': False, 'should_normalize_dataset': False, 'should_normalize_penalty': False, 'should_apply_exponential': False, 'should_use_threshold': False, 'threshold': 05,, 'should_use_univariate_accuracy': True, 'verbose': True}
+
+python main3.py --dataset acute-1_onwards --cro_config configs/simple_sa1.json --simulations 100 --depth 4 --initial_pop None --alpha 1.0 --should_normalize_rows False --should_cart_init False --should_normalize_dataset False --should_normalize_penalty False --should_apply_exponential False --should_use_threshold False --threshold 05, --should_use_univariate_accuracy True --verbose True
+
+---
+
+{'general': {'popSize': 200, 'rho': 8,, 'Fb': 98,, 'Fd': 1,, 'Pd': 4,, 'k': 3, 'K': 1, 'group_subs': True, 'stop_cond': 'neval', 'time_limit': 4000,, 'Ngen': 3500, 'Neval': 1000000,, 'fit_target': 1000, 'verbose': True, 'v_timer': 1, 'dynamic': True, 'dyn_method': 'success', 'dyn_metric': 'avg', 'dyn_steps': 100, 'prob_amp': 01,}, 'substrates_real': [{'name': 'DE/rand/1', 'params': {'F': 7,, 'Cr': 8},}, {'name': 'DE/best/1', 'params': {'F': 7,, 'Cr': 8},}, {'name': 'DE/rand/2', 'params': {'F': 7,, 'Cr': 8},}, {'name': 'DE/best/2', 'params': {'F': 7,, 'Cr': 8},}, {'name': 'DE/current-to-rand/1', 'params': {'F': 7,, 'Cr': 8},}, {'name': 'DE/current-to-best/1', 'params': {'F': 7,, 'Cr': 8},}, {'name': 'DE/current-to-pbest/1', 'params': {'F': 7,, 'Cr': 8},}]}
+--------------------------------------------------
+
+DATASET: Breast cancer
+Average in-sample multivariate accuracy: 96,6 ± 0,8
+Average in-sample univariate accuracy: 96,6 ± 0,8
+Average test multivariate accuracy: 94,3 ± 1,7
+Average test univariate accuracy: 94,3 ± 1,7
+
+Best test multivariate accuracy: 97,7
+Best test univariate accuracy: 97,7
+Average elapsed time: 373.713 ± 73.918
+--------------------------------------------------
+
+DATASET: Car evaluation
+Average in-sample multivariate accuracy: 86,1 ± 1,2
+Average in-sample univariate accuracy: 86,1 ± 1,2
+Average test multivariate accuracy: 85,5 ± 1,6
+Average test univariate accuracy: 85,5 ± 1,6
+
+Best test multivariate accuracy: 88,9
+Best test univariate accuracy: 88,9
+Average elapsed time: 3090,3 ± 3.049
+--------------------------------------------------
+
+DATASET: Banknote authentication
+Average in-sample multivariate accuracy: 97,0 ± 1,6
+Average in-sample univariate accuracy: 97,0 ± 1,6
+Average test multivariate accuracy: 94,5 ± 2,3
+Average test univariate accuracy: 94,5 ± 2,3
+
+Best test multivariate accuracy: 98,3
+Best test univariate accuracy: 98,3
+Average elapsed time: 285.719 ± 2.358
+--------------------------------------------------
+
+DATASET: Balance scale
+Average in-sample multivariate accuracy: 82,4 ± 1,6
+Average in-sample univariate accuracy: 82,4 ± 1,6
+Average test multivariate accuracy: 76,5 ± 3,1
+Average test univariate accuracy: 76,5 ± 3,1
+
+Best test multivariate accuracy: 83,3
+Best test univariate accuracy: 83,3
+Average elapsed time: 245.198 ± 3.313
+--------------------------------------------------
+
+DATASET: Acute inflammations 1
+Average in-sample multivariate accuracy: 100,0 ± 0,0
+Average in-sample univariate accuracy: 100,0 ± 0,0
+Average test multivariate accuracy: 100,0 ± 0,0
+Average test univariate accuracy: 100,0 ± 0,0
+
+Best test multivariate accuracy: 100,0
+Best test univariate accuracy: 100,0
+Average elapsed time: 299.597 ± 25.167
+--------------------------------------------------
+
+DATASET: Acute inflammations 2
+Average in-sample multivariate accuracy: 100,0 ± 0,0
+Average in-sample univariate accuracy: 100,0 ± 0,0
+Average test multivariate accuracy: 100,0 ± 0,0
+Average test univariate accuracy: 100,0 ± 0,0
+
+Best test multivariate accuracy: 100,0
+Best test univariate accuracy: 100,0
+Average elapsed time: 2288,7 ± 43.799
+--------------------------------------------------
+
+DATASET: Blood transfusion
+Average in-sample multivariate accuracy: 78,1 ± 1,0
+Average in-sample univariate accuracy: 78,1 ± 1,0
+Average test multivariate accuracy: 75,8 ± 1,5
+Average test univariate accuracy: 75,8 ± 1,5
+
+Best test multivariate accuracy: 79,7
+Best test univariate accuracy: 79,7
+Average elapsed time: 232.383 ± 1.637
+--------------------------------------------------
+
+DATASET: Climate model crashes
+Average in-sample multivariate accuracy: 97,5 ± 0,7
+Average in-sample univariate accuracy: 97,5 ± 0,7
+Average test multivariate accuracy: 89,8 ± 2,4
+Average test univariate accuracy: 89,8 ± 2,4
+
+Best test multivariate accuracy: 95,6
+Best test univariate accuracy: 95,6
+Average elapsed time: 236.944 ± 1.873
+--------------------------------------------------
+
+DATASET: Connectionist bench sonar
+Average in-sample multivariate accuracy: 93,3 ± 2,5
+Average in-sample univariate accuracy: 93,3 ± 2,5
+Average test multivariate accuracy: 72,6 ± 5,7
+Average test univariate accuracy: 72,6 ± 5,7
+
+Best test multivariate accuracy: 86,5
+Best test univariate accuracy: 86,5
+Average elapsed time: 223.991 ± 1.325
+--------------------------------------------------
+
+DATASET: Optical recognition
+Average in-sample multivariate accuracy: 61,1 ± 3,0
+Average in-sample univariate accuracy: 61,1 ± 3,0
+Average test multivariate accuracy: 60,0 ± 3,1
+Average test univariate accuracy: 60,0 ± 3,1
+
+Best test multivariate accuracy: 67,5
+Best test univariate accuracy: 67,5
+Average elapsed time: 877.010 ± 71.508
+
+--------------------------------------------------
+
+DATASET: Drybeans
+100 simulations executed.
+Average in-sample multivariate accuracy: 72,3 ± 4,7
+Average in-sample univariate accuracy: 72,3 ± 4,7
+Average test multivariate accuracy: 71,5 ± 4,8
+Average test univariate accuracy: 71,5 ± 4,8
+
+Best test multivariate accuracy: 81,6
+Best test univariate accuracy: 81,6
+Average elapsed time: 1636.254 ± 3669,6
+--------------------------------------------------
+
+DATASET: Avila bible
+24 simulations executed.
+* in-sample multivariate accuracy: 60,1 ± 0,6
+* in-sample univariate accuracy: 60,1 ± 0,6
+* test multivariate accuracy: 59,5 ± 0,8
+* test univariate accuracy: 59,5 ± 0,8
+
+Best test multivariate accuracy: 60,6
+Best test univariate accuracy: 60,6
+* elapsed time: 1257.708 ± 33.069
+
+--------------------------------------------------
+
+DATASET: Avila bible
+75 simulations executed.
+Average in-sample multivariate accuracy: 60,1 ± 0,8
+Average in-sample univariate accuracy: 60,1 ± 0,8
+Average test multivariate accuracy: 59,4 ± 1,1
+Average test univariate accuracy: 59,4 ± 1,1
+
+Best test multivariate accuracy: 61,6
+Best test univariate accuracy: 61,6
+Average elapsed time: 17253,2 ± 506.566
+--------------------------------------------------
+
+DATASET: Wine quality red
+100 simulations executed.
+Average in-sample multivariate accuracy: 58,6 ± 1,3
+Average in-sample univariate accuracy: 58,6 ± 1,3
+Average test multivariate accuracy: 51,5 ± 2,3
+Average test univariate accuracy: 51,5 ± 2,3
+
+Best test multivariate accuracy: 57,0
+Best test univariate accuracy: 57,0
+Average elapsed time: 233.297 ± 1.184
+--------------------------------------------------
+
+DATASET: Wine quality white
+100 simulations executed.
+Average in-sample multivariate accuracy: 52,3 ± 1,1
+Average in-sample univariate accuracy: 52,3 ± 1,1
+Average test multivariate accuracy: 49,4 ± 1,0
+Average test univariate accuracy: 49,4 ± 1,0
+
+Best test multivariate accuracy: 52,4
+Best test univariate accuracy: 52,4
+Average elapsed time: 687.953 ± 38.682

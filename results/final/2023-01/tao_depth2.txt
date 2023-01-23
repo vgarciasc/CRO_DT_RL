@@ -1,0 +1,118 @@
+{'dataset': 'all', 'simulations': 100, 'depth': 2, 'regularization': 0.0001, 'verbose': True, 'should_save': True}
+
+python tao.py --dataset all --simulations 100 --depth 2 --regularization 0.0001 --verbose True --should_save True
+
+---
+
+Dataset 'breast_cancer':
+  100 simulations executed.
+  Average training accuracy: 96,3 ± 0,7
+  Average testing accuracy: 94,2 ± 1,6
+  Average tree size: 7,0 ± 0,0
+  Max tree size: 7
+-------
+
+Dataset 'car':
+  100 simulations executed.
+  Average training accuracy: 77,9 ± 0,7
+  Average testing accuracy: 77,8 ± 1,3
+  Average tree size: 5,0 ± 0,0
+  Max tree size: 5
+-------
+
+Dataset 'banknote':
+  100 simulations executed.
+  Average training accuracy: 91,7 ± 1,1
+  Average testing accuracy: 89,8 ± 1,6
+  Average tree size: 7,0 ± 0,0
+  Max tree size: 7
+-------
+
+Dataset 'balance':
+  100 simulations executed.
+  Average training accuracy: 71,5 ± 2,5
+  Average testing accuracy: 66,4 ± 3,6
+  Average tree size: 7,0 ± 0,0
+  Max tree size: 7
+-------
+
+Dataset 'acute-1':
+  100 simulations executed.
+  Average training accuracy: 91,8 ± 2,5
+  Average testing accuracy: 91,2 ± 5,1
+  Average tree size: 5,7 ± 1,0
+  Max tree size: 7
+-------
+
+Dataset 'acute-2':
+  100 simulations executed.
+  Average training accuracy: 100,0 ± 0,0
+  Average testing accuracy: 99,0 ± 2,6
+  Average tree size: 5,0 ± 0,0
+  Max tree size: 5
+-------
+
+Dataset 'transfusion':
+  100 simulations executed.
+  Average training accuracy: 77,3 ± 1,2
+  Average testing accuracy: 75,6 ± 1,7
+  Average tree size: 7,0 ± 0,0
+  Max tree size: 7
+-------
+
+Dataset 'climate':
+  100 simulations executed.
+  Average training accuracy: 93,5 ± 1,1
+  Average testing accuracy: 90,6 ± 2,2
+  Average tree size: 6,9 ± 0,5
+  Max tree size: 7
+-------
+
+Dataset 'sonar':
+  100 simulations executed.
+  Average training accuracy: 84,7 ± 2,6
+  Average testing accuracy: 68,7 ± 6,0
+  Average tree size: 7,0 ± 0,2
+  Max tree size: 7
+-------
+
+Dataset 'optical':
+  100 simulations executed.
+  Average training accuracy: 31,8 ± 3,1
+  Average testing accuracy: 31,5 ± 3,0
+  Average tree size: 7,0 ± 0,0
+  Max tree size: 7
+-------
+
+Dataset 'drybean':
+  100 simulations executed.
+  Average training accuracy: 65,6 ± 0,4
+  Average testing accuracy: 65,2 ± 0,6
+  Average tree size: 7,0 ± 0,0
+  Max tree size: 7
+-------
+
+Dataset 'avila':
+  100 simulations executed.
+  Average training accuracy: 51,2 ± 0,3
+  Average testing accuracy: 51,0 ± 0,5
+  Average tree size: 5,0 ± 0,0
+  Max tree size: 5
+-------
+
+Dataset 'winequality-red':
+  100 simulations executed.
+  Average training accuracy: 57,2 ± 1,5
+  Average testing accuracy: 55,0 ± 2,1
+  Average tree size: 7,0 ± 0,0
+  Max tree size: 7
+-------
+
+Dataset 'winequality-white':
+  100 simulations executed.
+  Average training accuracy: 52,5 ± 0,8
+  Average testing accuracy: 51,5 ± 1,3
+  Average tree size: 7,0 ± 0,0
+  Max tree size: 7
+-------
+

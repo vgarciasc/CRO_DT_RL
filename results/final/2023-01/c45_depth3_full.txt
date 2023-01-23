@@ -1,0 +1,2818 @@
+{'dataset': 'all', 'simulations': 100, 'depth': 3, 'regularization': 0.0001, 'verbose': True, 'should_save': True}
+
+python c45.py --dataset all --simulations 100 --depth 3 --regularization 0.0001 --verbose True --should_save True
+
+---
+
+Dataset 'breast_cancer':
+  100 simulations executed.
+  Average training accuracy: 97,3 ± 1,1
+  Average testing accuracy: 94,6 ± 1,8
+  Average tree size: 8,8 ± 0,7
+  Max tree size: 11
+-------
+
+Dataset 'car':
+  100 simulations executed.
+  Average training accuracy: 86,6 ± 0,5
+  Average testing accuracy: 85,8 ± 1,0
+  Average tree size: 10,7 ± 0,4
+  Max tree size: 11
+-------
+
+Dataset 'banknote':
+  100 simulations executed.
+  Average training accuracy: 93,4 ± 1,6
+  Average testing accuracy: 91,5 ± 2,3
+  Average tree size: 9,9 ± 1,0
+  Max tree size: 13
+-------
+
+Dataset 'balance':
+  100 simulations executed.
+  Average training accuracy: 67,5 ± 4,3
+  Average testing accuracy: 61,8 ± 3,8
+  Average tree size: 10,8 ± 1,1
+  Max tree size: 14
+-------
+
+Dataset 'acute-1':
+  100 simulations executed.
+  Average training accuracy: 100,0 ± 0,0
+  Average testing accuracy: 98,5 ± 3,2
+  Average tree size: 3,1 ± 0,3
+  Max tree size: 4
+-------
+
+Dataset 'acute-2':
+  100 simulations executed.
+  Average training accuracy: 100,0 ± 0,0
+  Average testing accuracy: 98,8 ± 3,3
+  Average tree size: 2,0 ± 0,1
+  Max tree size: 3
+-------
+
+Dataset 'transfusion':
+  100 simulations executed.
+  Average training accuracy: 78,0 ± 1,5
+  Average testing accuracy: 75,1 ± 2,2
+  Average tree size: 11,4 ± 0,9
+  Max tree size: 13
+-------
+
+Dataset 'climate':
+  100 simulations executed.
+  Average training accuracy: 94,2 ± 1,5
+  Average testing accuracy: 88,9 ± 2,5
+  Average tree size: 9,0 ± 1,1
+  Max tree size: 13
+-------
+
+Dataset 'sonar':
+  100 simulations executed.
+  Average training accuracy: 89,1 ± 3,9
+  Average testing accuracy: 66,3 ± 6,4
+  Average tree size: 8,2 ± 0,4
+  Max tree size: 10
+-------
+
+Dataset 'optical':
+  100 simulations executed.
+  Average training accuracy: 29,1 ± 4,8
+  Average testing accuracy: 28,3 ± 4,5
+  Average tree size: 11,0 ± 1,3
+  Max tree size: 14
+-------
+
+Dataset 'drybean':
+  100 simulations executed.
+  Average training accuracy: 63,7 ± 4,6
+  Average testing accuracy: 63,3 ± 4,6
+  Average tree size: 13,2 ± 1,1
+  Max tree size: 15
+-------
+
+Dataset 'avila':
+  100 simulations executed.
+  Average training accuracy: 51,5 ± 0,5
+  Average testing accuracy: 51,1 ± 0,7
+  Average tree size: 14,6 ± 0,7
+  Max tree size: 15
+-------
+
+Dataset 'winequality-red':
+  100 simulations executed.
+  Average training accuracy: 57,6 ± 1,6
+  Average testing accuracy: 54,8 ± 2,0
+  Average tree size: 11,2 ± 1,0
+  Max tree size: 14
+-------
+
+Dataset 'winequality-white':
+  100 simulations executed.
+  Average training accuracy: 50,1 ± 2,4
+  Average testing accuracy: 49,3 ± 2,6
+  Average tree size: 12,1 ± 1,0
+  Max tree size: 14
+-------
+
+   Accuracy in-sample: 0.5026541445487954:
+   Accuracy out-of-sample: 0.48937908496732024:
+   Tree size: 12:
+   Tree #0:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.7" flag="l" p="0.579">
+		<volatileacidity feature="0.21" flag="l" p="0.232">
+			<alcohol feature="9.1" flag="l" p="0.134">
+				<freesulfurdioxide feature="35.0" flag="l" p="0.455">
+					<fixedacidity feature="6.8" flag="l" p="0.15">3</fixedacidity>
+					<fixedacidity feature="6.8" flag="r" p="0.85">
+						<fixedacidity feature="9.3" flag="l" p="0.941">4</fixedacidity>
+						<fixedacidity feature="9.3" flag="r" p="0.059">1</fixedacidity>
+					</fixedacidity>
+				</freesulfurdioxide>
+				<freesulfurdioxide feature="35.0" flag="r" p="0.545">
+					<residualsugar feature="13.9" flag="l" p="0.417">3</residualsugar>
+					<residualsugar feature="13.9" flag="r" p="0.583">5</residualsugar>
+				</freesulfurdioxide>
+			</alcohol>
+			<alcohol feature="9.1" flag="r" p="0.866">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.21" flag="r" p="0.768">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.7" flag="r" p="0.421">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46957942017149856:
+   Accuracy out-of-sample: 0.45179738562091504:
+   Tree size: 12:
+   Tree #1:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.636">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.071">
+			<alcohol feature="10.7" flag="l" p="0.847">
+				<chlorides feature="0.037" flag="l" p="0.17">
+					<residualsugar feature="1.0" flag="l" p="0.062">1</residualsugar>
+					<residualsugar feature="1.0" flag="r" p="0.938">
+						<chlorides feature="0.034" flag="l" p="0.6">
+							<freesulfurdioxide feature="6.0" flag="l" p="0.111">3</freesulfurdioxide>
+							<freesulfurdioxide feature="6.0" flag="r" p="0.889">2</freesulfurdioxide>
+						</chlorides>
+						<chlorides feature="0.034" flag="r" p="0.4">3</chlorides>
+					</residualsugar>
+				</chlorides>
+				<chlorides feature="0.037" flag="r" p="0.83">2</chlorides>
+			</alcohol>
+			<alcohol feature="10.7" flag="r" p="0.153">2</alcohol>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.929">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.364">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46876276031033076:
+   Accuracy out-of-sample: 0.4673202614379085:
+   Tree size: 13:
+   Tree #2:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.657">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.063">
+			<sulphates feature="0.76" flag="l" p="0.98">
+				<pH feature="3.47" flag="l" p="0.949">
+					<volatileacidity feature="0.52" flag="l" p="0.904">
+						<chlorides feature="0.032" flag="l" p="0.129">2</chlorides>
+						<chlorides feature="0.032" flag="r" p="0.871">
+							<alcohol feature="9.55" flag="l" p="0.284">2</alcohol>
+							<alcohol feature="9.55" flag="r" p="0.716">2</alcohol>
+						</chlorides>
+					</volatileacidity>
+					<volatileacidity feature="0.52" flag="r" p="0.096">1</volatileacidity>
+				</pH>
+				<pH feature="3.47" flag="r" p="0.051">3</pH>
+			</sulphates>
+			<sulphates feature="0.76" flag="r" p="0.02">3</sulphates>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.937">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.343">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46917109024091463:
+   Accuracy out-of-sample: 0.4583333333333333:
+   Tree size: 14:
+   Tree #3:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.62">
+		<fixedacidity feature="9.1" flag="l" p="0.978">
+			<freesulfurdioxide feature="14.0" flag="l" p="0.065">
+				<volatileacidity feature="0.48" flag="l" p="0.897">
+					<pH feature="3.32" flag="l" p="0.828">
+						<chlorides feature="0.032" flag="l" p="0.139">2</chlorides>
+						<chlorides feature="0.032" flag="r" p="0.861">
+							<fixedacidity feature="8.3" flag="l" p="0.871">2</fixedacidity>
+							<fixedacidity feature="8.3" flag="r" p="0.129">3</fixedacidity>
+						</chlorides>
+					</pH>
+					<pH feature="3.32" flag="r" p="0.172">2</pH>
+				</volatileacidity>
+				<volatileacidity feature="0.48" flag="r" p="0.103">1</volatileacidity>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="14.0" flag="r" p="0.935">3</freesulfurdioxide>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.022">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.38">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46957942017149856:
+   Accuracy out-of-sample: 0.4624183006535948:
+   Tree size: 12:
+   Tree #4:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.638">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.067">
+			<density feature="0.992" flag="l" p="0.105">
+				<pH feature="3.32" flag="l" p="0.818">2</pH>
+				<pH feature="3.32" flag="r" p="0.182">4</pH>
+			</density>
+			<density feature="0.992" flag="r" p="0.895">
+				<volatileacidity feature="0.52" flag="l" p="0.894">
+					<freesulfurdioxide feature="8.0" flag="l" p="0.19">
+						<citricacid feature="0.18" flag="l" p="0.062">3</citricacid>
+						<citricacid feature="0.18" flag="r" p="0.938">1</citricacid>
+					</freesulfurdioxide>
+					<freesulfurdioxide feature="8.0" flag="r" p="0.81">2</freesulfurdioxide>
+				</volatileacidity>
+				<volatileacidity feature="0.52" flag="r" p="0.106">1</volatileacidity>
+			</density>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.933">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.362">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5312372396896693:
+   Accuracy out-of-sample: 0.5065359477124183:
+   Tree size: 12:
+   Tree #5:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.626">
+		<volatileacidity feature="0.245" flag="l" p="0.405">
+			<alcohol feature="8.9" flag="l" p="0.092">
+				<pH feature="2.97" flag="l" p="0.228">
+					<fixedacidity feature="7.4" flag="l" p="0.462">5</fixedacidity>
+					<fixedacidity feature="7.4" flag="r" p="0.538">4</fixedacidity>
+				</pH>
+				<pH feature="2.97" flag="r" p="0.772">
+					<fixedacidity feature="8.0" flag="l" p="0.841">
+						<pH feature="3.42" flag="l" p="0.973">2</pH>
+						<pH feature="3.42" flag="r" p="0.027">0</pH>
+					</fixedacidity>
+					<fixedacidity feature="8.0" flag="r" p="0.159">4</fixedacidity>
+				</pH>
+			</alcohol>
+			<alcohol feature="8.9" flag="r" p="0.908">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.245" flag="r" p="0.595">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.374">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5034708044099633:
+   Accuracy out-of-sample: 0.4918300653594771:
+   Tree size: 12:
+   Tree #6:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.586">
+		<volatileacidity feature="0.21" flag="l" p="0.234">
+			<freesulfurdioxide feature="9.0" flag="l" p="0.024">
+				<fixedacidity feature="7.9" flag="l" p="0.25">1</fixedacidity>
+				<fixedacidity feature="7.9" flag="r" p="0.75">
+					<fixedacidity feature="10.3" flag="l" p="0.833">2</fixedacidity>
+					<fixedacidity feature="10.3" flag="r" p="0.167">0</fixedacidity>
+				</fixedacidity>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="9.0" flag="r" p="0.976">
+				<alcohol feature="9.2" flag="l" p="0.211">
+					<sulphates feature="0.61" flag="l" p="0.87">4</sulphates>
+					<sulphates feature="0.61" flag="r" p="0.13">3</sulphates>
+				</alcohol>
+				<alcohol feature="9.2" flag="r" p="0.789">3</alcohol>
+			</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.21" flag="r" p="0.766">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.414">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5210289914250714:
+   Accuracy out-of-sample: 0.5049019607843137:
+   Tree size: 11:
+   Tree #7:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.639">
+		<volatileacidity feature="0.27" flag="l" p="0.534">
+			<totalsulfurdioxide feature="65.0" flag="l" p="0.024">
+				<sulphates feature="0.32" flag="l" p="0.05">0</sulphates>
+				<sulphates feature="0.32" flag="r" p="0.95">
+					<fixedacidity feature="9.0" flag="l" p="0.895">
+						<density feature="0.9953" flag="l" p="0.941">
+							<citricacid feature="0.71" flag="l" p="0.938">2</citricacid>
+							<citricacid feature="0.71" flag="r" p="0.062">3</citricacid>
+						</density>
+						<density feature="0.9953" flag="r" p="0.059">3</density>
+					</fixedacidity>
+					<fixedacidity feature="9.0" flag="r" p="0.105">3</fixedacidity>
+				</sulphates>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="65.0" flag="r" p="0.976">3</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.27" flag="r" p="0.466">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.361">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5255206206614945:
+   Accuracy out-of-sample: 0.505718954248366:
+   Tree size: 14:
+   Tree #8:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.583">
+		<volatileacidity feature="0.24" flag="l" p="0.367">
+			<alcohol feature="9.1" flag="l" p="0.172">
+				<citricacid feature="0.64" flag="l" p="0.889">
+					<fixedacidity feature="6.8" flag="l" p="0.375">
+						<pH feature="3.26" flag="l" p="0.733">
+							<chlorides feature="0.094" flag="l" p="0.955">3</chlorides>
+							<chlorides feature="0.094" flag="r" p="0.045">2</chlorides>
+						</pH>
+						<pH feature="3.26" flag="r" p="0.267">2</pH>
+					</fixedacidity>
+					<fixedacidity feature="6.8" flag="r" p="0.625">4</fixedacidity>
+				</citricacid>
+				<citricacid feature="0.64" flag="r" p="0.111">2</citricacid>
+			</alcohol>
+			<alcohol feature="9.1" flag="r" p="0.828">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.633">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.417">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5063291139240507:
+   Accuracy out-of-sample: 0.5049019607843137:
+   Tree size: 11:
+   Tree #9:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.64">
+		<fixedacidity feature="8.9" flag="l" p="0.974">
+			<volatileacidity feature="0.24" flag="l" p="0.356">
+				<volatileacidity feature="0.115" flag="l" p="0.022">
+					<pH feature="3.16" flag="l" p="0.083">1</pH>
+					<pH feature="3.16" flag="r" p="0.917">
+						<chlorides feature="0.044" flag="l" p="0.545">4</chlorides>
+						<chlorides feature="0.044" flag="r" p="0.455">
+							<residualsugar feature="4.9" flag="l" p="0.2">4</residualsugar>
+							<residualsugar feature="4.9" flag="r" p="0.8">3</residualsugar>
+						</chlorides>
+					</pH>
+				</volatileacidity>
+				<volatileacidity feature="0.115" flag="r" p="0.978">3</volatileacidity>
+			</volatileacidity>
+			<volatileacidity feature="0.24" flag="r" p="0.644">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="8.9" flag="r" p="0.026">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.36">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4703960800326664:
+   Accuracy out-of-sample: 0.4583333333333333:
+   Tree size: 12:
+   Tree #10:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.8" flag="l" p="0.611">
+		<fixedacidity feature="9.0" flag="l" p="0.974">
+			<freesulfurdioxide feature="14.0" flag="l" p="0.062">
+				<citricacid feature="0.05" flag="l" p="0.033">1</citricacid>
+				<citricacid feature="0.05" flag="r" p="0.967">
+					<sulphates feature="0.68" flag="l" p="0.932">
+						<density feature="0.9918" flag="l" p="0.061">
+							<residualsugar feature="1.5" flag="l" p="0.4">2</residualsugar>
+							<residualsugar feature="1.5" flag="r" p="0.6">3</residualsugar>
+						</density>
+						<density feature="0.9918" flag="r" p="0.939">2</density>
+					</sulphates>
+					<sulphates feature="0.68" flag="r" p="0.068">3</sulphates>
+				</citricacid>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="14.0" flag="r" p="0.938">3</freesulfurdioxide>
+		</fixedacidity>
+		<fixedacidity feature="9.0" flag="r" p="0.026">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.8" flag="r" p="0.389">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4712127398938342:
+   Accuracy out-of-sample: 0.46486928104575165:
+   Tree size: 11:
+   Tree #11:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.625">
+		<fixedacidity feature="9.1" flag="l" p="0.978">
+			<freesulfurdioxide feature="14.0" flag="l" p="0.069">
+				<chlorides feature="0.032" flag="l" p="0.106">2</chlorides>
+				<chlorides feature="0.032" flag="r" p="0.894">
+					<density feature="0.992" flag="l" p="0.043">
+						<fixedacidity feature="6.4" flag="l" p="0.5">3</fixedacidity>
+						<fixedacidity feature="6.4" flag="r" p="0.5">4</fixedacidity>
+					</density>
+					<density feature="0.992" flag="r" p="0.957">
+						<citricacid feature="0.05" flag="l" p="0.034">1</citricacid>
+						<citricacid feature="0.05" flag="r" p="0.966">2</citricacid>
+					</density>
+				</chlorides>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="14.0" flag="r" p="0.931">3</freesulfurdioxide>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.022">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.375">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5259289505920784:
+   Accuracy out-of-sample: 0.49836601307189543:
+   Tree size: 11:
+   Tree #12:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.637">
+		<volatileacidity feature="0.265" flag="l" p="0.529">
+			<totalsulfurdioxide feature="67.0" flag="l" p="0.025">
+				<totalsulfurdioxide feature="21.0" flag="l" p="0.048">3</totalsulfurdioxide>
+				<totalsulfurdioxide feature="21.0" flag="r" p="0.952">
+					<citricacid feature="0.3" flag="l" p="0.3">
+						<chlorides feature="0.04" flag="l" p="0.667">2</chlorides>
+						<chlorides feature="0.04" flag="r" p="0.333">1</chlorides>
+					</citricacid>
+					<citricacid feature="0.3" flag="r" p="0.7">
+						<density feature="0.9953" flag="l" p="0.929">2</density>
+						<density feature="0.9953" flag="r" p="0.071">3</density>
+					</citricacid>
+				</totalsulfurdioxide>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="67.0" flag="r" p="0.975">3</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.265" flag="r" p="0.471">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.363">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5291955900367497:
+   Accuracy out-of-sample: 0.49673202614379086:
+   Tree size: 11:
+   Tree #13:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.635">
+		<volatileacidity feature="0.27" flag="l" p="0.519">
+			<totalsulfurdioxide feature="49.0" flag="l" p="0.01">
+				<density feature="0.9934" flag="l" p="0.375">
+					<citricacid feature="0.37" flag="l" p="0.667">1</citricacid>
+					<citricacid feature="0.37" flag="r" p="0.333">2</citricacid>
+				</density>
+				<density feature="0.9934" flag="r" p="0.625">
+					<fixedacidity feature="10.3" flag="l" p="0.8">3</fixedacidity>
+					<fixedacidity feature="10.3" flag="r" p="0.2">0</fixedacidity>
+				</density>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="49.0" flag="r" p="0.99">
+				<residualsugar feature="17.8" flag="l" p="0.97">3</residualsugar>
+				<residualsugar feature="17.8" flag="r" p="0.03">2</residualsugar>
+			</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.27" flag="r" p="0.481">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.365">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4650877909350755:
+   Accuracy out-of-sample: 0.4542483660130719:
+   Tree size: 12:
+   Tree #14:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9666666666667" flag="l" p="0.65">
+		<fixedacidity feature="9.1" flag="l" p="0.977">
+			<freesulfurdioxide feature="12.0" flag="l" p="0.049">
+				<alcohol feature="8.8" flag="l" p="0.039">1</alcohol>
+				<alcohol feature="8.8" flag="r" p="0.961">
+					<sulphates feature="0.63" flag="l" p="0.932">
+						<density feature="0.99144" flag="l" p="0.087">2</density>
+						<density feature="0.99144" flag="r" p="0.913">
+							<fixedacidity feature="9.0" flag="l" p="0.968">2</fixedacidity>
+							<fixedacidity feature="9.0" flag="r" p="0.032">3</fixedacidity>
+						</density>
+					</sulphates>
+					<sulphates feature="0.63" flag="r" p="0.068">2</sulphates>
+				</alcohol>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="12.0" flag="r" p="0.951">3</freesulfurdioxide>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.023">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9666666666667" flag="r" p="0.35">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5283789301755819:
+   Accuracy out-of-sample: 0.5212418300653595:
+   Tree size: 12:
+   Tree #15:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.635">
+		<volatileacidity feature="0.285" flag="l" p="0.638">
+			<residualsugar feature="17.7" flag="l" p="0.962">
+				<alcohol feature="8.9" flag="l" p="0.057">
+					<pH feature="2.95" flag="l" p="0.241">
+						<citricacid feature="0.54" flag="l" p="0.923">
+							<fixedacidity feature="7.4" flag="l" p="0.333">5</fixedacidity>
+							<fixedacidity feature="7.4" flag="r" p="0.667">4</fixedacidity>
+						</citricacid>
+						<citricacid feature="0.54" flag="r" p="0.077">3</citricacid>
+					</pH>
+					<pH feature="2.95" flag="r" p="0.759">2</pH>
+				</alcohol>
+				<alcohol feature="8.9" flag="r" p="0.943">3</alcohol>
+			</residualsugar>
+			<residualsugar feature="17.7" flag="r" p="0.038">2</residualsugar>
+		</volatileacidity>
+		<volatileacidity feature="0.285" flag="r" p="0.362">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.365">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.514087382605145:
+   Accuracy out-of-sample: 0.5049019607843137:
+   Tree size: 14:
+   Tree #16:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.7" flag="l" p="0.58">
+		<fixedacidity feature="9.1" flag="l" p="0.979">
+			<volatileacidity feature="0.285" flag="l" p="0.634">
+				<totalsulfurdioxide feature="272.0" flag="l" p="0.998">
+					<freesulfurdioxide feature="18.0" flag="l" p="0.085">
+						<citricacid feature="0.24" flag="l" p="0.12">2</citricacid>
+						<citricacid feature="0.24" flag="r" p="0.88">
+							<sulphates feature="0.64" flag="l" p="0.909">3</sulphates>
+							<sulphates feature="0.64" flag="r" p="0.091">2</sulphates>
+						</citricacid>
+					</freesulfurdioxide>
+					<freesulfurdioxide feature="18.0" flag="r" p="0.915">3</freesulfurdioxide>
+				</totalsulfurdioxide>
+				<totalsulfurdioxide feature="272.0" flag="r" p="0.002">0</totalsulfurdioxide>
+			</volatileacidity>
+			<volatileacidity feature="0.285" flag="r" p="0.366">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.021">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.7" flag="r" p="0.42">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.47652102899142507:
+   Accuracy out-of-sample: 0.45751633986928103:
+   Tree size: 14:
+   Tree #17:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.637">
+		<fixedacidity feature="9.1" flag="l" p="0.976">
+			<freesulfurdioxide feature="14.0" flag="l" p="0.072">
+				<volatileacidity feature="0.53" flag="l" p="0.927">
+					<pH feature="3.32" flag="l" p="0.861">
+						<alcohol feature="8.8" flag="l" p="0.023">1</alcohol>
+						<alcohol feature="8.8" flag="r" p="0.977">
+							<totalsulfurdioxide feature="124.0" flag="l" p="0.706">2</totalsulfurdioxide>
+							<totalsulfurdioxide feature="124.0" flag="r" p="0.294">2</totalsulfurdioxide>
+						</alcohol>
+					</pH>
+					<pH feature="3.32" flag="r" p="0.139">3</pH>
+				</volatileacidity>
+				<volatileacidity feature="0.53" flag="r" p="0.073">1</volatileacidity>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="14.0" flag="r" p="0.928">3</freesulfurdioxide>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.024">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.363">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5291955900367497:
+   Accuracy out-of-sample: 0.49754901960784315:
+   Tree size: 12:
+   Tree #18:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.628">
+		<volatileacidity feature="0.24" flag="l" p="0.386">
+			<totalsulfurdioxide feature="57.0" flag="l" p="0.01">
+				<fixedacidity feature="5.9" flag="l" p="0.167">1</fixedacidity>
+				<fixedacidity feature="5.9" flag="r" p="0.833">2</fixedacidity>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="57.0" flag="r" p="0.99">
+				<fixedacidity feature="8.5" flag="l" p="0.945">
+					<alcohol feature="9.0" flag="l" p="0.108">
+						<citricacid feature="0.58" flag="l" p="0.9">3</citricacid>
+						<citricacid feature="0.58" flag="r" p="0.1">2</citricacid>
+					</alcohol>
+					<alcohol feature="9.0" flag="r" p="0.892">3</alcohol>
+				</fixedacidity>
+				<fixedacidity feature="8.5" flag="r" p="0.055">3</fixedacidity>
+			</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.614">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.372">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5296039199673336:
+   Accuracy out-of-sample: 0.5163398692810458:
+   Tree size: 12:
+   Tree #19:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.7" flag="l" p="0.58">
+		<volatileacidity feature="0.26" flag="l" p="0.46">
+			<alcohol feature="8.9" flag="l" p="0.076">
+				<pH feature="2.94" flag="l" p="0.2">4</pH>
+				<pH feature="2.94" flag="r" p="0.8">
+					<fixedacidity feature="6.9" flag="l" p="0.55">
+						<pH feature="3.25" flag="l" p="0.591">
+							<fixedacidity feature="6.2" flag="l" p="0.154">2</fixedacidity>
+							<fixedacidity feature="6.2" flag="r" p="0.846">3</fixedacidity>
+						</pH>
+						<pH feature="3.25" flag="r" p="0.409">2</pH>
+					</fixedacidity>
+					<fixedacidity feature="6.9" flag="r" p="0.45">2</fixedacidity>
+				</pH>
+			</alcohol>
+			<alcohol feature="8.9" flag="r" p="0.924">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.26" flag="r" p="0.54">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.7" flag="r" p="0.42">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5230706410779911:
+   Accuracy out-of-sample: 0.5122549019607843:
+   Tree size: 12:
+   Tree #20:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.628">
+		<volatileacidity feature="0.26" flag="l" p="0.479">
+			<alcohol feature="9.0" flag="l" p="0.101">
+				<freesulfurdioxide feature="36.0" flag="l" p="0.27">
+					<residualsugar feature="18.05" flag="l" p="0.8">
+						<freesulfurdioxide feature="16.0" flag="l" p="0.062">2</freesulfurdioxide>
+						<freesulfurdioxide feature="16.0" flag="r" p="0.938">
+							<chlorides feature="0.092" flag="l" p="0.933">4</chlorides>
+							<chlorides feature="0.092" flag="r" p="0.067">3</chlorides>
+						</freesulfurdioxide>
+					</residualsugar>
+					<residualsugar feature="18.05" flag="r" p="0.2">2</residualsugar>
+				</freesulfurdioxide>
+				<freesulfurdioxide feature="36.0" flag="r" p="0.73">3</freesulfurdioxide>
+			</alcohol>
+			<alcohol feature="9.0" flag="r" p="0.899">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.26" flag="r" p="0.521">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.372">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5157207023274806:
+   Accuracy out-of-sample: 0.5163398692810458:
+   Tree size: 12:
+   Tree #21:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.579">
+		<volatileacidity feature="0.24" flag="l" p="0.358">
+			<freesulfurdioxide feature="7.0" flag="l" p="0.012">
+				<fixedacidity feature="10.3" flag="l" p="0.833">
+					<density feature="0.9926" flag="l" p="0.6">1</density>
+					<density feature="0.9926" flag="r" p="0.4">2</density>
+				</fixedacidity>
+				<fixedacidity feature="10.3" flag="r" p="0.167">0</fixedacidity>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="7.0" flag="r" p="0.988">
+				<citricacid feature="0.53" flag="l" p="0.94">
+					<alcohol feature="9.2" flag="l" p="0.206">3</alcohol>
+					<alcohol feature="9.2" flag="r" p="0.794">3</alcohol>
+				</citricacid>
+				<citricacid feature="0.53" flag="r" p="0.06">2</citricacid>
+			</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.642">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.421">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46467946100449165:
+   Accuracy out-of-sample: 0.46405228758169936:
+   Tree size: 14:
+   Tree #22:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.7" flag="l" p="0.586">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.065">
+			<volatileacidity feature="0.485" flag="l" p="0.892">
+				<sulphates feature="0.29" flag="l" p="0.012">0</sulphates>
+				<sulphates feature="0.29" flag="r" p="0.988">
+					<density feature="0.9966" flag="l" p="0.915">
+						<pH feature="3.32" flag="l" p="0.853">
+							<citricacid feature="0.71" flag="l" p="0.969">2</citricacid>
+							<citricacid feature="0.71" flag="r" p="0.031">3</citricacid>
+						</pH>
+						<pH feature="3.32" flag="r" p="0.147">2</pH>
+					</density>
+					<density feature="0.9966" flag="r" p="0.085">3</density>
+				</sulphates>
+			</volatileacidity>
+			<volatileacidity feature="0.485" flag="r" p="0.108">1</volatileacidity>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.935">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.7" flag="r" p="0.414">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.514087382605145:
+   Accuracy out-of-sample: 0.5138888888888888:
+   Tree size: 11:
+   Tree #23:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.62">
+		<volatileacidity feature="0.24" flag="l" p="0.37">
+			<freesulfurdioxide feature="8.0" flag="l" p="0.012">
+				<fixedacidity feature="10.3" flag="l" p="0.857">
+					<residualsugar feature="2.3" flag="l" p="0.667">
+						<fixedacidity feature="8.5" flag="l" p="0.75">2</fixedacidity>
+						<fixedacidity feature="8.5" flag="r" p="0.25">1</fixedacidity>
+					</residualsugar>
+					<residualsugar feature="2.3" flag="r" p="0.333">1</residualsugar>
+				</fixedacidity>
+				<fixedacidity feature="10.3" flag="r" p="0.143">0</fixedacidity>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="8.0" flag="r" p="0.988">
+				<alcohol feature="9.0" flag="l" p="0.115">3</alcohol>
+				<alcohol feature="9.0" flag="r" p="0.885">3</alcohol>
+			</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.63">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.38">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5291955900367497:
+   Accuracy out-of-sample: 0.5138888888888888:
+   Tree size: 12:
+   Tree #24:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.7" flag="l" p="0.572">
+		<volatileacidity feature="0.265" flag="l" p="0.528">
+			<freesulfurdioxide feature="16.0" flag="l" p="0.074">
+				<sulphates feature="0.32" flag="l" p="0.018">0</sulphates>
+				<sulphates feature="0.32" flag="r" p="0.982">
+					<density feature="0.99626" flag="l" p="0.889">
+						<freesulfurdioxide feature="5.0" flag="l" p="0.042">3</freesulfurdioxide>
+						<freesulfurdioxide feature="5.0" flag="r" p="0.958">
+							<residualsugar feature="3.3" flag="l" p="0.652">2</residualsugar>
+							<residualsugar feature="3.3" flag="r" p="0.348">3</residualsugar>
+						</freesulfurdioxide>
+					</density>
+					<density feature="0.99626" flag="r" p="0.111">3</density>
+				</sulphates>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="16.0" flag="r" p="0.926">3</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.265" flag="r" p="0.472">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.7" flag="r" p="0.428">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.513679052674561:
+   Accuracy out-of-sample: 0.5187908496732027:
+   Tree size: 13:
+   Tree #25:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.7" flag="l" p="0.581">
+		<volatileacidity feature="0.24" flag="l" p="0.34">
+			<alcohol feature="9.0" flag="l" p="0.13">
+				<volatileacidity feature="0.17" flag="l" p="0.111">4</volatileacidity>
+				<volatileacidity feature="0.17" flag="r" p="0.889">
+					<fixedacidity feature="6.9" flag="l" p="0.536">
+						<pH feature="3.26" flag="l" p="0.667">
+							<freesulfurdioxide feature="31.0" flag="l" p="0.05">2</freesulfurdioxide>
+							<freesulfurdioxide feature="31.0" flag="r" p="0.95">3</freesulfurdioxide>
+						</pH>
+						<pH feature="3.26" flag="r" p="0.333">2</pH>
+					</fixedacidity>
+					<fixedacidity feature="6.9" flag="r" p="0.464">5</fixedacidity>
+				</volatileacidity>
+			</alcohol>
+			<alcohol feature="9.0" flag="r" p="0.87">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.66">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.7" flag="r" p="0.419">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5283789301755819:
+   Accuracy out-of-sample: 0.5138888888888888:
+   Tree size: 12:
+   Tree #26:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.628">
+		<volatileacidity feature="0.255" flag="l" p="0.476">
+			<alcohol feature="8.9" flag="l" p="0.085">
+				<pH feature="2.95" flag="l" p="0.226">
+					<fixedacidity feature="7.4" flag="l" p="0.5">5</fixedacidity>
+					<fixedacidity feature="7.4" flag="r" p="0.5">4</fixedacidity>
+				</pH>
+				<pH feature="2.95" flag="r" p="0.774">
+					<fixedacidity feature="8.0" flag="l" p="0.854">
+						<pH feature="3.42" flag="l" p="0.976">2</pH>
+						<pH feature="3.42" flag="r" p="0.024">0</pH>
+					</fixedacidity>
+					<fixedacidity feature="8.0" flag="r" p="0.146">4</fixedacidity>
+				</pH>
+			</alcohol>
+			<alcohol feature="8.9" flag="r" p="0.915">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.255" flag="r" p="0.524">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.372">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5169456921192324:
+   Accuracy out-of-sample: 0.505718954248366:
+   Tree size: 12:
+   Tree #27:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9666666666667" flag="l" p="0.646">
+		<volatileacidity feature="0.26" flag="l" p="0.474">
+			<pH feature="2.94" flag="l" p="0.055">
+				<alcohol feature="8.9" flag="l" p="0.195">4</alcohol>
+				<alcohol feature="8.9" flag="r" p="0.805">
+					<density feature="0.99184" flag="l" p="0.091">4</density>
+					<density feature="0.99184" flag="r" p="0.909">
+						<pH feature="2.92" flag="l" p="0.8">
+							<freesulfurdioxide feature="69.0" flag="l" p="0.958">3</freesulfurdioxide>
+							<freesulfurdioxide feature="69.0" flag="r" p="0.042">1</freesulfurdioxide>
+						</pH>
+						<pH feature="2.92" flag="r" p="0.2">3</pH>
+					</density>
+				</alcohol>
+			</pH>
+			<pH feature="2.94" flag="r" p="0.945">3</pH>
+		</volatileacidity>
+		<volatileacidity feature="0.26" flag="r" p="0.526">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9666666666667" flag="r" p="0.354">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5173540220498163:
+   Accuracy out-of-sample: 0.5098039215686274:
+   Tree size: 12:
+   Tree #28:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.655">
+		<volatileacidity feature="0.26" flag="l" p="0.477">
+			<totalsulfurdioxide feature="201.0" flag="l" p="0.928">
+				<totalsulfurdioxide feature="67.0" flag="l" p="0.027">
+					<citricacid feature="0.36" flag="l" p="0.474">
+						<citricacid feature="0.24" flag="l" p="0.111">1</citricacid>
+						<citricacid feature="0.24" flag="r" p="0.889">
+							<fixedacidity feature="6.5" flag="l" p="0.125">1</fixedacidity>
+							<fixedacidity feature="6.5" flag="r" p="0.875">2</fixedacidity>
+						</citricacid>
+					</citricacid>
+					<citricacid feature="0.36" flag="r" p="0.526">3</citricacid>
+				</totalsulfurdioxide>
+				<totalsulfurdioxide feature="67.0" flag="r" p="0.973">3</totalsulfurdioxide>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="201.0" flag="r" p="0.072">2</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.26" flag="r" p="0.523">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.345">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5149040424663128:
+   Accuracy out-of-sample: 0.5261437908496732:
+   Tree size: 14:
+   Tree #29:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.588">
+		<volatileacidity feature="0.24" flag="l" p="0.366">
+			<alcohol feature="9.0" flag="l" p="0.118">
+				<fixedacidity feature="7.3" flag="l" p="0.565">
+					<fixedacidity feature="4.5" flag="l" p="0.029">0</fixedacidity>
+					<fixedacidity feature="4.5" flag="r" p="0.971">
+						<density feature="0.9999" flag="l" p="0.765">
+							<chlorides feature="0.039" flag="l" p="0.192">2</chlorides>
+							<chlorides feature="0.039" flag="r" p="0.808">3</chlorides>
+						</density>
+						<density feature="0.9999" flag="r" p="0.235">2</density>
+					</fixedacidity>
+				</fixedacidity>
+				<fixedacidity feature="7.3" flag="r" p="0.435">5</fixedacidity>
+			</alcohol>
+			<alcohol feature="9.0" flag="r" p="0.882">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.634">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.412">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46957942017149856:
+   Accuracy out-of-sample: 0.4583333333333333:
+   Tree size: 11:
+   Tree #30:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.634">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.068">
+			<pH feature="3.45" flag="l" p="0.943">
+				<chlorides feature="0.035" flag="l" p="0.232">
+					<residualsugar feature="2.5" flag="l" p="0.696">2</residualsugar>
+					<residualsugar feature="2.5" flag="r" p="0.304">
+						<volatileacidity feature="0.23" flag="l" p="0.143">5</volatileacidity>
+						<volatileacidity feature="0.23" flag="r" p="0.857">
+							<totalsulfurdioxide feature="96.0" flag="l" p="0.667">3</totalsulfurdioxide>
+							<totalsulfurdioxide feature="96.0" flag="r" p="0.333">2</totalsulfurdioxide>
+						</volatileacidity>
+					</residualsugar>
+				</chlorides>
+				<chlorides feature="0.035" flag="r" p="0.768">2</chlorides>
+			</pH>
+			<pH feature="3.45" flag="r" p="0.057">1</pH>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.932">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.366">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5189873417721519:
+   Accuracy out-of-sample: 0.49673202614379086:
+   Tree size: 12:
+   Tree #31:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.629">
+		<volatileacidity feature="0.24" flag="l" p="0.372">
+			<freesulfurdioxide feature="14.0" flag="l" p="0.049">
+				<sulphates feature="0.31" flag="l" p="0.036">0</sulphates>
+				<sulphates feature="0.31" flag="r" p="0.964">
+					<chlorides feature="0.042" flag="l" p="0.741">
+						<volatileacidity feature="0.13" flag="l" p="0.05">3</volatileacidity>
+						<volatileacidity feature="0.13" flag="r" p="0.95">
+							<volatileacidity feature="0.22" flag="l" p="0.895">2</volatileacidity>
+							<volatileacidity feature="0.22" flag="r" p="0.105">5</volatileacidity>
+						</volatileacidity>
+					</chlorides>
+					<chlorides feature="0.042" flag="r" p="0.259">3</chlorides>
+				</sulphates>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="14.0" flag="r" p="0.951">3</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.628">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.371">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.47162106982441815:
+   Accuracy out-of-sample: 0.4624183006535948:
+   Tree size: 12:
+   Tree #32:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.8" flag="l" p="0.617">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.071">
+			<volatileacidity feature="0.48" flag="l" p="0.861">
+				<chlorides feature="0.032" flag="l" p="0.129">2</chlorides>
+				<chlorides feature="0.032" flag="r" p="0.871">
+					<volatileacidity feature="0.17" flag="l" p="0.049">3</volatileacidity>
+					<volatileacidity feature="0.17" flag="r" p="0.951">
+						<density feature="0.9924" flag="l" p="0.117">
+							<pH feature="3.08" flag="l" p="0.222">1</pH>
+							<pH feature="3.08" flag="r" p="0.778">3</pH>
+						</density>
+						<density feature="0.9924" flag="r" p="0.883">2</density>
+					</volatileacidity>
+				</chlorides>
+			</volatileacidity>
+			<volatileacidity feature="0.48" flag="r" p="0.139">2</volatileacidity>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.929">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.8" flag="r" p="0.383">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46549612086565945:
+   Accuracy out-of-sample: 0.46568627450980393:
+   Tree size: 11:
+   Tree #33:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.635">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.062">
+			<fixedacidity feature="10.3" flag="l" p="0.99">
+				<chlorides feature="0.032" flag="l" p="0.095">2</chlorides>
+				<chlorides feature="0.032" flag="r" p="0.905">
+					<volatileacidity feature="0.245" flag="l" p="0.209">
+						<totalsulfurdioxide feature="143.0" flag="l" p="0.944">
+							<freesulfurdioxide feature="8.0" flag="l" p="0.353">3</freesulfurdioxide>
+							<freesulfurdioxide feature="8.0" flag="r" p="0.647">3</freesulfurdioxide>
+						</totalsulfurdioxide>
+						<totalsulfurdioxide feature="143.0" flag="r" p="0.056">2</totalsulfurdioxide>
+					</volatileacidity>
+					<volatileacidity feature="0.245" flag="r" p="0.791">2</volatileacidity>
+				</chlorides>
+			</fixedacidity>
+			<fixedacidity feature="10.3" flag="r" p="0.01">0</fixedacidity>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.938">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.365">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.513679052674561:
+   Accuracy out-of-sample: 0.5032679738562091:
+   Tree size: 11:
+   Tree #34:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.634">
+		<volatileacidity feature="0.24" flag="l" p="0.363">
+			<totalsulfurdioxide feature="55.0" flag="l" p="0.011">
+				<freesulfurdioxide feature="7.0" flag="l" p="0.333">1</freesulfurdioxide>
+				<freesulfurdioxide feature="7.0" flag="r" p="0.667">2</freesulfurdioxide>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="55.0" flag="r" p="0.989">
+				<alcohol feature="9.0" flag="l" p="0.093">
+					<pH feature="2.94" flag="l" p="0.135">4</pH>
+					<pH feature="2.94" flag="r" p="0.865">
+						<alcohol feature="8.5" flag="l" p="0.022">0</alcohol>
+						<alcohol feature="8.5" flag="r" p="0.978">3</alcohol>
+					</pH>
+				</alcohol>
+				<alcohol feature="9.0" flag="r" p="0.907">3</alcohol>
+			</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.637">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.366">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5283789301755819:
+   Accuracy out-of-sample: 0.49836601307189543:
+   Tree size: 12:
+   Tree #35:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.643">
+		<volatileacidity feature="0.28" flag="l" p="0.587">
+			<freesulfurdioxide feature="9.0" flag="l" p="0.022">
+				<sulphates feature="0.32" flag="l" p="0.05">0</sulphates>
+				<sulphates feature="0.32" flag="r" p="0.95">
+					<density feature="0.99626" flag="l" p="0.842">
+						<volatileacidity feature="0.27" flag="l" p="0.812">
+							<density feature="0.9923" flag="l" p="0.231">1</density>
+							<density feature="0.9923" flag="r" p="0.769">2</density>
+						</volatileacidity>
+						<volatileacidity feature="0.27" flag="r" p="0.188">1</volatileacidity>
+					</density>
+					<density feature="0.99626" flag="r" p="0.158">3</density>
+				</sulphates>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="9.0" flag="r" p="0.978">3</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.28" flag="r" p="0.413">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.357">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5373621886484279:
+   Accuracy out-of-sample: 0.5032679738562091:
+   Tree size: 12:
+   Tree #36:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.571">
+		<volatileacidity feature="0.29" flag="l" p="0.622">
+			<alcohol feature="8.9" flag="l" p="0.067">
+				<pH feature="2.93" flag="l" p="0.138">4</pH>
+				<pH feature="2.93" flag="r" p="0.862">
+					<fixedacidity feature="7.8" flag="l" p="0.88">
+						<pH feature="2.98" flag="l" p="0.091">
+							<fixedacidity feature="7.3" flag="l" p="0.25">2</fixedacidity>
+							<fixedacidity feature="7.3" flag="r" p="0.75">5</fixedacidity>
+						</pH>
+						<pH feature="2.98" flag="r" p="0.909">2</pH>
+					</fixedacidity>
+					<fixedacidity feature="7.8" flag="r" p="0.12">3</fixedacidity>
+				</pH>
+			</alcohol>
+			<alcohol feature="8.9" flag="r" p="0.933">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.29" flag="r" p="0.378">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.429">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5247039608003267:
+   Accuracy out-of-sample: 0.47794117647058826:
+   Tree size: 11:
+   Tree #37:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.63">
+		<volatileacidity feature="0.24" flag="l" p="0.365">
+			<totalsulfurdioxide feature="40.0" flag="l" p="0.007">
+				<fixedacidity feature="10.3" flag="l" p="0.75">
+					<volatileacidity feature="0.22" flag="l" p="0.667">2</volatileacidity>
+					<volatileacidity feature="0.22" flag="r" p="0.333">1</volatileacidity>
+				</fixedacidity>
+				<fixedacidity feature="10.3" flag="r" p="0.25">0</fixedacidity>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="40.0" flag="r" p="0.993">
+				<alcohol feature="9.0" flag="l" p="0.1">
+					<pH feature="2.94" flag="l" p="0.071">4</pH>
+					<pH feature="2.94" flag="r" p="0.929">3</pH>
+				</alcohol>
+				<alcohol feature="9.0" flag="r" p="0.9">3</alcohol>
+			</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.635">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.37">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.518170681910984:
+   Accuracy out-of-sample: 0.5016339869281046:
+   Tree size: 13:
+   Tree #38:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.626">
+		<volatileacidity feature="0.245" flag="l" p="0.417">
+			<freesulfurdioxide feature="17.0" flag="l" p="0.105">
+				<sulphates feature="0.36" flag="l" p="0.09">
+					<fixedacidity feature="10.3" flag="l" p="0.833">2</fixedacidity>
+					<fixedacidity feature="10.3" flag="r" p="0.167">0</fixedacidity>
+				</sulphates>
+				<sulphates feature="0.36" flag="r" p="0.91">
+					<density feature="0.9965" flag="l" p="0.885">
+						<sulphates feature="0.68" flag="l" p="0.889">3</sulphates>
+						<sulphates feature="0.68" flag="r" p="0.111">2</sulphates>
+					</density>
+					<density feature="0.9965" flag="r" p="0.115">3</density>
+				</sulphates>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="17.0" flag="r" p="0.895">3</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.245" flag="r" p="0.583">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.374">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5193956717027358:
+   Accuracy out-of-sample: 0.5089869281045751:
+   Tree size: 13:
+   Tree #39:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.636">
+		<fixedacidity feature="9.1" flag="l" p="0.983">
+			<volatileacidity feature="0.24" flag="l" p="0.37">
+				<freesulfurdioxide feature="7.0" flag="l" p="0.007">
+					<volatileacidity feature="0.19" flag="l" p="0.5">2</volatileacidity>
+					<volatileacidity feature="0.19" flag="r" p="0.5">1</volatileacidity>
+				</freesulfurdioxide>
+				<freesulfurdioxide feature="7.0" flag="r" p="0.993">
+					<alcohol feature="9.0" flag="l" p="0.098">
+						<pH feature="2.95" flag="l" p="0.218">5</pH>
+						<pH feature="2.95" flag="r" p="0.782">3</pH>
+					</alcohol>
+					<alcohol feature="9.0" flag="r" p="0.902">3</alcohol>
+				</freesulfurdioxide>
+			</volatileacidity>
+			<volatileacidity feature="0.24" flag="r" p="0.63">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.017">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.364">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.504287464271131:
+   Accuracy out-of-sample: 0.5163398692810458:
+   Tree size: 11:
+   Tree #40:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.62">
+		<volatileacidity feature="0.24" flag="l" p="0.374">
+			<freesulfurdioxide feature="8.0" flag="l" p="0.014">
+				<chlorides feature="0.037" flag="l" p="0.5">2</chlorides>
+				<chlorides feature="0.037" flag="r" p="0.5">
+					<citricacid feature="0.62" flag="l" p="0.75">1</citricacid>
+					<citricacid feature="0.62" flag="r" p="0.25">2</citricacid>
+				</chlorides>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="8.0" flag="r" p="0.986">
+				<alcohol feature="9.0" flag="l" p="0.098">
+					<pH feature="2.94" flag="l" p="0.164">4</pH>
+					<pH feature="2.94" flag="r" p="0.836">3</pH>
+				</alcohol>
+				<alcohol feature="9.0" flag="r" p="0.902">3</alcohol>
+			</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.626">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.38">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5177623519804002:
+   Accuracy out-of-sample: 0.49836601307189543:
+   Tree size: 11:
+   Tree #41:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.639">
+		<volatileacidity feature="0.245" flag="l" p="0.427">
+			<totalsulfurdioxide feature="68.0" flag="l" p="0.033">
+				<citricacid feature="0.33" flag="l" p="0.409">
+					<fixedacidity feature="5.9" flag="l" p="0.222">
+						<fixedacidity feature="5.6" flag="l" p="0.5">2</fixedacidity>
+						<fixedacidity feature="5.6" flag="r" p="0.5">3</fixedacidity>
+					</fixedacidity>
+					<fixedacidity feature="5.9" flag="r" p="0.778">2</fixedacidity>
+				</citricacid>
+				<citricacid feature="0.33" flag="r" p="0.591">
+					<residualsugar feature="1.1" flag="l" p="0.231">2</residualsugar>
+					<residualsugar feature="1.1" flag="r" p="0.769">3</residualsugar>
+				</citricacid>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="68.0" flag="r" p="0.967">3</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.245" flag="r" p="0.573">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.361">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46549612086565945:
+   Accuracy out-of-sample: 0.46568627450980393:
+   Tree size: 11:
+   Tree #42:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.63">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.067">
+			<citricacid feature="0.05" flag="l" p="0.019">1</citricacid>
+			<citricacid feature="0.05" flag="r" p="0.981">
+				<chlorides feature="0.032" flag="l" p="0.109">2</chlorides>
+				<chlorides feature="0.032" flag="r" p="0.891">
+					<sulphates feature="0.32" flag="l" p="0.033">
+						<fixedacidity feature="10.3" flag="l" p="0.667">1</fixedacidity>
+						<fixedacidity feature="10.3" flag="r" p="0.333">0</fixedacidity>
+					</sulphates>
+					<sulphates feature="0.32" flag="r" p="0.967">
+						<volatileacidity feature="0.48" flag="l" p="0.943">2</volatileacidity>
+						<volatileacidity feature="0.48" flag="r" p="0.057">1</volatileacidity>
+					</sulphates>
+				</chlorides>
+			</citricacid>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.933">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.37">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46957942017149856:
+   Accuracy out-of-sample: 0.4583333333333333:
+   Tree size: 13:
+   Tree #43:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<fixedacidity feature="9.3" flag="l" p="0.99">
+		<alcohol feature="10.65" flag="l" p="0.569">
+			<freesulfurdioxide feature="14.0" flag="l" p="0.06">
+				<volatileacidity feature="0.25" flag="l" p="0.277">
+					<residualsugar feature="3.3" flag="l" p="0.565">
+						<volatileacidity feature="0.22" flag="l" p="0.923">
+							<freesulfurdioxide feature="12.0" flag="l" p="0.917">2</freesulfurdioxide>
+							<freesulfurdioxide feature="12.0" flag="r" p="0.083">3</freesulfurdioxide>
+						</volatileacidity>
+						<volatileacidity feature="0.22" flag="r" p="0.077">1</volatileacidity>
+					</residualsugar>
+					<residualsugar feature="3.3" flag="r" p="0.435">3</residualsugar>
+				</volatileacidity>
+				<volatileacidity feature="0.25" flag="r" p="0.723">2</volatileacidity>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="14.0" flag="r" p="0.94">3</freesulfurdioxide>
+		</alcohol>
+		<alcohol feature="10.65" flag="r" p="0.431">3</alcohol>
+	</fixedacidity>
+	<fixedacidity feature="9.3" flag="r" p="0.01">2</fixedacidity>
+</GreedyTree>
+   Accuracy in-sample: 0.4679461004491629:
+   Accuracy out-of-sample: 0.46486928104575165:
+   Tree size: 14:
+   Tree #44:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<fixedacidity feature="9.1" flag="l" p="0.986">
+		<alcohol feature="11.0" flag="l" p="0.642">
+			<freesulfurdioxide feature="14.0" flag="l" p="0.059">
+				<volatileacidity feature="0.52" flag="l" p="0.923">
+					<alcohol feature="10.9" flag="l" p="0.917">
+						<chlorides feature="0.032" flag="l" p="0.104">2</chlorides>
+						<chlorides feature="0.032" flag="r" p="0.896">
+							<density feature="0.99242" flag="l" p="0.174">3</density>
+							<density feature="0.99242" flag="r" p="0.826">2</density>
+						</chlorides>
+					</alcohol>
+					<alcohol feature="10.9" flag="r" p="0.083">2</alcohol>
+				</volatileacidity>
+				<volatileacidity feature="0.52" flag="r" p="0.077">1</volatileacidity>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="14.0" flag="r" p="0.941">3</freesulfurdioxide>
+		</alcohol>
+		<alcohol feature="11.0" flag="r" p="0.358">3</alcohol>
+	</fixedacidity>
+	<fixedacidity feature="9.1" flag="r" p="0.014">2</fixedacidity>
+</GreedyTree>
+   Accuracy in-sample: 0.518579011841568:
+   Accuracy out-of-sample: 0.5236928104575164:
+   Tree size: 12:
+   Tree #45:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9666666666667" flag="l" p="0.648">
+		<fixedacidity feature="9.1" flag="l" p="0.983">
+			<volatileacidity feature="0.27" flag="l" p="0.53">
+				<freesulfurdioxide feature="118.5" flag="l" p="0.998">
+					<alcohol feature="8.9" flag="l" p="0.07">
+						<pH feature="2.95" flag="l" p="0.207">
+							<fixedacidity feature="7.4" flag="l" p="0.583">5</fixedacidity>
+							<fixedacidity feature="7.4" flag="r" p="0.417">4</fixedacidity>
+						</pH>
+						<pH feature="2.95" flag="r" p="0.793">2</pH>
+					</alcohol>
+					<alcohol feature="8.9" flag="r" p="0.93">3</alcohol>
+				</freesulfurdioxide>
+				<freesulfurdioxide feature="118.5" flag="r" p="0.002">0</freesulfurdioxide>
+			</volatileacidity>
+			<volatileacidity feature="0.27" flag="r" p="0.47">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.017">3</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9666666666667" flag="r" p="0.352">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5316455696202531:
+   Accuracy out-of-sample: 0.511437908496732:
+   Tree size: 13:
+   Tree #46:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.617">
+		<residualsugar feature="17.9" flag="l" p="0.975">
+			<volatileacidity feature="0.285" flag="l" p="0.636">
+				<freesulfurdioxide feature="14.0" flag="l" p="0.045">
+					<sulphates feature="0.32" flag="l" p="0.024">0</sulphates>
+					<sulphates feature="0.32" flag="r" p="0.976">
+						<fixedacidity feature="9.7" flag="l" p="0.927">
+							<citricacid feature="0.24" flag="l" p="0.079">3</citricacid>
+							<citricacid feature="0.24" flag="r" p="0.921">2</citricacid>
+						</fixedacidity>
+						<fixedacidity feature="9.7" flag="r" p="0.073">3</fixedacidity>
+					</sulphates>
+				</freesulfurdioxide>
+				<freesulfurdioxide feature="14.0" flag="r" p="0.955">3</freesulfurdioxide>
+			</volatileacidity>
+			<volatileacidity feature="0.285" flag="r" p="0.364">2</volatileacidity>
+		</residualsugar>
+		<residualsugar feature="17.9" flag="r" p="0.025">2</residualsugar>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.383">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4712127398938342:
+   Accuracy out-of-sample: 0.46078431372549017:
+   Tree size: 11:
+   Tree #47:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.587">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.077">
+			<chlorides feature="0.032" flag="l" p="0.099">2</chlorides>
+			<chlorides feature="0.032" flag="r" p="0.901">
+				<volatileacidity feature="0.21" flag="l" p="0.12">
+					<chlorides feature="0.038" flag="l" p="0.167">
+						<fixedacidity feature="10.3" flag="l" p="0.5">4</fixedacidity>
+						<fixedacidity feature="10.3" flag="r" p="0.5">0</fixedacidity>
+					</chlorides>
+					<chlorides feature="0.038" flag="r" p="0.833">
+						<density feature="0.992" flag="l" p="0.1">1</density>
+						<density feature="0.992" flag="r" p="0.9">3</density>
+					</chlorides>
+				</volatileacidity>
+				<volatileacidity feature="0.21" flag="r" p="0.88">2</volatileacidity>
+			</chlorides>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.923">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.413">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5177623519804002:
+   Accuracy out-of-sample: 0.4861111111111111:
+   Tree size: 14:
+   Tree #48:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.62">
+		<fixedacidity feature="9.1" flag="l" p="0.983">
+			<volatileacidity feature="0.24" flag="l" p="0.365">
+				<density feature="0.9999" flag="l" p="0.963">
+					<totalsulfurdioxide feature="212.0" flag="l" p="0.95">
+						<density feature="0.99971" flag="l" p="0.99">
+							<alcohol feature="8.8" flag="l" p="0.026">4</alcohol>
+							<alcohol feature="8.8" flag="r" p="0.974">3</alcohol>
+						</density>
+						<density feature="0.99971" flag="r" p="0.01">4</density>
+					</totalsulfurdioxide>
+					<totalsulfurdioxide feature="212.0" flag="r" p="0.05">3</totalsulfurdioxide>
+				</density>
+				<density feature="0.9999" flag="r" p="0.037">2</density>
+			</volatileacidity>
+			<volatileacidity feature="0.24" flag="r" p="0.635">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.017">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.38">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4642711310739077:
+   Accuracy out-of-sample: 0.45669934640522875:
+   Tree size: 11:
+   Tree #49:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.622">
+		<freesulfurdioxide feature="12.0" flag="l" p="0.054">
+			<fixedacidity feature="5.3" flag="l" p="0.024">3</fixedacidity>
+			<fixedacidity feature="5.3" flag="r" p="0.976">
+				<totalsulfurdioxide feature="21.0" flag="l" p="0.025">3</totalsulfurdioxide>
+				<totalsulfurdioxide feature="21.0" flag="r" p="0.975">
+					<volatileacidity feature="0.52" flag="l" p="0.923">
+						<chlorides feature="0.032" flag="l" p="0.139">2</chlorides>
+						<chlorides feature="0.032" flag="r" p="0.861">
+							<chlorides feature="0.036" flag="l" p="0.081">3</chlorides>
+							<chlorides feature="0.036" flag="r" p="0.919">2</chlorides>
+						</chlorides>
+					</volatileacidity>
+					<volatileacidity feature="0.52" flag="r" p="0.077">1</volatileacidity>
+				</totalsulfurdioxide>
+			</fixedacidity>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="12.0" flag="r" p="0.946">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.378">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5230706410779911:
+   Accuracy out-of-sample: 0.4950980392156863:
+   Tree size: 14:
+   Tree #50:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.64">
+		<fixedacidity feature="9.1" flag="l" p="0.983">
+			<volatileacidity feature="0.24" flag="l" p="0.359">
+				<alcohol feature="9.0" flag="l" p="0.11">
+					<citricacid feature="0.58" flag="l" p="0.918">
+						<fixedacidity feature="7.3" flag="l" p="0.518">
+							<freesulfurdioxide feature="24.0" flag="l" p="0.103">2</freesulfurdioxide>
+							<freesulfurdioxide feature="24.0" flag="r" p="0.897">3</freesulfurdioxide>
+						</fixedacidity>
+						<fixedacidity feature="7.3" flag="r" p="0.482">5</fixedacidity>
+					</citricacid>
+					<citricacid feature="0.58" flag="r" p="0.082">2</citricacid>
+				</alcohol>
+				<alcohol feature="9.0" flag="r" p="0.89">3</alcohol>
+			</volatileacidity>
+			<volatileacidity feature="0.24" flag="r" p="0.641">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.017">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.36">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5210289914250714:
+   Accuracy out-of-sample: 0.5155228758169934:
+   Tree size: 13:
+   Tree #51:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.631">
+		<volatileacidity feature="0.255" flag="l" p="0.484">
+			<freesulfurdioxide feature="15.0" flag="l" p="0.061">
+				<alcohol feature="10.7" flag="l" p="0.913">
+					<residualsugar feature="3.3" flag="l" p="0.548">
+						<volatileacidity feature="0.22" flag="l" p="0.739">
+							<freesulfurdioxide feature="14.0" flag="l" p="0.941">2</freesulfurdioxide>
+							<freesulfurdioxide feature="14.0" flag="r" p="0.059">3</freesulfurdioxide>
+						</volatileacidity>
+						<volatileacidity feature="0.22" flag="r" p="0.261">2</volatileacidity>
+					</residualsugar>
+					<residualsugar feature="3.3" flag="r" p="0.452">3</residualsugar>
+				</alcohol>
+				<alcohol feature="10.7" flag="r" p="0.087">3</alcohol>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="15.0" flag="r" p="0.939">3</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.255" flag="r" p="0.516">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.369">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5100040832993058:
+   Accuracy out-of-sample: 0.5212418300653595:
+   Tree size: 11:
+   Tree #52:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.636">
+		<volatileacidity feature="0.27" flag="l" p="0.53">
+			<totalsulfurdioxide feature="70.0" flag="l" p="0.03">
+				<totalsulfurdioxide feature="69.0" flag="l" p="0.96">
+					<residualsugar feature="0.8" flag="l" p="0.125">
+						<fixedacidity feature="8.5" flag="l" p="0.667">2</fixedacidity>
+						<fixedacidity feature="8.5" flag="r" p="0.333">1</fixedacidity>
+					</residualsugar>
+					<residualsugar feature="0.8" flag="r" p="0.875">
+						<volatileacidity feature="0.245" flag="l" p="0.762">3</volatileacidity>
+						<volatileacidity feature="0.245" flag="r" p="0.238">2</volatileacidity>
+					</residualsugar>
+				</totalsulfurdioxide>
+				<totalsulfurdioxide feature="69.0" flag="r" p="0.04">1</totalsulfurdioxide>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="70.0" flag="r" p="0.97">3</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.27" flag="r" p="0.47">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.364">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5128623928133932:
+   Accuracy out-of-sample: 0.5098039215686274:
+   Tree size: 11:
+   Tree #53:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.577">
+		<volatileacidity feature="0.24" flag="l" p="0.356">
+			<freesulfurdioxide feature="15.0" flag="l" p="0.054">
+				<chlorides feature="0.04" flag="l" p="0.519">
+					<residualsugar feature="4.4" flag="l" p="0.714">2</residualsugar>
+					<residualsugar feature="4.4" flag="r" p="0.286">
+						<residualsugar feature="7.9" flag="l" p="0.75">5</residualsugar>
+						<residualsugar feature="7.9" flag="r" p="0.25">2</residualsugar>
+					</residualsugar>
+				</chlorides>
+				<chlorides feature="0.04" flag="r" p="0.481">
+					<fixedacidity feature="6.0" flag="l" p="0.077">1</fixedacidity>
+					<fixedacidity feature="6.0" flag="r" p="0.923">3</fixedacidity>
+				</chlorides>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="15.0" flag="r" p="0.946">3</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.644">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.423">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.47937933850551245:
+   Accuracy out-of-sample: 0.4599673202614379:
+   Tree size: 14:
+   Tree #54:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.647">
+		<fixedacidity feature="9.1" flag="l" p="0.98">
+			<citricacid feature="0.19" flag="l" p="0.082">
+				<volatileacidity feature="0.48" flag="l" p="0.734">
+					<pH feature="2.96" flag="l" p="0.032">3</pH>
+					<pH feature="2.96" flag="r" p="0.968">
+						<density feature="0.99773" flag="l" p="0.934">
+							<pH feature="3.24" flag="l" p="0.706">2</pH>
+							<pH feature="3.24" flag="r" p="0.294">2</pH>
+						</density>
+						<density feature="0.99773" flag="r" p="0.066">3</density>
+					</pH>
+				</volatileacidity>
+				<volatileacidity feature="0.48" flag="r" p="0.266">1</volatileacidity>
+			</citricacid>
+			<citricacid feature="0.19" flag="r" p="0.918">3</citricacid>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.02">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.353">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46917109024091463:
+   Accuracy out-of-sample: 0.46078431372549017:
+   Tree size: 11:
+   Tree #55:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.626">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.074">
+			<chlorides feature="0.032" flag="l" p="0.096">2</chlorides>
+			<chlorides feature="0.032" flag="r" p="0.904">
+				<volatileacidity feature="0.25" flag="l" p="0.223">
+					<density feature="0.9923" flag="l" p="0.087">
+						<fixedacidity feature="8.5" flag="l" p="0.5">4</fixedacidity>
+						<fixedacidity feature="8.5" flag="r" p="0.5">1</fixedacidity>
+					</density>
+					<density feature="0.9923" flag="r" p="0.913">
+						<citricacid feature="0.23" flag="l" p="0.048">1</citricacid>
+						<citricacid feature="0.23" flag="r" p="0.952">3</citricacid>
+					</density>
+				</volatileacidity>
+				<volatileacidity feature="0.25" flag="r" p="0.777">2</volatileacidity>
+			</chlorides>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.926">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.374">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4565128623928134:
+   Accuracy out-of-sample: 0.44607843137254904:
+   Tree size: 12:
+   Tree #56:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<freesulfurdioxide feature="10.0" flag="l" p="0.033">
+		<pH feature="3.45" flag="l" p="0.976">
+			<sulphates feature="0.73" flag="l" p="0.95">
+				<sulphates feature="0.3" flag="l" p="0.013">0</sulphates>
+				<sulphates feature="0.3" flag="r" p="0.987">
+					<residualsugar feature="7.3" flag="l" p="0.853">
+						<chlorides feature="0.056" flag="l" p="0.922">
+							<residualsugar feature="5.7" flag="l" p="0.881">1</residualsugar>
+							<residualsugar feature="5.7" flag="r" p="0.119">2</residualsugar>
+						</chlorides>
+						<chlorides feature="0.056" flag="r" p="0.078">1</chlorides>
+					</residualsugar>
+					<residualsugar feature="7.3" flag="r" p="0.147">3</residualsugar>
+				</sulphates>
+			</sulphates>
+			<sulphates feature="0.73" flag="r" p="0.05">2</sulphates>
+		</pH>
+		<pH feature="3.45" flag="r" p="0.024">0</pH>
+	</freesulfurdioxide>
+	<freesulfurdioxide feature="10.0" flag="r" p="0.967">3</freesulfurdioxide>
+</GreedyTree>
+   Accuracy in-sample: 0.5234789710085749:
+   Accuracy out-of-sample: 0.511437908496732:
+   Tree size: 13:
+   Tree #57:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.7" flag="l" p="0.588">
+		<fixedacidity feature="9.1" flag="l" p="0.977">
+			<volatileacidity feature="0.24" flag="l" p="0.376">
+				<freesulfurdioxide feature="15.0" flag="l" p="0.059">
+					<totalsulfurdioxide feature="122.0" flag="l" p="0.903">
+						<residualsugar feature="8.1" flag="l" p="0.857">
+							<pH feature="3.47" flag="l" p="0.917">2</pH>
+							<pH feature="3.47" flag="r" p="0.083">3</pH>
+						</residualsugar>
+						<residualsugar feature="8.1" flag="r" p="0.143">3</residualsugar>
+					</totalsulfurdioxide>
+					<totalsulfurdioxide feature="122.0" flag="r" p="0.097">2</totalsulfurdioxide>
+				</freesulfurdioxide>
+				<freesulfurdioxide feature="15.0" flag="r" p="0.941">3</freesulfurdioxide>
+			</volatileacidity>
+			<volatileacidity feature="0.24" flag="r" p="0.624">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.023">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.7" flag="r" p="0.412">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.518170681910984:
+   Accuracy out-of-sample: 0.5179738562091504:
+   Tree size: 11:
+   Tree #58:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.637">
+		<volatileacidity feature="0.245" flag="l" p="0.418">
+			<totalsulfurdioxide feature="65.0" flag="l" p="0.026">
+				<fixedacidity feature="9.0" flag="l" p="0.765">
+					<fixedacidity feature="5.9" flag="l" p="0.077">1</fixedacidity>
+					<fixedacidity feature="5.9" flag="r" p="0.923">
+						<residualsugar feature="0.8" flag="l" p="0.083">1</residualsugar>
+						<residualsugar feature="0.8" flag="r" p="0.917">
+							<residualsugar feature="1.7" flag="l" p="0.818">2</residualsugar>
+							<residualsugar feature="1.7" flag="r" p="0.182">3</residualsugar>
+						</residualsugar>
+					</fixedacidity>
+				</fixedacidity>
+				<fixedacidity feature="9.0" flag="r" p="0.235">3</fixedacidity>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="65.0" flag="r" p="0.974">3</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.245" flag="r" p="0.582">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.363">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5055124540628828:
+   Accuracy out-of-sample: 0.5245098039215687:
+   Tree size: 13:
+   Tree #59:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.579">
+		<fixedacidity feature="9.1" flag="l" p="0.98">
+			<volatileacidity feature="0.24" flag="l" p="0.35">
+				<alcohol feature="9.0" flag="l" p="0.111">
+					<freesulfurdioxide feature="34.0" flag="l" p="0.093">
+						<fixedacidity feature="7.4" flag="l" p="0.2">3</fixedacidity>
+						<fixedacidity feature="7.4" flag="r" p="0.8">4</fixedacidity>
+					</freesulfurdioxide>
+					<freesulfurdioxide feature="34.0" flag="r" p="0.907">
+						<alcohol feature="8.7" flag="l" p="0.061">5</alcohol>
+						<alcohol feature="8.7" flag="r" p="0.939">3</alcohol>
+					</freesulfurdioxide>
+				</alcohol>
+				<alcohol feature="9.0" flag="r" p="0.889">3</alcohol>
+			</volatileacidity>
+			<volatileacidity feature="0.24" flag="r" p="0.65">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.02">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.421">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5030624744793794:
+   Accuracy out-of-sample: 0.5326797385620915:
+   Tree size: 12:
+   Tree #60:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.644">
+		<volatileacidity feature="0.26" flag="l" p="0.477">
+			<density feature="0.99144" flag="l" p="0.02">
+				<pH feature="3.07" flag="l" p="0.2">3</pH>
+				<pH feature="3.07" flag="r" p="0.8">
+					<alcohol feature="10.7" flag="l" p="0.083">3</alcohol>
+					<alcohol feature="10.7" flag="r" p="0.917">4</alcohol>
+				</pH>
+			</density>
+			<density feature="0.99144" flag="r" p="0.98">
+				<pH feature="2.9" flag="l" p="0.028">
+					<residualsugar feature="4.7" flag="l" p="0.095">0</residualsugar>
+					<residualsugar feature="4.7" flag="r" p="0.905">3</residualsugar>
+				</pH>
+				<pH feature="2.9" flag="r" p="0.972">3</pH>
+			</density>
+		</volatileacidity>
+		<volatileacidity feature="0.26" flag="r" p="0.523">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.356">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.513679052674561:
+   Accuracy out-of-sample: 0.5294117647058824:
+   Tree size: 14:
+   Tree #61:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.644">
+		<volatileacidity feature="0.285" flag="l" p="0.642">
+			<fixedacidity feature="9.1" flag="l" p="0.977">
+				<freesulfurdioxide feature="14.0" flag="l" p="0.049">
+					<pH feature="3.43" flag="l" p="0.917">
+						<fixedacidity feature="9.0" flag="l" p="0.955">
+							<residualsugar feature="3.6" flag="l" p="0.643">2</residualsugar>
+							<residualsugar feature="3.6" flag="r" p="0.357">3</residualsugar>
+						</fixedacidity>
+						<fixedacidity feature="9.0" flag="r" p="0.045">3</fixedacidity>
+					</pH>
+					<pH feature="3.43" flag="r" p="0.083">4</pH>
+				</freesulfurdioxide>
+				<freesulfurdioxide feature="14.0" flag="r" p="0.951">3</freesulfurdioxide>
+			</fixedacidity>
+			<fixedacidity feature="9.1" flag="r" p="0.023">2</fixedacidity>
+		</volatileacidity>
+		<volatileacidity feature="0.285" flag="r" p="0.358">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.356">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.509595753368722:
+   Accuracy out-of-sample: 0.5204248366013072:
+   Tree size: 11:
+   Tree #62:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.628">
+		<volatileacidity feature="0.24" flag="l" p="0.368">
+			<alcohol feature="9.0" flag="l" p="0.102">
+				<pH feature="2.94" flag="l" p="0.086">4</pH>
+				<pH feature="2.94" flag="r" p="0.914">
+					<pH feature="2.97" flag="l" p="0.094">
+						<fixedacidity feature="7.3" flag="l" p="0.2">3</fixedacidity>
+						<fixedacidity feature="7.3" flag="r" p="0.8">5</fixedacidity>
+					</pH>
+					<pH feature="2.97" flag="r" p="0.906">
+						<residualsugar feature="17.8" flag="l" p="0.812">3</residualsugar>
+						<residualsugar feature="17.8" flag="r" p="0.188">2</residualsugar>
+					</pH>
+				</pH>
+			</alcohol>
+			<alcohol feature="9.0" flag="r" p="0.898">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.632">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.372">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4663127807268273:
+   Accuracy out-of-sample: 0.4632352941176471:
+   Tree size: 12:
+   Tree #63:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.626">
+		<freesulfurdioxide feature="16.0" flag="l" p="0.096">
+			<pH feature="3.47" flag="l" p="0.966">
+				<chlorides feature="0.032" flag="l" p="0.127">
+					<pH feature="3.22" flag="l" p="0.833">2</pH>
+					<pH feature="3.22" flag="r" p="0.167">
+						<volatileacidity feature="0.44" flag="l" p="0.667">2</volatileacidity>
+						<volatileacidity feature="0.44" flag="r" p="0.333">3</volatileacidity>
+					</pH>
+				</chlorides>
+				<chlorides feature="0.032" flag="r" p="0.873">
+					<citricacid feature="0.2" flag="l" p="0.129">1</citricacid>
+					<citricacid feature="0.2" flag="r" p="0.871">2</citricacid>
+				</chlorides>
+			</pH>
+			<pH feature="3.47" flag="r" p="0.034">3</pH>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="16.0" flag="r" p="0.904">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.374">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4708044099632503:
+   Accuracy out-of-sample: 0.4616013071895425:
+   Tree size: 13:
+   Tree #64:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.583">
+		<freesulfurdioxide feature="16.0" flag="l" p="0.088">
+			<fixedacidity feature="10.3" flag="l" p="0.984">
+				<sulphates feature="0.64" flag="l" p="0.952">
+					<volatileacidity feature="0.25" flag="l" p="0.28">
+						<totalsulfurdioxide feature="28.0" flag="l" p="0.03">1</totalsulfurdioxide>
+						<totalsulfurdioxide feature="28.0" flag="r" p="0.97">
+							<residualsugar feature="3.5" flag="l" p="0.688">2</residualsugar>
+							<residualsugar feature="3.5" flag="r" p="0.312">3</residualsugar>
+						</totalsulfurdioxide>
+					</volatileacidity>
+					<volatileacidity feature="0.25" flag="r" p="0.72">2</volatileacidity>
+				</sulphates>
+				<sulphates feature="0.64" flag="r" p="0.048">2</sulphates>
+			</fixedacidity>
+			<fixedacidity feature="10.3" flag="r" p="0.016">0</fixedacidity>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="16.0" flag="r" p="0.912">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.417">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46835443037974683:
+   Accuracy out-of-sample: 0.4550653594771242:
+   Tree size: 11:
+   Tree #65:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.58">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.066">
+			<sulphates feature="0.76" flag="l" p="0.979">
+				<volatileacidity feature="0.48" flag="l" p="0.902">
+					<volatileacidity feature="0.17" flag="l" p="0.048">
+						<fixedacidity feature="8.9" flag="l" p="0.75">3</fixedacidity>
+						<fixedacidity feature="8.9" flag="r" p="0.25">2</fixedacidity>
+					</volatileacidity>
+					<volatileacidity feature="0.17" flag="r" p="0.952">
+						<volatileacidity feature="0.19" flag="l" p="0.089">2</volatileacidity>
+						<volatileacidity feature="0.19" flag="r" p="0.911">2</volatileacidity>
+					</volatileacidity>
+				</volatileacidity>
+				<volatileacidity feature="0.48" flag="r" p="0.098">1</volatileacidity>
+			</sulphates>
+			<sulphates feature="0.76" flag="r" p="0.021">3</sulphates>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.934">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.42">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5161290322580645:
+   Accuracy out-of-sample: 0.5196078431372549:
+   Tree size: 13:
+   Tree #66:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.634">
+		<fixedacidity feature="9.1" flag="l" p="0.974">
+			<volatileacidity feature="0.255" flag="l" p="0.487">
+				<alcohol feature="9.0" flag="l" p="0.094">
+					<freesulfurdioxide feature="36.0" flag="l" p="0.261">
+						<fixedacidity feature="7.3" flag="l" p="0.333">
+							<citricacid feature="0.51" flag="l" p="0.833">2</citricacid>
+							<citricacid feature="0.51" flag="r" p="0.167">3</citricacid>
+						</fixedacidity>
+						<fixedacidity feature="7.3" flag="r" p="0.667">4</fixedacidity>
+					</freesulfurdioxide>
+					<freesulfurdioxide feature="36.0" flag="r" p="0.739">3</freesulfurdioxide>
+				</alcohol>
+				<alcohol feature="9.0" flag="r" p="0.906">3</alcohol>
+			</volatileacidity>
+			<volatileacidity feature="0.255" flag="r" p="0.513">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.026">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.366">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.47162106982441815:
+   Accuracy out-of-sample: 0.45588235294117646:
+   Tree size: 11:
+   Tree #67:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.624">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.065">
+			<fixedacidity feature="5.2" flag="l" p="0.03">
+				<fixedacidity feature="5.0" flag="l" p="0.333">2</fixedacidity>
+				<fixedacidity feature="5.0" flag="r" p="0.667">3</fixedacidity>
+			</fixedacidity>
+			<fixedacidity feature="5.2" flag="r" p="0.97">
+				<totalsulfurdioxide feature="164.0" flag="l" p="0.938">
+					<alcohol feature="8.8" flag="l" p="0.033">
+						<freesulfurdioxide feature="11.0" flag="l" p="0.667">1</freesulfurdioxide>
+						<freesulfurdioxide feature="11.0" flag="r" p="0.333">2</freesulfurdioxide>
+					</alcohol>
+					<alcohol feature="8.8" flag="r" p="0.967">2</alcohol>
+				</totalsulfurdioxide>
+				<totalsulfurdioxide feature="164.0" flag="r" p="0.062">1</totalsulfurdioxide>
+			</fixedacidity>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.935">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.376">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5238873009391588:
+   Accuracy out-of-sample: 0.5294117647058824:
+   Tree size: 14:
+   Tree #68:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.629">
+		<volatileacidity feature="0.285" flag="l" p="0.631">
+			<chlorides feature="0.147" flag="l" p="0.985">
+				<residualsugar feature="17.7" flag="l" p="0.958">
+					<freesulfurdioxide feature="16.0" flag="l" p="0.074">
+						<fixedacidity feature="9.2" flag="l" p="0.912">
+							<sulphates feature="0.64" flag="l" p="0.903">2</sulphates>
+							<sulphates feature="0.64" flag="r" p="0.097">2</sulphates>
+						</fixedacidity>
+						<fixedacidity feature="9.2" flag="r" p="0.088">3</fixedacidity>
+					</freesulfurdioxide>
+					<freesulfurdioxide feature="16.0" flag="r" p="0.926">3</freesulfurdioxide>
+				</residualsugar>
+				<residualsugar feature="17.7" flag="r" p="0.042">2</residualsugar>
+			</chlorides>
+			<chlorides feature="0.147" flag="r" p="0.015">3</chlorides>
+		</volatileacidity>
+		<volatileacidity feature="0.285" flag="r" p="0.369">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.371">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5112290730910576:
+   Accuracy out-of-sample: 0.5024509803921569:
+   Tree size: 12:
+   Tree #69:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.639">
+		<volatileacidity feature="0.24" flag="l" p="0.365">
+			<alcohol feature="9.0" flag="l" p="0.082">
+				<totalsulfurdioxide feature="212.5" flag="l" p="0.915">
+					<pH feature="2.98" flag="l" p="0.14">
+						<fixedacidity feature="7.4" flag="l" p="0.333">5</fixedacidity>
+						<fixedacidity feature="7.4" flag="r" p="0.667">4</fixedacidity>
+					</pH>
+					<pH feature="2.98" flag="r" p="0.86">
+						<fixedacidity feature="8.1" flag="l" p="0.892">3</fixedacidity>
+						<fixedacidity feature="8.1" flag="r" p="0.108">3</fixedacidity>
+					</pH>
+				</totalsulfurdioxide>
+				<totalsulfurdioxide feature="212.5" flag="r" p="0.085">5</totalsulfurdioxide>
+			</alcohol>
+			<alcohol feature="9.0" flag="r" p="0.918">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.635">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.361">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.518579011841568:
+   Accuracy out-of-sample: 0.5171568627450981:
+   Tree size: 11:
+   Tree #70:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.583">
+		<volatileacidity feature="0.24" flag="l" p="0.375">
+			<freesulfurdioxide feature="7.0" flag="l" p="0.009">
+				<fixedacidity feature="8.9" flag="l" p="0.6">1</fixedacidity>
+				<fixedacidity feature="8.9" flag="r" p="0.4">
+					<fixedacidity feature="10.3" flag="l" p="0.5">2</fixedacidity>
+					<fixedacidity feature="10.3" flag="r" p="0.5">0</fixedacidity>
+				</fixedacidity>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="7.0" flag="r" p="0.991">
+				<alcohol feature="9.0" flag="l" p="0.115">
+					<pH feature="2.94" flag="l" p="0.148">4</pH>
+					<pH feature="2.94" flag="r" p="0.852">3</pH>
+				</alcohol>
+				<alcohol feature="9.0" flag="r" p="0.885">3</alcohol>
+			</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.625">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.417">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4679461004491629:
+   Accuracy out-of-sample: 0.4632352941176471:
+   Tree size: 11:
+   Tree #71:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.588">
+		<freesulfurdioxide feature="16.0" flag="l" p="0.086">
+			<pH feature="3.42" flag="l" p="0.903">
+				<fixedacidity feature="10.3" flag="l" p="0.982">
+					<alcohol feature="9.1" flag="l" p="0.064">
+						<chlorides feature="0.045" flag="l" p="0.143">2</chlorides>
+						<chlorides feature="0.045" flag="r" p="0.857">1</chlorides>
+					</alcohol>
+					<alcohol feature="9.1" flag="r" p="0.936">
+						<residualsugar feature="14.7" flag="l" p="0.961">2</residualsugar>
+						<residualsugar feature="14.7" flag="r" p="0.039">3</residualsugar>
+					</alcohol>
+				</fixedacidity>
+				<fixedacidity feature="10.3" flag="r" p="0.018">0</fixedacidity>
+			</pH>
+			<pH feature="3.42" flag="r" p="0.097">2</pH>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="16.0" flag="r" p="0.914">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.412">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5153123723968966:
+   Accuracy out-of-sample: 0.5147058823529411:
+   Tree size: 13:
+   Tree #72:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.63">
+		<fixedacidity feature="9.1" flag="l" p="0.979">
+			<volatileacidity feature="0.29" flag="l" p="0.625">
+				<freesulfurdioxide feature="7.0" flag="l" p="0.008">
+					<citricacid feature="0.37" flag="l" p="0.5">1</citricacid>
+					<citricacid feature="0.37" flag="r" p="0.5">2</citricacid>
+				</freesulfurdioxide>
+				<freesulfurdioxide feature="7.0" flag="r" p="0.992">
+					<residualsugar feature="15.7" flag="l" p="0.926">
+						<residualsugar feature="13.7" flag="l" p="0.905">3</residualsugar>
+						<residualsugar feature="13.7" flag="r" p="0.095">3</residualsugar>
+					</residualsugar>
+					<residualsugar feature="15.7" flag="r" p="0.074">2</residualsugar>
+				</freesulfurdioxide>
+			</volatileacidity>
+			<volatileacidity feature="0.29" flag="r" p="0.375">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.021">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.37">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5193956717027358:
+   Accuracy out-of-sample: 0.5098039215686274:
+   Tree size: 13:
+   Tree #73:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.648">
+		<volatileacidity feature="0.265" flag="l" p="0.524">
+			<fixedacidity feature="8.5" flag="l" p="0.947">
+				<freesulfurdioxide feature="11.0" flag="l" p="0.025">
+					<density feature="0.99626" flag="l" p="0.95">
+						<pH feature="3.47" flag="l" p="0.947">
+							<citricacid feature="0.62" flag="l" p="0.833">2</citricacid>
+							<citricacid feature="0.62" flag="r" p="0.167">3</citricacid>
+						</pH>
+						<pH feature="3.47" flag="r" p="0.053">3</pH>
+					</density>
+					<density feature="0.99626" flag="r" p="0.05">3</density>
+				</freesulfurdioxide>
+				<freesulfurdioxide feature="11.0" flag="r" p="0.975">3</freesulfurdioxide>
+			</fixedacidity>
+			<fixedacidity feature="8.5" flag="r" p="0.053">2</fixedacidity>
+		</volatileacidity>
+		<volatileacidity feature="0.265" flag="r" p="0.476">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.352">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4679461004491629:
+   Accuracy out-of-sample: 0.4591503267973856:
+   Tree size: 13:
+   Tree #74:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.631">
+		<fixedacidity feature="9.1" flag="l" p="0.977">
+			<freesulfurdioxide feature="14.0" flag="l" p="0.066">
+				<pH feature="3.47" flag="l" p="0.949">
+					<sulphates feature="0.76" flag="l" p="0.979">
+						<volatileacidity feature="0.245" flag="l" p="0.261">
+							<residualsugar feature="3.5" flag="l" p="0.625">2</residualsugar>
+							<residualsugar feature="3.5" flag="r" p="0.375">3</residualsugar>
+						</volatileacidity>
+						<volatileacidity feature="0.245" flag="r" p="0.739">2</volatileacidity>
+					</sulphates>
+					<sulphates feature="0.76" flag="r" p="0.021">3</sulphates>
+				</pH>
+				<pH feature="3.47" flag="r" p="0.051">3</pH>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="14.0" flag="r" p="0.934">3</freesulfurdioxide>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.023">3</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.369">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.518170681910984:
+   Accuracy out-of-sample: 0.5187908496732027:
+   Tree size: 12:
+   Tree #75:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.619">
+		<volatileacidity feature="0.255" flag="l" p="0.497">
+			<alcohol feature="9.0" flag="l" p="0.098">
+				<pH feature="2.94" flag="l" p="0.122">
+					<density feature="0.99825" flag="l" p="0.111">3</density>
+					<density feature="0.99825" flag="r" p="0.889">4</density>
+				</pH>
+				<pH feature="2.94" flag="r" p="0.878">
+					<fixedacidity feature="7.3" flag="l" p="0.646">
+						<fixedacidity feature="4.5" flag="l" p="0.024">0</fixedacidity>
+						<fixedacidity feature="4.5" flag="r" p="0.976">2</fixedacidity>
+					</fixedacidity>
+					<fixedacidity feature="7.3" flag="r" p="0.354">5</fixedacidity>
+				</pH>
+			</alcohol>
+			<alcohol feature="9.0" flag="r" p="0.902">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.255" flag="r" p="0.503">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.381">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4712127398938342:
+   Accuracy out-of-sample: 0.45751633986928103:
+   Tree size: 14:
+   Tree #76:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.631">
+		<fixedacidity feature="9.2" flag="l" p="0.983">
+			<freesulfurdioxide feature="15.0" flag="l" p="0.08">
+				<pH feature="3.43" flag="l" p="0.902">
+					<volatileacidity feature="0.245" flag="l" p="0.245">
+						<density feature="0.99261" flag="l" p="0.296">2</density>
+						<density feature="0.99261" flag="r" p="0.704">
+							<alcohol feature="10.3" flag="l" p="0.684">3</alcohol>
+							<alcohol feature="10.3" flag="r" p="0.316">3</alcohol>
+						</density>
+					</volatileacidity>
+					<volatileacidity feature="0.245" flag="r" p="0.755">2</volatileacidity>
+				</pH>
+				<pH feature="3.43" flag="r" p="0.098">3</pH>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="15.0" flag="r" p="0.92">3</freesulfurdioxide>
+		</fixedacidity>
+		<fixedacidity feature="9.2" flag="r" p="0.017">1</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.369">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5128623928133932:
+   Accuracy out-of-sample: 0.5008169934640523:
+   Tree size: 13:
+   Tree #77:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.629">
+		<fixedacidity feature="9.1" flag="l" p="0.984">
+			<volatileacidity feature="0.24" flag="l" p="0.372">
+				<alcohol feature="9.0" flag="l" p="0.12">
+					<pH feature="2.94" flag="l" p="0.103">
+						<fixedacidity feature="7.4" flag="l" p="0.143">3</fixedacidity>
+						<fixedacidity feature="7.4" flag="r" p="0.857">4</fixedacidity>
+					</pH>
+					<pH feature="2.94" flag="r" p="0.897">
+						<chlorides feature="0.053" flag="l" p="0.557">2</chlorides>
+						<chlorides feature="0.053" flag="r" p="0.443">5</chlorides>
+					</pH>
+				</alcohol>
+				<alcohol feature="9.0" flag="r" p="0.88">3</alcohol>
+			</volatileacidity>
+			<volatileacidity feature="0.24" flag="r" p="0.628">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.016">3</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.371">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.513679052674561:
+   Accuracy out-of-sample: 0.49836601307189543:
+   Tree size: 12:
+   Tree #78:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.64">
+		<volatileacidity feature="0.24" flag="l" p="0.365">
+			<totalsulfurdioxide feature="40.0" flag="l" p="0.005">
+				<fixedacidity feature="10.3" flag="l" p="0.667">
+					<fixedacidity feature="8.5" flag="l" p="0.5">2</fixedacidity>
+					<fixedacidity feature="8.5" flag="r" p="0.5">1</fixedacidity>
+				</fixedacidity>
+				<fixedacidity feature="10.3" flag="r" p="0.333">0</fixedacidity>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="40.0" flag="r" p="0.995">
+				<fixedacidity feature="9.2" flag="l" p="0.986">
+					<freesulfurdioxide feature="62.0" flag="l" p="0.934">3</freesulfurdioxide>
+					<freesulfurdioxide feature="62.0" flag="r" p="0.066">3</freesulfurdioxide>
+				</fixedacidity>
+				<fixedacidity feature="9.2" flag="r" p="0.014">2</fixedacidity>
+			</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.635">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.36">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.45773785218456514:
+   Accuracy out-of-sample: 0.45098039215686275:
+   Tree size: 11:
+   Tree #79:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<freesulfurdioxide feature="9.0" flag="l" p="0.032">
+		<citricacid feature="0.2" flag="l" p="0.141">
+			<fixedacidity feature="7.0" flag="l" p="0.909">
+				<volatileacidity feature="0.37" flag="l" p="0.3">
+					<volatileacidity feature="0.32" flag="l" p="0.667">1</volatileacidity>
+					<volatileacidity feature="0.32" flag="r" p="0.333">2</volatileacidity>
+				</volatileacidity>
+				<volatileacidity feature="0.37" flag="r" p="0.7">1</volatileacidity>
+			</fixedacidity>
+			<fixedacidity feature="7.0" flag="r" p="0.091">3</fixedacidity>
+		</citricacid>
+		<citricacid feature="0.2" flag="r" p="0.859">
+			<fixedacidity feature="6.4" flag="l" p="0.164">
+				<fixedacidity feature="6.3" flag="l" p="0.636">2</fixedacidity>
+				<fixedacidity feature="6.3" flag="r" p="0.364">4</fixedacidity>
+			</fixedacidity>
+			<fixedacidity feature="6.4" flag="r" p="0.836">2</fixedacidity>
+		</citricacid>
+	</freesulfurdioxide>
+	<freesulfurdioxide feature="9.0" flag="r" p="0.968">3</freesulfurdioxide>
+</GreedyTree>
+   Accuracy in-sample: 0.46876276031033076:
+   Accuracy out-of-sample: 0.46078431372549017:
+   Tree size: 11:
+   Tree #80:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.637">
+		<freesulfurdioxide feature="15.0" flag="l" p="0.075">
+			<density feature="0.9974" flag="l" p="0.949">
+				<volatileacidity feature="0.48" flag="l" p="0.928">
+					<volatileacidity feature="0.16" flag="l" p="0.039">
+						<fixedacidity feature="7.0" flag="l" p="0.25">5</fixedacidity>
+						<fixedacidity feature="7.0" flag="r" p="0.75">2</fixedacidity>
+					</volatileacidity>
+					<volatileacidity feature="0.16" flag="r" p="0.961">
+						<residualsugar feature="11.9" flag="l" p="0.99">2</residualsugar>
+						<residualsugar feature="11.9" flag="r" p="0.01">1</residualsugar>
+					</volatileacidity>
+				</volatileacidity>
+				<volatileacidity feature="0.48" flag="r" p="0.072">1</volatileacidity>
+			</density>
+			<density feature="0.9974" flag="r" p="0.051">3</density>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="15.0" flag="r" p="0.925">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.363">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5193956717027358:
+   Accuracy out-of-sample: 0.5130718954248366:
+   Tree size: 12:
+   Tree #81:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.632">
+		<volatileacidity feature="0.255" flag="l" p="0.483">
+			<fixedacidity feature="9.8" flag="l" p="0.996">
+				<freesulfurdioxide feature="15.0" flag="l" p="0.054">
+					<chlorides feature="0.032" flag="l" p="0.2">
+						<residualsugar feature="4.4" flag="l" p="0.625">2</residualsugar>
+						<residualsugar feature="4.4" flag="r" p="0.375">
+							<fixedacidity feature="7.4" flag="l" p="0.667">5</fixedacidity>
+							<fixedacidity feature="7.4" flag="r" p="0.333">4</fixedacidity>
+						</residualsugar>
+					</chlorides>
+					<chlorides feature="0.032" flag="r" p="0.8">3</chlorides>
+				</freesulfurdioxide>
+				<freesulfurdioxide feature="15.0" flag="r" p="0.946">3</freesulfurdioxide>
+			</fixedacidity>
+			<fixedacidity feature="9.8" flag="r" p="0.004">0</fixedacidity>
+		</volatileacidity>
+		<volatileacidity feature="0.255" flag="r" p="0.517">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.368">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46876276031033076:
+   Accuracy out-of-sample: 0.45669934640522875:
+   Tree size: 12:
+   Tree #82:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.633">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.066">
+			<pH feature="3.32" flag="l" p="0.863">
+				<fixedacidity feature="9.7" flag="l" p="0.977">
+					<density feature="0.99234" flag="l" p="0.14">
+						<volatileacidity feature="0.31" flag="l" p="0.333">3</volatileacidity>
+						<volatileacidity feature="0.31" flag="r" p="0.667">
+							<fixedacidity feature="7.6" flag="l" p="0.875">2</fixedacidity>
+							<fixedacidity feature="7.6" flag="r" p="0.125">3</fixedacidity>
+						</volatileacidity>
+					</density>
+					<density feature="0.99234" flag="r" p="0.86">2</density>
+				</fixedacidity>
+				<fixedacidity feature="9.7" flag="r" p="0.023">0</fixedacidity>
+			</pH>
+			<pH feature="3.32" flag="r" p="0.137">2</pH>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.934">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.367">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4708044099632503:
+   Accuracy out-of-sample: 0.4583333333333333:
+   Tree size: 12:
+   Tree #83:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.624">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.07">
+			<fixedacidity feature="10.3" flag="l" p="0.991">
+				<pH feature="3.45" flag="l" p="0.943">
+					<chlorides feature="0.032" flag="l" p="0.14">2</chlorides>
+					<chlorides feature="0.032" flag="r" p="0.86">
+						<density feature="0.9915" flag="l" p="0.035">3</density>
+						<density feature="0.9915" flag="r" p="0.965">
+							<chlorides feature="0.034" flag="l" p="0.048">3</chlorides>
+							<chlorides feature="0.034" flag="r" p="0.952">2</chlorides>
+						</density>
+					</chlorides>
+				</pH>
+				<pH feature="3.45" flag="r" p="0.057">3</pH>
+			</fixedacidity>
+			<fixedacidity feature="10.3" flag="r" p="0.009">0</fixedacidity>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.93">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.376">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4981625153123724:
+   Accuracy out-of-sample: 0.5122549019607843:
+   Tree size: 14:
+   Tree #84:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.642">
+		<fixedacidity feature="9.1" flag="l" p="0.982">
+			<volatileacidity feature="0.23" flag="l" p="0.318">
+				<pH feature="2.95" flag="l" p="0.079">
+					<chlorides feature="0.057" flag="l" p="0.769">
+						<residualsugar feature="1.1" flag="l" p="0.133">2</residualsugar>
+						<residualsugar feature="1.1" flag="r" p="0.867">
+							<volatileacidity feature="0.21" flag="l" p="0.808">4</volatileacidity>
+							<volatileacidity feature="0.21" flag="r" p="0.192">2</volatileacidity>
+						</residualsugar>
+					</chlorides>
+					<chlorides feature="0.057" flag="r" p="0.231">5</chlorides>
+				</pH>
+				<pH feature="2.95" flag="r" p="0.921">3</pH>
+			</volatileacidity>
+			<volatileacidity feature="0.23" flag="r" p="0.682">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.018">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.358">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5120457329522254:
+   Accuracy out-of-sample: 0.5351307189542484:
+   Tree size: 11:
+   Tree #85:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.637">
+		<volatileacidity feature="0.26" flag="l" p="0.484">
+			<alcohol feature="9.0" flag="l" p="0.097">
+				<pH feature="2.94" flag="l" p="0.11">
+					<volatileacidity feature="0.24" flag="l" p="0.75">4</volatileacidity>
+					<volatileacidity feature="0.24" flag="r" p="0.25">3</volatileacidity>
+				</pH>
+				<pH feature="2.94" flag="r" p="0.89">
+					<pH feature="2.97" flag="l" p="0.062">5</pH>
+					<pH feature="2.97" flag="r" p="0.938">
+						<citricacid feature="0.62" flag="l" p="0.885">3</citricacid>
+						<citricacid feature="0.62" flag="r" p="0.115">2</citricacid>
+					</pH>
+				</pH>
+			</alcohol>
+			<alcohol feature="9.0" flag="r" p="0.903">3</alcohol>
+		</volatileacidity>
+		<volatileacidity feature="0.26" flag="r" p="0.516">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.363">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5034708044099633:
+   Accuracy out-of-sample: 0.5122549019607843:
+   Tree size: 12:
+   Tree #86:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.63">
+		<fixedacidity feature="9.1" flag="l" p="0.978">
+			<volatileacidity feature="0.24" flag="l" p="0.355">
+				<totalsulfurdioxide feature="69.0" flag="l" p="0.024">
+					<residualsugar feature="3.5" flag="l" p="0.769">
+						<freesulfurdioxide feature="17.0" flag="l" p="0.8">2</freesulfurdioxide>
+						<freesulfurdioxide feature="17.0" flag="r" p="0.2">3</freesulfurdioxide>
+					</residualsugar>
+					<residualsugar feature="3.5" flag="r" p="0.231">3</residualsugar>
+				</totalsulfurdioxide>
+				<totalsulfurdioxide feature="69.0" flag="r" p="0.976">
+					<pH feature="2.95" flag="l" p="0.067">4</pH>
+					<pH feature="2.95" flag="r" p="0.933">3</pH>
+				</totalsulfurdioxide>
+			</volatileacidity>
+			<volatileacidity feature="0.24" flag="r" p="0.645">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.022">3</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.37">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5271539403838301:
+   Accuracy out-of-sample: 0.5049019607843137:
+   Tree size: 13:
+   Tree #87:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.64">
+		<volatileacidity feature="0.27" flag="l" p="0.544">
+			<freesulfurdioxide feature="14.0" flag="l" p="0.046">
+				<sulphates feature="0.31" flag="l" p="0.026">0</sulphates>
+				<sulphates feature="0.31" flag="r" p="0.974">
+					<pH feature="3.43" flag="l" p="0.947">
+						<residualsugar feature="3.5" flag="l" p="0.639">
+							<chlorides feature="0.152" flag="l" p="0.957">2</chlorides>
+							<chlorides feature="0.152" flag="r" p="0.043">3</chlorides>
+						</residualsugar>
+						<residualsugar feature="3.5" flag="r" p="0.361">3</residualsugar>
+					</pH>
+					<pH feature="3.43" flag="r" p="0.053">3</pH>
+				</sulphates>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="14.0" flag="r" p="0.954">3</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.27" flag="r" p="0.456">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.36">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4708044099632503:
+   Accuracy out-of-sample: 0.46568627450980393:
+   Tree size: 13:
+   Tree #88:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="11.0" flag="l" p="0.653">
+		<fixedacidity feature="9.1" flag="l" p="0.984">
+			<freesulfurdioxide feature="14.0" flag="l" p="0.064">
+				<volatileacidity feature="0.17" flag="l" p="0.05">3</volatileacidity>
+				<volatileacidity feature="0.17" flag="r" p="0.95">
+					<sulphates feature="0.76" flag="l" p="0.979">
+						<density feature="0.99665" flag="l" p="0.936">
+							<alcohol feature="10.9" flag="l" p="0.943">2</alcohol>
+							<alcohol feature="10.9" flag="r" p="0.057">2</alcohol>
+						</density>
+						<density feature="0.99665" flag="r" p="0.064">3</density>
+					</sulphates>
+					<sulphates feature="0.76" flag="r" p="0.021">3</sulphates>
+				</volatileacidity>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="14.0" flag="r" p="0.936">3</freesulfurdioxide>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.016">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="11.0" flag="r" p="0.347">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5149040424663128:
+   Accuracy out-of-sample: 0.5032679738562091:
+   Tree size: 12:
+   Tree #89:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.624">
+		<volatileacidity feature="0.24" flag="l" p="0.369">
+			<freesulfurdioxide feature="7.0" flag="l" p="0.007">
+				<fixedacidity feature="8.9" flag="l" p="0.5">1</fixedacidity>
+				<fixedacidity feature="8.9" flag="r" p="0.5">2</fixedacidity>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="7.0" flag="r" p="0.993">
+				<alcohol feature="9.0" flag="l" p="0.1">
+					<citricacid feature="0.64" flag="l" p="0.911">
+						<fixedacidity feature="6.9" flag="l" p="0.608">3</fixedacidity>
+						<fixedacidity feature="6.9" flag="r" p="0.392">5</fixedacidity>
+					</citricacid>
+					<citricacid feature="0.64" flag="r" p="0.089">2</citricacid>
+				</alcohol>
+				<alcohol feature="9.0" flag="r" p="0.9">3</alcohol>
+			</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.631">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.376">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.514087382605145:
+   Accuracy out-of-sample: 0.5106209150326797:
+   Tree size: 11:
+   Tree #90:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.7" flag="l" p="0.591">
+		<volatileacidity feature="0.24" flag="l" p="0.357">
+			<chlorides feature="0.03" flag="l" p="0.023">
+				<sulphates feature="0.46" flag="l" p="0.583">
+					<pH feature="2.91" flag="l" p="0.143">1</pH>
+					<pH feature="2.91" flag="r" p="0.857">2</pH>
+				</sulphates>
+				<sulphates feature="0.46" flag="r" p="0.417">
+					<volatileacidity feature="0.18" flag="l" p="0.4">5</volatileacidity>
+					<volatileacidity feature="0.18" flag="r" p="0.6">3</volatileacidity>
+				</sulphates>
+			</chlorides>
+			<chlorides feature="0.03" flag="r" p="0.977">
+				<citricacid feature="0.53" flag="l" p="0.933">3</citricacid>
+				<citricacid feature="0.53" flag="r" p="0.067">2</citricacid>
+			</chlorides>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.643">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.7" flag="r" p="0.409">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5132707227439771:
+   Accuracy out-of-sample: 0.5163398692810458:
+   Tree size: 12:
+   Tree #91:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.637">
+		<volatileacidity feature="0.26" flag="l" p="0.505">
+			<totalsulfurdioxide feature="66.0" flag="l" p="0.029">
+				<fixedacidity feature="5.9" flag="l" p="0.043">1</fixedacidity>
+				<fixedacidity feature="5.9" flag="r" p="0.957">
+					<pH feature="3.38" flag="l" p="0.909">
+						<citricacid feature="0.33" flag="l" p="0.35">2</citricacid>
+						<citricacid feature="0.33" flag="r" p="0.65">
+							<chlorides feature="0.032" flag="l" p="0.231">2</chlorides>
+							<chlorides feature="0.032" flag="r" p="0.769">3</chlorides>
+						</citricacid>
+					</pH>
+					<pH feature="3.38" flag="r" p="0.091">3</pH>
+				</fixedacidity>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="66.0" flag="r" p="0.971">3</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.26" flag="r" p="0.495">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.363">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5177623519804002:
+   Accuracy out-of-sample: 0.4852941176470588:
+   Tree size: 11:
+   Tree #92:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.633">
+		<volatileacidity feature="0.24" flag="l" p="0.381">
+			<totalsulfurdioxide feature="40.0" flag="l" p="0.008">
+				<fixedacidity feature="10.3" flag="l" p="0.8">2</fixedacidity>
+				<fixedacidity feature="10.3" flag="r" p="0.2">0</fixedacidity>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="40.0" flag="r" p="0.992">
+				<citricacid feature="0.24" flag="l" p="0.079">
+					<citricacid feature="0.15" flag="l" p="0.022">2</citricacid>
+					<citricacid feature="0.15" flag="r" p="0.978">
+						<sulphates feature="0.38" flag="l" p="0.044">2</sulphates>
+						<sulphates feature="0.38" flag="r" p="0.956">3</sulphates>
+					</citricacid>
+				</citricacid>
+				<citricacid feature="0.24" flag="r" p="0.921">3</citricacid>
+			</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.619">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.367">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.46467946100449165:
+   Accuracy out-of-sample: 0.46895424836601307:
+   Tree size: 11:
+   Tree #93:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.632">
+		<freesulfurdioxide feature="14.0" flag="l" p="0.068">
+			<chlorides feature="0.033" flag="l" p="0.16">
+				<sulphates feature="0.48" flag="l" p="0.882">2</sulphates>
+				<sulphates feature="0.48" flag="r" p="0.118">3</sulphates>
+			</chlorides>
+			<chlorides feature="0.033" flag="r" p="0.84">
+				<sulphates feature="0.36" flag="l" p="0.09">
+					<fixedacidity feature="10.3" flag="l" p="0.875">
+						<pH feature="3.36" flag="l" p="0.714">1</pH>
+						<pH feature="3.36" flag="r" p="0.286">2</pH>
+					</fixedacidity>
+					<fixedacidity feature="10.3" flag="r" p="0.125">0</fixedacidity>
+				</sulphates>
+				<sulphates feature="0.36" flag="r" p="0.91">2</sulphates>
+			</chlorides>
+		</freesulfurdioxide>
+		<freesulfurdioxide feature="14.0" flag="r" p="0.932">3</freesulfurdioxide>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.368">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5177623519804002:
+   Accuracy out-of-sample: 0.5081699346405228:
+   Tree size: 12:
+   Tree #94:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.628">
+		<fixedacidity feature="9.1" flag="l" p="0.984">
+			<volatileacidity feature="0.26" flag="l" p="0.479">
+				<totalsulfurdioxide feature="65.0" flag="l" p="0.017">
+					<fixedacidity feature="9.0" flag="l" p="0.833">
+						<freesulfurdioxide feature="23.0" flag="l" p="0.9">
+							<fixedacidity feature="5.9" flag="l" p="0.111">1</fixedacidity>
+							<fixedacidity feature="5.9" flag="r" p="0.889">2</fixedacidity>
+						</freesulfurdioxide>
+						<freesulfurdioxide feature="23.0" flag="r" p="0.1">3</freesulfurdioxide>
+					</fixedacidity>
+					<fixedacidity feature="9.0" flag="r" p="0.167">3</fixedacidity>
+				</totalsulfurdioxide>
+				<totalsulfurdioxide feature="65.0" flag="r" p="0.983">3</totalsulfurdioxide>
+			</volatileacidity>
+			<volatileacidity feature="0.26" flag="r" p="0.521">2</volatileacidity>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.016">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.372">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5169456921192324:
+   Accuracy out-of-sample: 0.5294117647058824:
+   Tree size: 11:
+   Tree #95:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.65" flag="l" p="0.588">
+		<volatileacidity feature="0.265" flag="l" p="0.527">
+			<freesulfurdioxide feature="15.0" flag="l" p="0.051">
+				<alcohol feature="9.5" flag="l" p="0.077">3</alcohol>
+				<alcohol feature="9.5" flag="r" p="0.923">
+					<fixedacidity feature="9.0" flag="l" p="0.944">
+						<density feature="0.99626" flag="l" p="0.941">
+							<pH feature="3.47" flag="l" p="0.938">2</pH>
+							<pH feature="3.47" flag="r" p="0.062">3</pH>
+						</density>
+						<density feature="0.99626" flag="r" p="0.059">3</density>
+					</fixedacidity>
+					<fixedacidity feature="9.0" flag="r" p="0.056">3</fixedacidity>
+				</alcohol>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="15.0" flag="r" p="0.949">3</freesulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.265" flag="r" p="0.473">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.65" flag="r" p="0.412">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5251122907309106:
+   Accuracy out-of-sample: 0.5155228758169934:
+   Tree size: 13:
+   Tree #96:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.637">
+		<volatileacidity feature="0.285" flag="l" p="0.634">
+			<residualsugar feature="17.7" flag="l" p="0.96">
+				<volatileacidity feature="0.24" flag="l" p="0.585">
+					<freesulfurdioxide feature="7.0" flag="l" p="0.013">
+						<pH feature="2.91" flag="l" p="0.143">0</pH>
+						<pH feature="2.91" flag="r" p="0.857">
+							<citricacid feature="0.6" flag="l" p="0.833">2</citricacid>
+							<citricacid feature="0.6" flag="r" p="0.167">1</citricacid>
+						</pH>
+					</freesulfurdioxide>
+					<freesulfurdioxide feature="7.0" flag="r" p="0.987">3</freesulfurdioxide>
+				</volatileacidity>
+				<volatileacidity feature="0.24" flag="r" p="0.415">3</volatileacidity>
+			</residualsugar>
+			<residualsugar feature="17.7" flag="r" p="0.04">2</residualsugar>
+		</volatileacidity>
+		<volatileacidity feature="0.285" flag="r" p="0.366">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.363">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5242956308697427:
+   Accuracy out-of-sample: 0.5285947712418301:
+   Tree size: 12:
+   Tree #97:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.636">
+		<volatileacidity feature="0.27" flag="l" p="0.543">
+			<totalsulfurdioxide feature="272.0" flag="l" p="0.996">
+				<alcohol feature="8.9" flag="l" p="0.062">
+					<pH feature="2.94" flag="l" p="0.154">4</pH>
+					<pH feature="2.94" flag="r" p="0.846">
+						<volatileacidity feature="0.2" flag="l" p="0.159">
+							<fixedacidity feature="7.3" flag="l" p="0.143">2</fixedacidity>
+							<fixedacidity feature="7.3" flag="r" p="0.857">5</fixedacidity>
+						</volatileacidity>
+						<volatileacidity feature="0.2" flag="r" p="0.841">2</volatileacidity>
+					</pH>
+				</alcohol>
+				<alcohol feature="8.9" flag="r" p="0.938">3</alcohol>
+			</totalsulfurdioxide>
+			<totalsulfurdioxide feature="272.0" flag="r" p="0.004">0</totalsulfurdioxide>
+		</volatileacidity>
+		<volatileacidity feature="0.27" flag="r" p="0.457">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.364">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.4740710494079216:
+   Accuracy out-of-sample: 0.45751633986928103:
+   Tree size: 13:
+   Tree #98:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9" flag="l" p="0.636">
+		<fixedacidity feature="9.1" flag="l" p="0.978">
+			<freesulfurdioxide feature="14.0" flag="l" p="0.085">
+				<volatileacidity feature="0.52" flag="l" p="0.922">
+					<pH feature="3.42" flag="l" p="0.899">
+						<sulphates feature="0.76" flag="l" p="0.981">
+							<citricacid feature="0.17" flag="l" p="0.057">2</citricacid>
+							<citricacid feature="0.17" flag="r" p="0.943">2</citricacid>
+						</sulphates>
+						<sulphates feature="0.76" flag="r" p="0.019">3</sulphates>
+					</pH>
+					<pH feature="3.42" flag="r" p="0.101">3</pH>
+				</volatileacidity>
+				<volatileacidity feature="0.52" flag="r" p="0.078">1</volatileacidity>
+			</freesulfurdioxide>
+			<freesulfurdioxide feature="14.0" flag="r" p="0.915">3</freesulfurdioxide>
+		</fixedacidity>
+		<fixedacidity feature="9.1" flag="r" p="0.022">2</fixedacidity>
+	</alcohol>
+	<alcohol feature="10.9" flag="r" p="0.364">3</alcohol>
+</GreedyTree>
+   Accuracy in-sample: 0.5083707635769702:
+   Accuracy out-of-sample: 0.5024509803921569:
+   Tree size: 10:
+   Tree #99:
+<?xml version="1.0" ?>
+<GreedyTree>
+	<alcohol feature="10.9333333333333" flag="l" p="0.655">
+		<volatileacidity feature="0.24" flag="l" p="0.37">
+			<density feature="0.99164" flag="l" p="0.037">
+				<alcohol feature="10.7" flag="l" p="0.409">3</alcohol>
+				<alcohol feature="10.7" flag="r" p="0.591">
+					<residualsugar feature="1.1" flag="l" p="0.077">3</residualsugar>
+					<residualsugar feature="1.1" flag="r" p="0.923">
+						<density feature="0.99153" flag="l" p="0.75">4</density>
+						<density feature="0.99153" flag="r" p="0.25">
+							<fixedacidity feature="7.6" flag="l" p="0.667">3</fixedacidity>
+							<fixedacidity feature="7.6" flag="r" p="0.333">4</fixedacidity>
+						</density>
+					</residualsugar>
+				</alcohol>
+			</density>
+			<density feature="0.99164" flag="r" p="0.963">3</density>
+		</volatileacidity>
+		<volatileacidity feature="0.24" flag="r" p="0.63">2</volatileacidity>
+	</alcohol>
+	<alcohol feature="10.9333333333333" flag="r" p="0.345">3</alcohol>
+</GreedyTree>
