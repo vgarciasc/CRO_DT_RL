@@ -238,7 +238,10 @@ if __name__ == "__main__":
                 scaler = None
             
             # Preparing matrices that need to be calculated only once
-            M = vt.create_mask_dx(depth)
+            if args["evaluation_scheme"] == "tree":
+                M = vt.create_nodes_tree_mapper(depth)
+            else:
+                M = vt.create_mask_dx(depth)
             X_ = np.vstack((np.ones(len(X_train)).T, X_train.T)).T
             Y_ = np.tile(y_train, (2**depth, 1))
 

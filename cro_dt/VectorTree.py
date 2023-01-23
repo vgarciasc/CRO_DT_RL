@@ -109,8 +109,7 @@ def create_nodes_tree_mapper(depth):
 def dt_tree_fit(X, y, W, depth, n_classes, X_=None, Y_=None, M=None, default_label=0):
     n_leaves = len(W) + 1
 
-    # M = M if M is not None else create_leaf_mapper(depth)
-    M_i, M_l = create_nodes_tree_mapper(depth)
+    M_i, M_l = create_nodes_tree_mapper(depth) if M is None else M
 
     def get_leaf_idx(x, M_i, M_l):
         node_idx = 0
