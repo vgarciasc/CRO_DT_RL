@@ -5,7 +5,7 @@ from numba import jit
 import time
 from rich import print
 
-from sup_configs import load_dataset, config_CE
+from cro_dt.sup_configs import load_dataset, config_CE
 
 MAGIC_NUMBER = 42
 
@@ -497,17 +497,26 @@ if __name__ == "__main__":
 
     # Testing whether the evaluation schemes are equal
     for _ in range(1000):
-        n_classes = np.random.randint(2, 5)
-        n_samples = np.random.randint(1000, 10000)
-        W = np.random.uniform(-1, 1, (n_leaves - 1, 5))
-        X = np.random.uniform(-5, 5, (n_samples, 4))
+        # n_classes = np.random.randint(2, 5)
+        # n_samples = np.random.randint(1000, 10000)
+        n_samples = 5
+        n_classes = 2
+        W = np.random.uniform(-1, 1, (n_leaves - 1, 4))
+        X = np.random.uniform(-5, 5, (n_samples, 3))
         y = np.random.randint(0, n_classes, (1, n_samples))
+        W = np.round(W, 1)
+        X = np.int_(X)
 
         acc_old, _ = dt_matrix_fit(X, y, W, depth, n_classes)
         acc_dx, _ = dt_matrix_fit_dx(X, y, W, depth, n_classes)
         acc_dx2, _ = dt_matrix_fit_dx2(X, y, W, depth, n_classes)
         acc_numba, _ = dt_matrix_fit_dx_numba(X, y, W, depth, n_classes)
         print(f"ACCURACIES: (old: {acc_old}, dx: {acc_dx}, dx2: {acc_dx2}, numba: {acc_numba})")
+
+        X = np.vstack((np.ones(len(X)), X.T)).T
+        Z = np.sign(W @ X.T)
+        if np.min(np.max(np.clip(M @ Z - 1, 0, 1), axis=1)) != 0 and acc_old != 1:
+            pdb.set_trace()
 
         if [acc_old, acc_dx, acc_dx2, acc_numba].count(acc_old) != 4:
             pdb.set_trace()

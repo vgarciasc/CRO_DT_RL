@@ -1,6 +1,6 @@
 import numpy as np
-import VectorTree as vt
-import sup_configs as configs
+import cro_dt.VectorTree as vt
+import cro_dt.sup_configs as configs
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 

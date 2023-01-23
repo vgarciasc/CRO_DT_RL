@@ -75,6 +75,7 @@ class SoftTree:
         K = self.mask @ np.sign(- self.weights @ X.T)
         L = np.clip(K - (np.max(K) - 1), 0, 1)
         leaves = np.argmax(L.T, axis=1)
+        # y = np.argmax(np.array([self.labels[l] for l in leaves]), axis=1)
         y = np.array([self.labels[l] for l in leaves])
 
         return y

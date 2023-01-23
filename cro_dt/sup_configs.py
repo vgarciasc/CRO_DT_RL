@@ -216,6 +216,11 @@ config_ART7 = {
     "classes": [(0, "Class 0"), (1, "Class 1"), (2, "Class 2"), (3, "Class 3"), (4, "Class 4"), (5, "Class 5"), (6, "Class 6"), (7, "Class 7"), (8, "Class 8"), (9, "Class 9")]
 }
 
+real_dataset_list = ["breast_cancer", "car", "banknote", "balance", "acute-1", "acute-2", "transfusion", "climate",
+    "sonar", "optical", "drybean", "avila", "wine-red", "wine-white"]
+artificial_dataset_list = ["artificial_100_3_2", "artificial_1000_3_2", "artificial_1000_3_10", "artificial_1000_10_10",
+    "artificial_10000_3_10", "artificial_10000_3_10", "artificial_100000_10_10"]
+
 def get_config(dataset_code):
     for config in [config_BC, config_CE, config_BN, config_BS, 
         config_AI1, config_AI2, config_BT, config_CC, config_CB, 

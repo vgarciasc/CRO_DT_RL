@@ -12,17 +12,17 @@ from AbsObjetiveFunc import AbsObjetiveFunc
 from CRO_SL import CRO_SL
 from CoralPopulation import Coral
 from SubstrateReal import SubstrateReal
-from sup_configs import get_config, load_dataset
 import pdb
 import time
 import numpy as np
 
 from sklearn.preprocessing import StandardScaler
-
 from rich import print
-import VectorTree as vt
-from utils import printv
-from cart import get_cart_as_W
+
+from cro_dt.utils import printv
+import cro_dt.VectorTree as vt
+from cro_dt.sup_configs import get_config, load_dataset, artificial_dataset_list, real_dataset_list
+from cro_dt.cart import get_cart_as_W
 
 def get_initial_pop(data_config, popsize, X_train, y_train,  
     should_cart_init, desired_depth, cart_pop_filepath, objfunc):
@@ -76,7 +76,7 @@ def get_initial_pop(data_config, popsize, X_train, y_train,
 def get_W_from_solution(solution, depth, n_attributes, args):
     W = solution.reshape((2**depth - 1, n_attributes + 1))
 
-    if args["should_use_univariate_accuracy"]:
+    if args["univariate"]:
         W = vt.get_W_as_univariate(W)
 
     if args["should_use_threshold"]:
@@ -90,7 +90,6 @@ def save_histories_to_file(configs, histories, output_path_summary, output_path_
     string_full = prefix + "\n"
 
     for config, history in zip(configs, histories):
-        # elapsed_times, multiv_info, univ_info = zip(*history)
         elapsed_times, scalers, multiv_info, univ_info = zip(*history)
         multiv_acc_in, multiv_acc_test, multiv_W, multiv_labels = zip(*multiv_info)
         univ_acc_in, univ_acc_test, univ_W, univ_labels = zip(*univ_info)
@@ -121,9 +120,6 @@ def save_histories_to_file(configs, histories, output_path_summary, output_path_
             string_full += f"Test:" + "\n"
             string_full += f"        Multivariate accuracy: {multiv_acc_test}" + "\n"
             string_full += f"        Univariate accuracy: {univ_acc_test}" + "\n"
-            # if scaler is not None:
-            #     string_full += f"Scaler: (mean, {scaler.mean_})\n"
-            #     string_full += f"        (var,  {scaler.var_})\n"
             string_full += f"Elapsed time: {elapsed_time}" + "\n"
             string_full += "\n"
             string_full += "Multivariate tree:\n" + vt.weights2treestr(multiv_W, multiv_labels, config, use_attribute_names=False, scaler=scaler)
@@ -156,7 +152,8 @@ if __name__ == "__main__":
     parser.add_argument('-s','--simulations', help="How many simulations?", required=True, type=int)
     parser.add_argument('-d','--depth', help="Depth of tree", required=True, type=int)
     parser.add_argument('--initial_pop', help="File with initial population", required=False, default=None, type=str)
-    parser.add_argument('--alpha', help="How to penalize tree multivariateness?", required=True, type=float)
+    parser.add_argument('--univariate', help='Should use univariate tree\'s accuracy when measuring fitness?', required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
+    parser.add_argument('--alpha', help="How to penalize tree multivariateness?", required=False, default=1.0, type=float)
     parser.add_argument('--should_normalize_rows', help='Should normalize rows?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--should_cart_init', help='Should initialize with CART trees?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--should_normalize_dataset', help='Should normalize dataset?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
@@ -165,13 +162,14 @@ if __name__ == "__main__":
     parser.add_argument('--should_apply_exponential', help='Should apply exponential penalty?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--should_use_threshold', help='Should ignore weights under a certain threshold?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--threshold', help="Under which threshold should weights be ignored?", required=False, default=0.05, type=float)
-    parser.add_argument('--should_use_univariate_accuracy', help='Should use univariate tree\'s accuracy when measuring fitness?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
+    parser.add_argument('--should_save_reports', help='Should save PCRO-SL reports?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--start_from', help='Should start from where?', required=False, default=0, type=int)
     parser.add_argument('--evaluation_scheme', help='Which evaluation scheme to use?', required=False, default="dx", type=str)
     parser.add_argument('--output_prefix', help='Which output name to use?', required=False, default="log", type=str)
     parser.add_argument('--verbose', help='Is verbose?', required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     args = vars(parser.parse_args())
 
+    # Initialization
     depth = args["depth"]
     alpha = args["alpha"]
     with open(args["cro_config"]) as f:
@@ -179,19 +177,16 @@ if __name__ == "__main__":
     popsize = cro_configs["general"]["popSize"]
 
     command_line = str(args)
-    command_line += "\n\npython main3.py " + " ".join([f"--{key} {val}" for (key, val) in args.items()]) + "\n\n---\n\n"
+    command_line += "\n\npython cro-dt.py " + " ".join([f"--{key} {val}" for (key, val) in args.items()]) + "\n\n---\n\n"
     command_line += str(cro_configs)
     curr_time = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
     output_path_summ = f"results/{args['output_prefix']}_{curr_time}_summary.txt"
     output_path_full = f"results/{args['output_prefix']}_{curr_time}_full.txt"
     
-    normal_dataset_list = ["breast_cancer", "car", "banknote", "balance", "acute-1", "acute-2", "transfusion", "climate", "sonar", "optical", "drybean", "avila", "wine-red", "wine-white"]
-    artificial_dataset_list = ["artificial_100_3_2", "artificial_1000_3_2", "artificial_1000_3_10", "artificial_1000_10_10", "artificial_10000_3_10", "artificial_10000_3_10", "artificial_100000_10_10"]
-
     if args['dataset'].startswith("artificial"):
         dataset_list = artificial_dataset_list
     else:
-        dataset_list = normal_dataset_list
+        dataset_list = real_dataset_list
 
     if args['dataset'].endswith('all'):
         data_configs = [get_config(d) for d in dataset_list]
@@ -206,7 +201,7 @@ if __name__ == "__main__":
     elif args["evaluation_scheme"] == "dx":
         fitness_evaluation = vt.dt_matrix_fit_dx
     elif args["evaluation_scheme"] == "dx2":
-        fitness_evaluation = vt.dt_matrix_fit_dx
+        fitness_evaluation = vt.dt_matrix_fit_dx2
     elif args["evaluation_scheme"] == "old":
         fitness_evaluation = vt.dt_matrix_fit
     elif args["evaluation_scheme"] == "tree":
@@ -216,7 +211,7 @@ if __name__ == "__main__":
         sys.exit(0)
 
     histories = []
-    for data_config in data_configs:
+    for dataset_id, data_config in enumerate(data_configs):
         X, y = load_dataset(data_config)
         mask = vt.create_mask(depth)
 
@@ -230,6 +225,7 @@ if __name__ == "__main__":
         simulations = range(args["simulations"])[start_idx:]
 
         for simulation in simulations:
+            # Doing dataset stuff
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=simulation, stratify=y)
             X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size=0.5, random_state=simulation, stratify=y_test)
             
@@ -241,15 +237,16 @@ if __name__ == "__main__":
             else:
                 scaler = None
             
-            # X_prepared = np.vstack((np.ones(len(X_train)).T, X_train.T)).T
-            # y_prepared = np.tile(y_train + vt.MAGIC_NUMBER, (2 ** depth, 1))
-            
+            # Preparing matrices that need to be calculated only once
             M = vt.create_mask_dx(depth)
             X_ = np.vstack((np.ones(len(X_train)).T, X_train.T)).T
             Y_ = np.tile(y_train, (2**depth, 1))
 
-            print(f"Iteration #{simulation}:")
+            print("=" * 50)
+            print(f"[red]Iteration {simulation}/{args['simulations']}[/red] [yellow](dataset: {data_config['name']}, {dataset_id}/{len(data_configs)}):[/yellow]")
+            print("=" * 50)
 
+            # Creating objective function based on execution parameters
             class SupervisedObjectiveFunc(AbsObjetiveFunc):
                 def __init__(self, size, opt="max"):
                     self.size = size
@@ -259,7 +256,7 @@ if __name__ == "__main__":
                     W = get_W_from_solution(solution, depth, n_attributes, args)
                     accuracy, _ = fitness_evaluation(X_train, y_train, W, depth, n_classes, X_, Y_, M)
 
-                    if args["should_use_univariate_accuracy"]:
+                    if args["univariate"]:
                         return accuracy
                     else:
                         penalty = vt.get_penalty(W, max_penalty, alpha=args["alpha"], 
@@ -277,6 +274,8 @@ if __name__ == "__main__":
             sol_size = len(vt.generate_random_weights(n_attributes, depth).flatten())
             objfunc = SupervisedObjectiveFunc(sol_size)
 
+            # Getting initial population
+            args['initial_pop'] = None if args['initial_pop'] == 'None' else args['initial_pop']
             initial_pop = get_initial_pop(data_config, popsize, X_train, y_train,
                 args["should_cart_init"], args["depth"], args["initial_pop"], objfunc)
             
@@ -291,14 +290,20 @@ if __name__ == "__main__":
             print(f"Average accuracy in CART seeding: {np.mean([f.fitness for f in c.population.population])}")
             print(f"Best accuracy in CART seeding: {np.max([f.fitness for f in c.population.population])}")
 
+            # Running CRO-DT
             start_time = time.time()
             _, fit = c.optimize()
             end_time = time.time()
             elapsed_time = end_time - start_time
-            # c.display_report()
+            
+            # Save reports to disk
+            if args['should_save_reports']:
+                report_filename = f"results/{args['output_prefix']}_{data_config['code']}_{simulation}.png"
+                c.display_report(show_plots=False, filename=report_filename)
+                print(f"Saved report figure to '{report_filename}'.")
 
+            # Filter final solution based on validation set
             if args["should_get_best_from_validation"]:
-                # GET BEST SOLUTION BASED ON VALIDATION SET
                 final_corals = [coral for coral in c.population.population]
                 final_corals.sort(key = lambda x : x.fitness, reverse=True)
                 aux = []
@@ -320,7 +325,7 @@ if __name__ == "__main__":
                     
                     accuracy, _ = vt.dt_matrix_fit_dx(X_val, y_val, W, depth, n_classes, X_val_, Y_val_, M)
                     
-                    if args["should_use_univariate_accuracy"]:
+                    if args["univariate"]:
                         coral.val_fitness = accuracy
                     else:
                         penalty = vt.get_penalty(W, max_penalty, alpha=args["alpha"], 
@@ -337,14 +342,13 @@ if __name__ == "__main__":
             else:
                 multiv_W, _ = c.population.best_solution()
 
-            # END REGION
-
+            # Post-process returned model from CRO-DT
             multiv_W = multiv_W.reshape((2**depth - 1, n_attributes + 1))
             if args["should_use_threshold"]:
                 multiv_W[:,1:][abs(multiv_W[:,1:]) < args["threshold"]] = 0
                 multiv_W[:,0][multiv_W[:,0] == 0] += 0.01
             univ_W = vt.get_W_as_univariate(multiv_W)
-            if args["should_use_univariate_accuracy"]:
+            if args["univariate"]:
                 multiv_W = vt.get_W_as_univariate(univ_W)
             
             _, multiv_labels = vt.dt_matrix_fit_dx(X_train, y_train, multiv_W, depth, n_classes)
@@ -361,5 +365,5 @@ if __name__ == "__main__":
                 (univ_acc_in, univ_acc_test, univ_labels, univ_W)))
             save_histories_to_file(data_configs, histories, output_path_summ, output_path_full, command_line)
         
-        print(f"Saved to '{output_path_summ}'.")
-        print(f"Saved to '{output_path_full}'.")
+        print(f"Saved summary to '{output_path_summ}'.")
+        print(f"Saved full data to '{output_path_full}'.")

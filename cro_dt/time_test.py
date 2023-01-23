@@ -1,10 +1,11 @@
 import time
-import VectorTree as vt
-from sup_configs import get_config, load_dataset
 import numpy as np
 
 from rich.console import Console
 from rich import print
+
+import cro_dt.VectorTree as vt
+from cro_dt.sup_configs import get_config, load_dataset
 console = Console()
 
 if __name__ == "__main__":
