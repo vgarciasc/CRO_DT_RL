@@ -202,16 +202,16 @@ class CRO_SL:
     """
     Shows a summary of the execution of the algorithm
     """
-    def display_report(self, show_plots=True, filename=None):
+    def display_report(self, show_plots=True):
         if self.dynamic:
-            self.display_report_dyn(show_plots, filename)
+            self.display_report_dyn(show_plots)
         else:
-            self.display_report_nodyn(show_plots, filename)
+            self.display_report_nodyn(show_plots)
 
     """
     Version of the summary for the dynamic variant
     """
-    def display_report_dyn(self, show_plots=True, filename=None):
+    def display_report_dyn(self, show_plots=True):
         factor = 1
         if self.objfunc.opt == "min" and self.dyn_method != "success":
             factor = -1
@@ -231,43 +231,42 @@ class CRO_SL:
         best_fitness = self.population.best_solution()[1]
         print("Best fitness:", best_fitness)
 
-        # Plot fitness history
-        fig, (ax1, ax2) = plt.subplots(2, 2, figsize=(10,10))
-        fig.suptitle("CRO_SL")
-        plt.subplot(2, 2, 1)
-        
-        plt.plot(self.history, "blue")
-        plt.xlabel("generations")
-        plt.ylabel("fitness")
-        plt.title("CRO_SL fitness")
-
-        plt.subplot(2, 2, 2)
-        m = np.array(self.population.substrate_history)[1:].T
-        for i in m:
-            plt.plot(factor * i)
-        plt.legend([i.evolution_method for i in self.substrates])
-        plt.xlabel("generations")
-        plt.ylabel("fitness")
-        plt.title("Fitness of each substrate")
-
-        plt.subplot(2, 1, 2)
-        prob_data = np.array(self.population.substrate_w_history).T
-        plt.stackplot(range(prob_data.shape[1]), prob_data, labels=[i.evolution_method for i in self.substrates])
-        plt.legend()
-        plt.xlabel("generations")
-        plt.ylabel("probability")
-        plt.title("Probability of each substrate")
-
         if show_plots:
+            # Plot fitness history
+            
+            
+            fig, (ax1, ax2) = plt.subplots(2, 2, figsize=(10,10))
+            fig.suptitle("CRO_SL")
+            plt.subplot(2, 2, 1)
+            
+            plt.plot(self.history, "blue")
+            plt.xlabel("generations")
+            plt.ylabel("fitness")
+            plt.title("CRO_SL fitness")
+
+            
+            plt.subplot(2, 2, 2)
+            m = np.array(self.population.substrate_history)[1:].T
+            for i in m:
+                plt.plot(factor * i)
+            plt.legend([i.evolution_method for i in self.substrates])
+            plt.xlabel("generations")
+            plt.ylabel("fitness")
+            plt.title("Fitness of each substrate")
+
+            plt.subplot(2, 1, 2)
+            prob_data = np.array(self.population.substrate_w_history).T
+            plt.stackplot(range(prob_data.shape[1]), prob_data, labels=[i.evolution_method for i in self.substrates])
+            plt.legend()
+            plt.xlabel("generations")
+            plt.ylabel("probability")
+            plt.title("Probability of each substrate")
             plt.show()
-        
-        if filename is not None:
-            plt.savefig(filename)
 
     """
     Version of the summary for the dynamic variant
     """
-    def display_report_nodyn(self, show_plots=True, filename=None):
+    def display_report_nodyn(self, show_plots=True):
         factor = 1
         if self.objfunc.opt == "min":
             factor = -1
@@ -287,27 +286,23 @@ class CRO_SL:
         best_fitness = self.population.best_solution()[1]
         print("Best fitness:", best_fitness)
 
-        # Plot fitness history
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
-        fig.suptitle("CRO_SL")
-        plt.subplot(1, 2, 1)
-        
-        plt.plot(self.history, "blue")
-        plt.xlabel("generations")
-        plt.ylabel("fitness")
-        plt.title("CRO_SL fitness")
-
-        plt.subplot(1, 2, 2)
-        m = np.array(self.population.substrate_history)[1:].T
-        for i in m:
-            plt.plot(factor * i)
-        plt.legend([i.evolution_method for i in self.substrates])
-        plt.xlabel("generations")
-        plt.ylabel("fitness")
-        plt.title("Fitness of each substrate")
-        
         if show_plots:
+            # Plot fitness history
+            fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
+            fig.suptitle("CRO_SL")
+            plt.subplot(1, 2, 1)
+            
+            plt.plot(self.history, "blue")
+            plt.xlabel("generations")
+            plt.ylabel("fitness")
+            plt.title("CRO_SL fitness")
+
+            plt.subplot(1, 2, 2)
+            m = np.array(self.population.substrate_history)[1:].T
+            for i in m:
+                plt.plot(factor * i)
+            plt.legend([i.evolution_method for i in self.substrates])
+            plt.xlabel("generations")
+            plt.ylabel("fitness")
+            plt.title("Fitness of each substrate")
             plt.show()
-        
-        if filename is not None:
-            plt.savefig(filename)
