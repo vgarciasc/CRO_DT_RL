@@ -186,8 +186,8 @@ class CRO_SL:
     def step_info(self, gen, start_time):
         print(f"Time Spent {round(time.time() - start_time,2)}s:")
         print(f"\tGeneration: {gen}")
-        best_fitness = self.population.best_solution()[1]
-        print(f"\tBest fitness: {best_fitness}")
+        best_solution, best_fitness = self.population.best_solution()
+        print(f"\tBest fitness: {best_fitness} (reward: {'{:.3f}'.format(best_solution.reward)} ± {'{:.3f}'.format(best_solution.std_reward)}, size: {best_solution.get_tree_size()})")
         print(f"\tEvaluations of fitness: {self.objfunc.counter}")
 
         if self.dynamic:
