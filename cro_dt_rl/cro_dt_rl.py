@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
         # Setting up initial population
         initial_pop = get_initial_pop(config, cro_configs["general"]["popSize"], args["depth"],
-            alpha=args["alpha"], jobs_to_parallelize=-1, should_penalize_std=True, 
+            alpha=args["alpha"], jobs_to_parallelize=args['n_jobs'], should_penalize_std=True, 
             should_norm_state=True, episodes=100, filename=args["initial_pop"])   
         c.population.population = [Coral(tree, objfunc=objfunc) for tree in initial_pop]
 
