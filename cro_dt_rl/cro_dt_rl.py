@@ -89,12 +89,12 @@ if __name__ == "__main__":
         start_time = time.time()
         _, fit = c.optimize()
         end_time = time.time()
-        elapsed_time = end_time - start_time
+        tree.elapsed_time = end_time - start_time
 
         tree, _ = c.population.best_solution()
         collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000,
             should_norm_state=True, penalize_std=True, should_fill_attributes=True)
         history.append((tree, tree.reward, tree.get_tree_size(), None))
 
-        save_history_to_file(config, history, output_path, elapsed_time, command_line)
+        save_history_to_file(config, history, output_path, None, command_line)
         print(f"Saved to '{output_path}'.")
