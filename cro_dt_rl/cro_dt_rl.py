@@ -89,9 +89,9 @@ if __name__ == "__main__":
         start_time = time.time()
         _, fit = c.optimize()
         end_time = time.time()
-        tree.elapsed_time = end_time - start_time
 
         tree, _ = c.population.best_solution()
+        tree.elapsed_time = end_time - start_time
         collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000,
             should_norm_state=True, penalize_std=True, should_fill_attributes=True)
         history.append((tree, tree.reward, tree.get_tree_size(), None))
