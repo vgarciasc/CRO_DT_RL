@@ -1,6 +1,6 @@
 {
     "general": {
-        "popSize": 50,
+        "popSize": 100,
         "rho": 0.8,
         "Fb": 0.98,
         "Fd": 0.1,
@@ -11,8 +11,8 @@
 
         "stop_cond": "ngen",
         "time_limit": 4000.0,
-        "Ngen": 100,
-        "Neval": 1e3,
+        "Ngen": 2,
+        "Neval": 1e6,
         "fit_target": 1000,
 
         "verbose": true,

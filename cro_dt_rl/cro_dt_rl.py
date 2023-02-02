@@ -26,6 +26,53 @@ def get_substrates_tree(cro_configs):
         substrates.append(SubstrateTree(substrate_tree["name"], substrate_tree["params"]))
     return substrates
 
+def run_cro_dt_rl(config, cro_configs, alpha, episodes, 
+    should_norm_state=True, should_penalize_std=True, 
+    depth_random_indiv=3, initial_pop=None, n_jobs=-1):
+
+    class ReinforcementLearningObjectiveFunc(AbsObjetiveFunc):
+        def __init__(self, opt="max"):
+            super().__init__(None, opt)
+
+        def objetive(self, solution):
+            collect_metrics(config, [solution], alpha=alpha, episodes=episodes,
+                should_norm_state=should_norm_state, penalize_std=should_penalize_std, 
+                should_fill_attributes=True, n_jobs=n_jobs)
+            return solution.fitness
+        
+        def random_solution(self):
+            solution = Individual.generate_random_tree(config, depth_random_indiv)
+            return solution
+        
+        def check_bounds(self, solution):
+            return solution.copy()
+
+    objfunc = ReinforcementLearningObjectiveFunc()
+    c = CRO_SL(objfunc, get_substrates_tree(cro_configs), cro_configs["general"])
+
+    # Setting up initial population
+    initial_pop = get_initial_pop(config, alpha=alpha, 
+        popsize=cro_configs["general"]["popSize"],
+        depth_random_indiv=depth_random_indiv, n_jobs=n_jobs, 
+        should_penalize_std=True, should_norm_state=True, 
+        episodes=100, initial_pop=initial_pop)
+    c.population.population = []
+    for tree in initial_pop:
+        coral = Coral(tree, objfunc=objfunc)
+        coral.get_fitness()
+        c.population.population.append(coral)
+
+    # Running optimization
+    start_time = time.time()
+    _, fit = c.optimize()
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+
+    tree, _ = c.population.best_solution()
+    tree.elapsed_time = elapsed_time
+
+    return tree, c
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='PCRO-SL for Supervised Tree Induction')
     parser.add_argument('-t','--task',help="What dataset to use?", required=True, type=str)
@@ -60,38 +107,9 @@ if __name__ == "__main__":
     for simulation in range(args['simulations']):
         console.rule(f"[red]Simulation #{simulation} / {args['simulations']} [/red]:")
 
-        class ReinforcementLearningObjectiveFunc(AbsObjetiveFunc):
-            def __init__(self, opt="max"):
-                super().__init__(None, opt)
+        tree, c = run_cro_dt_rl(config, cro_configs, alpha, args['episodes'],
+            depth_random_indiv=depth, n_jobs=args['n_jobs'])
 
-            def objetive(self, solution):
-                collect_metrics(config, [solution], alpha=args["alpha"], episodes=args["episodes"],
-                    should_norm_state=True, penalize_std=True, should_fill_attributes=True, n_jobs=args["n_jobs"])
-                return solution.fitness
-            
-            def random_solution(self):
-                solution = Individual.generate_random_tree(config, depth)
-                return solution
-            
-            def check_bounds(self, solution):
-                return solution.copy()
-
-        objfunc = ReinforcementLearningObjectiveFunc()
-        c = CRO_SL(objfunc, get_substrates_tree(cro_configs), cro_configs["general"])
-
-        # Setting up initial population
-        initial_pop = get_initial_pop(config, cro_configs["general"]["popSize"], args["depth"],
-            alpha=args["alpha"], jobs_to_parallelize=args['n_jobs'], should_penalize_std=True, 
-            should_norm_state=True, episodes=100, filename=args["initial_pop"])   
-        c.population.population = [Coral(tree, objfunc=objfunc) for tree in initial_pop]
-
-        # Running optimization
-        start_time = time.time()
-        _, fit = c.optimize()
-        end_time = time.time()
-
-        tree, _ = c.population.best_solution()
-        tree.elapsed_time = end_time - start_time
         collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000,
             should_norm_state=True, penalize_std=True, should_fill_attributes=True)
         history.append((tree, tree.reward, tree.get_tree_size(), None))

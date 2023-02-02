@@ -188,6 +188,7 @@ class CRO_SL:
         print(f"\tGeneration: {gen}")
         best_solution, best_fitness = self.population.best_solution()
         print(f"\tBest fitness: {best_fitness} (reward: {'{:.3f}'.format(best_solution.reward)} ± {'{:.3f}'.format(best_solution.std_reward)}, size: {best_solution.get_tree_size()})")
+        print(f"\tAverage fitness: {np.mean([x.fitness for x in self.population.population])} (reward: {'{:.3f}'.format(np.mean([x.solution.reward for x in self.population.population]))} ± {'{:.3f}'.format(np.mean([x.solution.std_reward for x in self.population.population]))}, size: {np.mean([x.solution.get_tree_size() for x in self.population.population])})")
         print(f"\tEvaluations of fitness: {self.objfunc.counter}")
 
         if self.dynamic:
