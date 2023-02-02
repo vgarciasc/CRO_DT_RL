@@ -143,6 +143,8 @@ class CRO_SL:
             if self.verbose and time.time() - display_timer > self.v_timer:
                 self.step_info(gen, real_time_start)
                 display_timer = time.time()
+            
+            self.save_info(self, gen)
                 
         self.real_time_spent = time.time() - real_time_start
         self.time_spent = time.process_time() - time_start
@@ -307,3 +309,6 @@ class CRO_SL:
             plt.ylabel("fitness")
             plt.title("Fitness of each substrate")
             plt.show()
+    
+    def save_info(self, gen):
+        pass

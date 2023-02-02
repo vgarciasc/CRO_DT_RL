@@ -26,9 +26,34 @@ def get_substrates_tree(cro_configs):
         substrates.append(SubstrateTree(substrate_tree["name"], substrate_tree["params"]))
     return substrates
 
+def save_info(cro_sl, gen):
+    best_tree, _ = cro_sl.population.best_solution()
+
+    if gen == 0:
+        mode = "w"
+    else:
+        mode = "a"
+
+    with open(cro_sl.save_info_filename, mode) as file:
+        string = ""
+        if gen == 1:
+            string += cro_sl.command_line
+            string += "\n\n"
+        
+        string += f"Generation #{gen} \n"
+        string += f"Reward {best_tree.reward} +- {best_tree.std_reward}, Size {best_tree.get_tree_size()}, Success Rate {best_tree.success_rate} \n"
+        string += "-" * 50 + "\n"
+        string += str(best_tree)
+        string += "\n\n"
+        
+        file.write(string)
+
 def run_cro_dt_rl(config, cro_configs, alpha, episodes, 
     should_norm_state=True, should_penalize_std=True, 
-    depth_random_indiv=3, initial_pop=None, n_jobs=-1):
+    depth_random_indiv=3, initial_pop=None,
+    task_solution_threshold=-1,
+    command_line="", output_path_temp="tmp.txt", 
+    n_jobs=-1):
 
     class ReinforcementLearningObjectiveFunc(AbsObjetiveFunc):
         def __init__(self, opt="max"):
@@ -36,7 +61,8 @@ def run_cro_dt_rl(config, cro_configs, alpha, episodes,
 
         def objetive(self, solution):
             collect_metrics(config, [solution], alpha=alpha, episodes=episodes,
-                should_norm_state=should_norm_state, penalize_std=should_penalize_std, 
+                should_norm_state=should_norm_state, penalize_std=should_penalize_std,
+                task_solution_threshold=task_solution_threshold,
                 should_fill_attributes=True, n_jobs=n_jobs)
             return solution.fitness
         
@@ -49,6 +75,9 @@ def run_cro_dt_rl(config, cro_configs, alpha, episodes,
 
     objfunc = ReinforcementLearningObjectiveFunc()
     c = CRO_SL(objfunc, get_substrates_tree(cro_configs), cro_configs["general"])
+    c.save_info = save_info
+    c.save_info_filename = output_path_temp
+    c.command_line = command_line
 
     # Setting up initial population
     initial_pop = get_initial_pop(config, alpha=alpha, 
@@ -81,6 +110,7 @@ if __name__ == "__main__":
     parser.add_argument('-s','--simulations',help="How many simulations?", required=True, type=int)
     parser.add_argument('-d','--depth',help="Depth of tree", required=True, type=int)
     parser.add_argument('-i','--initial_pop',help="File with initial population", required=False, default='', type=str)
+    parser.add_argument('--task_solution_threshold', help='Minimum reward to solve task', required=True, default=None, type=int)
     parser.add_argument('--output_prefix',help='Which output name to use?', required=False, default="cro-dt-rl", type=str)
     parser.add_argument('--alpha',help="How to penalize tree multivariateness?", required=True, type=float)
     parser.add_argument('--verbose',help='Is verbose?', required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
@@ -102,13 +132,16 @@ if __name__ == "__main__":
     command_line += str(cro_configs)
     curr_time = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
     output_path = f"results/{args['output_prefix']}_{curr_time}.txt" 
+    output_path_temp = f"results/{args['output_prefix']}_tmp_{curr_time}.txt" 
 
     history = []
     for simulation in range(args['simulations']):
         console.rule(f"[red]Simulation #{simulation} / {args['simulations']} [/red]:")
 
         tree, c = run_cro_dt_rl(config, cro_configs, alpha, args['episodes'],
-            depth_random_indiv=depth, n_jobs=args['n_jobs'])
+            depth_random_indiv=depth, n_jobs=args['n_jobs'], 
+            task_solution_threshold=args['task_solution_threshold'],
+            command_line=command_line, output_path_temp=output_path_temp)
 
         collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000,
             should_norm_state=True, penalize_std=True, should_fill_attributes=True)

@@ -84,6 +84,7 @@ if __name__ == "__main__":
     command_line += "\n\npython -m cro_dt_rl.cro_dt_rl " + " ".join([f"--{key} {val}" for (key, val) in args.items()]) + "\n\n---\n\n"
     curr_time = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
     output_path = f"results/{args['output_prefix']}_{curr_time}.txt" 
+    output_path = f"results/{args['output_prefix']}_tmp_{curr_time}.txt" 
 
     config = get_config(args["task"])
     with open(args["cro_config"]) as f:
@@ -147,7 +148,8 @@ if __name__ == "__main__":
 
         rl.collect_metrics(config, [cro_tree], alpha=args['fitness_alpha'], episodes=1000,
             should_norm_state=True, penalize_std=True, should_fill_attributes=True,
-            task_solution_threshold=args['task_solution_threshold'], n_jobs=args["n_jobs"])
+            task_solution_threshold=args['task_solution_threshold'], n_jobs=args["n_jobs"],
+            command_line=command_line, output_path_temp=output_path_temp)
 
         history[-1] = (dagger_tree, rp_tree, cro_tree)
         save_to_file(command_line, output_path, history)
