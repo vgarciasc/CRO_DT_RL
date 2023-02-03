@@ -21,7 +21,10 @@ def save_to_file(command_line, filename, history):
     string += "=" * 50 + "\n\n"
 
     daggers, rps, cros = zip(*history)
-    string += f"Average DAgger: (reward: {'{:.3f}'.format(np.mean([d.reward for d in daggers if d is not None]))} ± {'{:.3f}'.format(np.mean([d.std_reward for d in daggers if d is not None]))}, success_rate: {'{:.3f}'.format(np.mean([d.success_rate for d in daggers if d is not None]))} ± {'{:.3f}'.format(np.std([d.success_rate for d in daggers if d is not None]))}, tree size: {'{:.3f}'.format(np.mean([d.get_size() for d in daggers if d is not None]))}, elapsed_time: {'{:.3f}'.format(np.mean([d.elapsed_time for d in daggers if d is not None]))} ± {'{:.3f}'.format(np.std([d.reward for d in daggers if d is not None]))} \n"
+    if getattr(daggers[0], "get_size", None) is not None:
+        string += f"Average DAgger: (reward: {'{:.3f}'.format(np.mean([d.reward for d in daggers if d is not None]))} ± {'{:.3f}'.format(np.mean([d.std_reward for d in daggers if d is not None]))}, success_rate: {'{:.3f}'.format(np.mean([d.success_rate for d in daggers if d is not None]))} ± {'{:.3f}'.format(np.std([d.success_rate for d in daggers if d is not None]))}, tree size: {'{:.3f}'.format(np.mean([d.get_size() for d in daggers if d is not None]))}, elapsed_time: {'{:.3f}'.format(np.mean([d.elapsed_time for d in daggers if d is not None]))} ± {'{:.3f}'.format(np.std([d.reward for d in daggers if d is not None]))} \n"
+    else:
+        string += f"Average DAgger: (reward: {'{:.3f}'.format(np.mean([d.reward for d in daggers if d is not None]))} ± {'{:.3f}'.format(np.mean([d.std_reward for d in daggers if d is not None]))}, success_rate: {'{:.3f}'.format(np.mean([d.success_rate for d in daggers if d is not None]))} ± {'{:.3f}'.format(np.std([d.success_rate for d in daggers if d is not None]))}, tree size: {'{:.3f}'.format(np.mean([d.get_tree_size() for d in daggers if d is not None]))}, elapsed_time: {'{:.3f}'.format(np.mean([d.elapsed_time for d in daggers if d is not None]))} ± {'{:.3f}'.format(np.std([d.reward for d in daggers if d is not None]))} \n"
     string += f"Average Reward Pruning: (reward: {'{:.3f}'.format(np.mean([d.reward for d in rps if d is not None]))} ± {'{:.3f}'.format(np.mean([d.std_reward for d in rps if d is not None]))}, success_rate: {'{:.3f}'.format(np.mean([d.success_rate for d in rps if d is not None]))} ± {'{:.3f}'.format(np.std([d.success_rate for d in rps if d is not None]))}, tree size: {'{:.3f}'.format(np.mean([d.get_tree_size() for d in rps if d is not None]))}, elapsed_time: {'{:.3f}'.format(np.mean([d.elapsed_time for d in rps if d is not None]))} ± {'{:.3f}'.format(np.std([d.reward for d in rps if d is not None]))} \n"
     string += f"Average CRO-DT-RL: (reward: {'{:.3f}'.format(np.mean([d.reward for d in cros if d is not None]))} ± {'{:.3f}'.format(np.mean([d.std_reward for d in cros if d is not None]))}, success_rate: {'{:.3f}'.format(np.mean([d.success_rate for d in cros if d is not None]))} ± {'{:.3f}'.format(np.std([d.success_rate for d in cros if d is not None]))}, tree size: {'{:.3f}'.format(np.mean([d.get_tree_size() for d in cros if d is not None]))}, elapsed_time: {'{:.3f}'.format(np.mean([d.elapsed_time for d in cros if d is not None]))} ± {'{:.3f}'.format(np.std([d.reward for d in cros if d is not None]))} \n"
     string += "=" * 50 + "\n\n"
@@ -29,9 +32,15 @@ def save_to_file(command_line, filename, history):
     for simulation, (dagger_tree, rp_tree, cro_tree) in enumerate(history):
         string += f"SIMULATION {simulation}\n"
         string += "=" * 50 + "\n"
-        string += f"DAgger (size: {dagger_tree.get_size()}, reward: {'{:.3f}'.format(dagger_tree.reward)} ± {'{:.3f}'.format(dagger_tree.std_reward)}, success rate: {'{:.3f}'.format(dagger_tree.success_rate)}, elapsed_time: {'{:.3f}'.format(dagger_tree.elapsed_time)}): \n"
-        string += "-" * 50 + "\n"
-        string += dagger_tree.get_as_viztree()
+        if getattr(daggers[0], "get_size", None) is not None:
+            string += f"DAgger (size: {dagger_tree.get_size()}, reward: {'{:.3f}'.format(dagger_tree.reward)} ± {'{:.3f}'.format(dagger_tree.std_reward)}, success rate: {'{:.3f}'.format(dagger_tree.success_rate)}, elapsed_time: {'{:.3f}'.format(dagger_tree.elapsed_time)}): \n"
+            string += "-" * 50 + "\n"
+            string += dagger_tree.get_as_viztree()
+        else:
+            string += f"DAgger (size: {dagger_tree.get_tree_size()}, reward: {'{:.3f}'.format(dagger_tree.reward)} ± {'{:.3f}'.format(dagger_tree.std_reward)}, success rate: {'{:.3f}'.format(dagger_tree.success_rate)}, elapsed_time: {'{:.3f}'.format(dagger_tree.elapsed_time)}): \n"
+            string += "-" * 50 + "\n"
+            string += str(dagger_tree)
+
         string += "\n\n"
 
         if rp_tree is not None:
@@ -103,7 +112,7 @@ if __name__ == "__main__":
     for simulation in range(args["simulations"]):
         start_time = time.time()
         # Imitation phase
-        if dagger_trees_from_file is not None:
+        if dagger_trees_from_file is None:
             dagger_tree, _, _ = run_dagger(
                 config, X, y,
                 expert=expert, 
@@ -131,7 +140,10 @@ if __name__ == "__main__":
         history.append((dagger_tree, None, None))
         save_to_file(command_line, output_path, history)
 
-        rp_tree = Individual.read_from_string(config, dagger_tree.get_as_viztree())
+        if type(dagger_tree) is not Individual:
+            rp_tree = Individual.read_from_string(config, dagger_tree.get_as_viztree())
+        else:
+            rp_tree = deepcopy(dagger_tree)
         
         # Pruning phase
         start_time = time.time()
@@ -157,12 +169,12 @@ if __name__ == "__main__":
         # Fine-tuning phase
         cro_tree, c = run_cro_dt_rl(config, cro_configs, args['fitness_alpha'],
             should_norm_state=True, episodes=args['cro_episodes'], 
-            initial_pop=[rp_as_initial], n_jobs=args['n_jobs'])
+            initial_pop=[rp_as_initial], n_jobs=args['n_jobs'],
+            command_line=command_line, output_path_temp=output_path_temp)
 
         rl.collect_metrics(config, [cro_tree], alpha=args['fitness_alpha'], episodes=1000,
             should_norm_state=True, penalize_std=True, should_fill_attributes=True,
-            task_solution_threshold=args['task_solution_threshold'], n_jobs=args["n_jobs"],
-            command_line=command_line, output_path_temp=output_path_temp)
+            task_solution_threshold=args['task_solution_threshold'], n_jobs=args["n_jobs"])
 
         history[-1] = (dagger_tree, rp_tree, cro_tree)
         save_to_file(command_line, output_path, history)

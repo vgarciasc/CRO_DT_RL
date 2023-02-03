@@ -1,6 +1,6 @@
 {
     "general": {
-        "popSize": 100,
+        "popSize": 50,
         "rho": 0.8,
         "Fb": 0.98,
         "Fd": 0.1,
