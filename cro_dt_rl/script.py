@@ -63,6 +63,7 @@ if __name__ == "__main__":
     parser.add_argument('-i','--iterations', help='Number of iterations to run', required=True, type=int)
     parser.add_argument('-j','--episodes', help='Number of episodes to collect every iteration', required=True, type=int)
     parser.add_argument('-c','--cro_config', help='CRO config filepath', required=True, type=str)
+    parser.add_argument('--dagger_file', help='Should get DAgger trees from file?', required=False, default=None, type=str)
     parser.add_argument('--expert_exploration_rate', help='The epsilon to use during dataset collection', required=False, default=0.0, type=float)
     parser.add_argument('--task_solution_threshold', help='Minimum reward to solve task', required=False, default=0, type=int)
     parser.add_argument('--should_collect_dataset', help='Should collect and save new dataset?', required=False, default=False, type=lambda x: (str(x).lower() == 'true'))
@@ -90,24 +91,36 @@ if __name__ == "__main__":
     with open(args["cro_config"]) as f:
         cro_configs = json.load(f)
 
+    # Loading DAgger trees from file, if provided
+    dagger_trees_from_file = None
+    if args['dagger_file']:
+        with open(args['dagger_file'], 'r') as f:
+            dagger_trees_from_file = json.load(f)
+
     expert, X, y = handle_args(args, config)
     history = []
 
     for simulation in range(args["simulations"]):
         start_time = time.time()
         # Imitation phase
-        dagger_tree, _, _ = run_dagger(
-            config, X, y,
-            expert=expert, 
-            model_name="DistilledTree",
-            pruning_alpha=args['pruning_alpha'],
-            fitness_alpha=args['fitness_alpha'],
-            iterations=args['iterations'],
-            episodes=args['episodes'],
-            should_penalize_std=args['should_penalize_std'],
-            task_solution_threshold=args['task_solution_threshold'],
-            should_attenuate_alpha=args['should_attenuate_alpha'],
-            n_jobs=args['n_jobs'])
+        if dagger_trees_from_file is not None:
+            dagger_tree, _, _ = run_dagger(
+                config, X, y,
+                expert=expert, 
+                model_name="DistilledTree",
+                pruning_alpha=args['pruning_alpha'],
+                fitness_alpha=args['fitness_alpha'],
+                iterations=args['iterations'],
+                episodes=args['episodes'],
+                should_penalize_std=args['should_penalize_std'],
+                task_solution_threshold=args['task_solution_threshold'],
+                should_attenuate_alpha=args['should_attenuate_alpha'],
+                n_jobs=args['n_jobs'])
+        else:
+            dagger_tree_idx = simulation % len(dagger_trees_from_file)
+            dagger_tree = Individual.read_from_string(config, dagger_trees_from_file[dagger_tree_idx])
+            print(f"[red]Using [yellow]DAgger tree #{dagger_tree_idx}[/yellow] (size: {dagger_tree.get_tree_size()})[/red]")
+
         elapsed_time = time.time() - start_time
 
         rl.collect_metrics(config, [dagger_tree], alpha=args['fitness_alpha'], episodes=1000,

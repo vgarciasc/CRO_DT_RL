@@ -141,7 +141,8 @@ if __name__ == "__main__":
         tree, c = run_cro_dt_rl(config, cro_configs, alpha, args['episodes'],
             depth_random_indiv=depth, n_jobs=args['n_jobs'], 
             task_solution_threshold=args['task_solution_threshold'],
-            command_line=command_line, output_path_temp=output_path_temp)
+            command_line=command_line, output_path_temp=output_path_temp,
+            initial_pop=args['initial_pop'])
 
         collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000,
             should_norm_state=True, penalize_std=True, should_fill_attributes=True)
