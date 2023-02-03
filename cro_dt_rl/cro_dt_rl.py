@@ -49,7 +49,7 @@ def save_info(cro_sl, gen):
         file.write(string)
 
 def run_cro_dt_rl(config, cro_configs, alpha, episodes, 
-    should_norm_state=True, should_penalize_std=True, 
+    should_norm_state=False, should_penalize_std=True, 
     depth_random_indiv=3, initial_pop=None,
     task_solution_threshold=-1,
     command_line="", output_path_temp="tmp.txt", 
@@ -60,7 +60,7 @@ def run_cro_dt_rl(config, cro_configs, alpha, episodes,
             super().__init__(None, opt)
 
         def objetive(self, solution):
-            collect_metrics(config, [solution], alpha=alpha, episodes=episodes,
+            collect_metrics(config, [solution], alpha=alpha, episodes=episodes, 
                 should_norm_state=should_norm_state, penalize_std=should_penalize_std,
                 task_solution_threshold=task_solution_threshold,
                 should_fill_attributes=True, n_jobs=n_jobs)
@@ -83,7 +83,7 @@ def run_cro_dt_rl(config, cro_configs, alpha, episodes,
     initial_pop = get_initial_pop(config, alpha=alpha, 
         popsize=cro_configs["general"]["popSize"],
         depth_random_indiv=depth_random_indiv, n_jobs=n_jobs, 
-        should_penalize_std=True, should_norm_state=True, 
+        should_penalize_std=True, should_norm_state=should_norm_state, 
         episodes=100, initial_pop=initial_pop)
     c.population.population = []
     for tree in initial_pop:

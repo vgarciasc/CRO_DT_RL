@@ -11,7 +11,7 @@
 
         "stop_cond": "ngen",
         "time_limit": 4000.0,
-        "Ngen": 100,
+        "Ngen": 700,
         "Neval": 1e3,
         "fit_target": 1000,
 

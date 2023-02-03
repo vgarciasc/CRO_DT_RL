@@ -11,7 +11,7 @@
 
         "stop_cond": "ngen",
         "time_limit": 4000.0,
-        "Ngen": 500,
+        "Ngen": 100,
         "Neval": 1e6,
         "fit_target": 1000,
 
@@ -31,7 +31,6 @@
         {"name": "truncate", "params": {}},
         {"name": "replace_child", "params": {}},
         {"name": "modify_leaf", "params": {}},
-        {"name": "modify_split", "params": {}},
-        {"name": "reset_split", "params": {}}
+        {"name": "modify_split", "params": {}}
     ]
 }

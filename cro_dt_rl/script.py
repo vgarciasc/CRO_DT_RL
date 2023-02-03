@@ -84,7 +84,7 @@ if __name__ == "__main__":
     command_line += "\n\npython -m cro_dt_rl.cro_dt_rl " + " ".join([f"--{key} {val}" for (key, val) in args.items()]) + "\n\n---\n\n"
     curr_time = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
     output_path = f"results/{args['output_prefix']}_{curr_time}.txt" 
-    output_path = f"results/{args['output_prefix']}_tmp_{curr_time}.txt" 
+    output_path_temp = f"results/{args['output_prefix']}_tmp_{curr_time}.txt" 
 
     config = get_config(args["task"])
     with open(args["cro_config"]) as f:
