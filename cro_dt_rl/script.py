@@ -99,6 +99,8 @@ if __name__ == "__main__":
     config = get_config(args["task"])
     with open(args["cro_config"]) as f:
         cro_configs = json.load(f)
+    
+    command_line += f"\n\n {str(cro_configs)} \n\n"
 
     # Loading DAgger trees from file, if provided
     dagger_trees_from_file = None

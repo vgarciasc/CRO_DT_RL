@@ -110,6 +110,7 @@ if __name__ == "__main__":
     parser.add_argument('-s','--simulations',help="How many simulations?", required=True, type=int)
     parser.add_argument('-d','--depth',help="Depth of tree", required=True, type=int)
     parser.add_argument('-i','--initial_pop',help="File with initial population", required=False, default='', type=str)
+    parser.add_argument('--should_norm_state', help="Should normalize state?", required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--task_solution_threshold', help='Minimum reward to solve task', required=True, default=None, type=int)
     parser.add_argument('--output_prefix',help='Which output name to use?', required=False, default="cro-dt-rl", type=str)
     parser.add_argument('--alpha',help="How to penalize tree multivariateness?", required=True, type=float)
@@ -139,13 +140,14 @@ if __name__ == "__main__":
         console.rule(f"[red]Simulation #{simulation} / {args['simulations']} [/red]:")
 
         tree, c = run_cro_dt_rl(config, cro_configs, alpha, args['episodes'],
-            depth_random_indiv=depth, n_jobs=args['n_jobs'], 
+            depth_random_indiv=depth, n_jobs=args['n_jobs'],
+            should_norm_state=args['should_norm_state'],
             task_solution_threshold=args['task_solution_threshold'],
             command_line=command_line, output_path_temp=output_path_temp,
             initial_pop=args['initial_pop'])
 
         collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000,
-            should_norm_state=True, penalize_std=True, should_fill_attributes=True)
+            should_norm_state=args['should_norm_state'], penalize_std=True, should_fill_attributes=True)
         history.append((tree, tree.reward, tree.get_tree_size(), None))
 
         save_history_to_file(config, history, output_path, None, command_line)
