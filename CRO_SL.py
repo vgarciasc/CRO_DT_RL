@@ -188,9 +188,12 @@ class CRO_SL:
     def step_info(self, gen, start_time):
         print(f"Time Spent {round(time.time() - start_time,2)}s:")
         print(f"\tGeneration: {gen}")
-        best_solution, best_fitness = self.population.best_solution()
-        print(f"\tBest fitness: {best_fitness} (reward: {'{:.3f}'.format(best_solution.reward)} ± {'{:.3f}'.format(best_solution.std_reward)}, size: {best_solution.get_tree_size()})")
-        print(f"\tAverage fitness: {np.mean([x.fitness for x in self.population.population])} (reward: {'{:.3f}'.format(np.mean([x.solution.reward for x in self.population.population]))} ± {'{:.3f}'.format(np.mean([x.solution.std_reward for x in self.population.population]))}, size: {np.mean([x.solution.get_tree_size() for x in self.population.population])})")
+        best_coral = sorted(self.population.population, reverse=True, key = lambda c: c.get_fitness())[0]
+        best_coral.fitness_calculated = False
+        best_fitness = best_coral.get_fitness()
+        best_solution = best_coral.solution
+        print(f"\tBest fitness: {best_fitness} (reward: {'{:.3f}'.format(best_solution.reward)} ± {'{:.3f}'.format(best_solution.std_reward)}, size: {best_solution.get_tree_size()}, SR: {best_solution.success_rate})")
+        print(f"\tAverage fitness: {np.mean([x.fitness for x in self.population.population])} (reward: {'{:.3f}'.format(np.mean([x.solution.reward for x in self.population.population]))} ± {'{:.3f}'.format(np.mean([x.solution.std_reward for x in self.population.population]))}, size: {np.mean([x.solution.get_tree_size() for x in self.population.population])}, SR: {np.mean([x.success_rate for x in self.population.population])})")
         print(f"\tEvaluations of fitness: {self.objfunc.counter}")
 
         if self.dynamic:
