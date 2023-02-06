@@ -146,7 +146,7 @@ if __name__ == "__main__":
             command_line=command_line, output_path_temp=output_path_temp,
             initial_pop=args['initial_pop'])
 
-        collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000,
+        collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000, 
             should_norm_state=args['should_norm_state'], penalize_std=True, should_fill_attributes=True)
         history.append((tree, tree.reward, tree.get_tree_size(), None))
 

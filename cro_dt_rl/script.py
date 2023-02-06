@@ -7,7 +7,6 @@ import numpy as np
 from copy import deepcopy
 from erltrees.rl.configs import get_config
 from erltrees.il.dagger import run_dagger
-from erltrees.il.parser import handle_args
 from erltrees.experiments.reward_pruning import reward_pruning
 import erltrees.rl.utils as rl
 from erltrees.evo.evo_tree import Individual
@@ -108,6 +107,7 @@ if __name__ == "__main__":
         with open(args['dagger_file'], 'r') as f:
             dagger_trees_from_file = json.load(f)
     else:
+        from erltrees.il.parser import handle_args
         expert, X, y = handle_args(args, config)
 
     history = []
