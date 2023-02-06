@@ -107,10 +107,10 @@ if __name__ == "__main__":
     if args['dagger_file']:
         with open(args['dagger_file'], 'r') as f:
             dagger_trees_from_file = json.load(f)
+    else:
+        expert, X, y = handle_args(args, config)
 
-    expert, X, y = handle_args(args, config)
     history = []
-
     for simulation in range(args["simulations"]):
         start_time = time.time()
         # Imitation phase
