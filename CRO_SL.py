@@ -193,7 +193,7 @@ class CRO_SL:
         best_fitness = best_coral.get_fitness()
         best_solution = best_coral.solution
         print(f"\tBest fitness: {best_fitness} (reward: {'{:.3f}'.format(best_solution.reward)} ± {'{:.3f}'.format(best_solution.std_reward)}, size: {best_solution.get_tree_size()}, SR: {best_solution.success_rate})")
-        print(f"\tAverage fitness: {np.mean([x.fitness for x in self.population.population])} (reward: {'{:.3f}'.format(np.mean([x.solution.reward for x in self.population.population]))} ± {'{:.3f}'.format(np.mean([x.solution.std_reward for x in self.population.population]))}, size: {np.mean([x.solution.get_tree_size() for x in self.population.population])}, SR: {np.mean([x.success_rate for x in self.population.population])})")
+        print(f"\tAverage fitness: {np.mean([x.fitness for x in self.population.population])} (reward: {'{:.3f}'.format(np.mean([x.solution.reward for x in self.population.population]))} ± {'{:.3f}'.format(np.mean([x.solution.std_reward for x in self.population.population]))}, size: {np.mean([x.solution.get_tree_size() for x in self.population.population])}, SR: {np.mean([x.solution.success_rate for x in self.population.population])})")
         print(f"\tEvaluations of fitness: {self.objfunc.counter}")
 
         if self.dynamic:
