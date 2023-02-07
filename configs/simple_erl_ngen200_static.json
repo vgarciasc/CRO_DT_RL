@@ -18,7 +18,7 @@
         "verbose": true,
         "v_timer": 1,
 
-        "dynamic": true,
+        "dynamic": false,
         "dyn_method": "success",
         "dyn_metric": "avg",
         "dyn_steps": 100,
