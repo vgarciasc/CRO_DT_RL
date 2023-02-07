@@ -4,6 +4,7 @@ import pdb
 import numpy as np
 from CoralPopulation import CoralPopulation
 from matplotlib import pyplot as plt
+import erltrees.rl.utils as rl
 
 """
 Coral reef optimization with substrate layers
@@ -72,7 +73,14 @@ class CRO_SL:
     """
     One step of the algorithm
     """
-    def step(self, progress, depredate=True, classic=False):        
+    def step(self, progress, depredate=True, classic=False):
+        to_calculate = [i for i in self.population.population if not i.fitness_calculated]
+        rl.fill_metrics(self.config, [i.solution for i in to_calculate], alpha=self.alpha, episodes=self.episodes, 
+            should_norm_state=self.should_norm_state, penalize_std=self.should_penalize_std,
+            task_solution_threshold=self.task_solution_threshold, n_jobs=self.n_jobs)
+        for i in to_calculate:
+            i.fitness_calculated = True
+
         if not classic:
             self.population.generate_substrates(progress)
 

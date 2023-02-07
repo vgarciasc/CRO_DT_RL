@@ -75,6 +75,15 @@ def run_cro_dt_rl(config, cro_configs, alpha, episodes,
 
     objfunc = ReinforcementLearningObjectiveFunc()
     c = CRO_SL(objfunc, get_substrates_tree(cro_configs), cro_configs["general"])
+    
+    c.config = config
+    c.alpha = alpha
+    c.episodes = episodes
+    c.should_norm_state = should_norm_state
+    c.should_penalize_std = should_penalize_std
+    c.task_solution_threshold = task_solution_threshold
+    c.n_jobs = n_jobs
+
     c.save_info = save_info
     c.save_info_filename = output_path_temp
     c.command_line = command_line
@@ -109,7 +118,7 @@ if __name__ == "__main__":
     parser.add_argument('-e','--episodes',help="How many episodes to use to evaluate an inividual?", required=True, type=int)
     parser.add_argument('-s','--simulations',help="How many simulations?", required=True, type=int)
     parser.add_argument('-d','--depth',help="Depth of tree", required=True, type=int)
-    parser.add_argument('-i','--initial_pop',help="File with initial population", required=False, default='', type=str)
+    parser.add_argument('-i','--initial_pop',help="File with initial population", required=False, default=None, type=str)
     parser.add_argument('--should_norm_state', help="Should normalize state?", required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--task_solution_threshold', help='Minimum reward to solve task', required=True, default=None, type=int)
     parser.add_argument('--output_prefix',help='Which output name to use?', required=False, default="cro-dt-rl", type=str)
