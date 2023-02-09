@@ -1,0 +1,37 @@
+{
+    "general": {
+        "popSize": 50,
+        "rho": 0.6,
+        "Fb": 0.98,
+        "Fd": 0.2,
+        "Pd": 0.9,
+        "k": 4,
+        "K": 20,
+        "group_subs": true,
+
+        "stop_cond": "ngen",
+        "time_limit": 4000.0,
+        "Ngen": 200,
+        "Neval": 1e3,
+        "fit_target": 1000,
+
+        "verbose": true,
+        "v_timer": 1,
+
+        "dynamic": false,
+        "dyn_method": "success",
+        "dyn_metric": "avg",
+        "dyn_steps": 100,
+        "prob_amp": 0.01
+    },
+    
+    "substrates_tree": [
+        {"name": "expand_leaf", "params": {}},
+        {"name": "add_inner_node", "params": {}},
+        {"name": "truncate", "params": {}},
+        {"name": "replace_child", "params": {}},
+        {"name": "modify_leaf", "params": {}},
+        {"name": "modify_split", "params": {}},
+        {"name": "reset_split", "params": {}}
+    ]
+}
