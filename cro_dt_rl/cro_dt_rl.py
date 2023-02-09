@@ -119,6 +119,7 @@ if __name__ == "__main__":
     parser.add_argument('-s','--simulations',help="How many simulations?", required=True, type=int)
     parser.add_argument('-d','--depth',help="Depth of tree", required=True, type=int)
     parser.add_argument('-i','--initial_pop',help="File with initial population", required=False, default=None, type=str)
+    parser.add_argument('--initial_pop_individual', help="Should iterate over initial pop file to use individuals as starting population?", required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--should_norm_state', help="Should normalize state?", required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--task_solution_threshold', help='Minimum reward to solve task', required=True, default=None, type=int)
     parser.add_argument('--output_prefix',help='Which output name to use?', required=False, default="cro-dt-rl", type=str)
@@ -144,16 +145,25 @@ if __name__ == "__main__":
     output_path = f"results/{args['output_prefix']}_{curr_time}.txt" 
     output_path_temp = f"results/{args['output_prefix']}_tmp_{curr_time}.txt" 
 
+    with open(args['initial_pop']) as f:
+        json_obj = json.load(f)
+    initial_pop = [Individual.read_from_string(config, json_str) for json_str in json_obj]
+
     history = []
     for simulation in range(args['simulations']):
         console.rule(f"[red]Simulation #{simulation} / {args['simulations']} [/red]:")
+
+        if args['initial_pop_individual']:
+            initial_pop_now = [initial_pop[simulation]]
+        else:
+            initial_pop_now = initial_pop
 
         tree, c = run_cro_dt_rl(config, cro_configs, alpha, args['episodes'],
             depth_random_indiv=depth, n_jobs=args['n_jobs'],
             should_norm_state=args['should_norm_state'],
             task_solution_threshold=args['task_solution_threshold'],
             command_line=command_line, output_path_temp=output_path_temp,
-            initial_pop=args['initial_pop'])
+            initial_pop=initial_pop_now)
 
         collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000, 
             should_norm_state=args['should_norm_state'], penalize_std=True, should_fill_attributes=True)
