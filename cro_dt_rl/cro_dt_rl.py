@@ -145,18 +145,22 @@ if __name__ == "__main__":
     output_path = f"results/{args['output_prefix']}_{curr_time}.txt" 
     output_path_temp = f"results/{args['output_prefix']}_tmp_{curr_time}.txt" 
 
-    with open(args['initial_pop']) as f:
-        json_obj = json.load(f)
-    initial_pop = [Individual.read_from_string(config, json_str) for json_str in json_obj]
+    if args['initial_pop']:
+        with open(args['initial_pop']) as f:
+            json_obj = json.load(f)
+        initial_pop = [Individual.read_from_string(config, json_str) for json_str in json_obj]
 
     history = []
     for simulation in range(args['simulations']):
         console.rule(f"[red]Simulation #{simulation} / {args['simulations']} [/red]:")
 
-        if args['initial_pop_individual']:
-            initial_pop_now = [initial_pop[simulation]]
+        if args['initial_pop']:
+            if args['initial_pop_individual']:
+                initial_pop_now = [initial_pop[simulation]]
+            else:
+                initial_pop_now = initial_pop
         else:
-            initial_pop_now = initial_pop
+            initial_pop_now = None
 
         tree, c = run_cro_dt_rl(config, cro_configs, alpha, args['episodes'],
             depth_random_indiv=depth, n_jobs=args['n_jobs'],
