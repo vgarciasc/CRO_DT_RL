@@ -31,7 +31,6 @@
         {"name": "truncate", "params": {}},
         {"name": "replace_child", "params": {}},
         {"name": "modify_leaf", "params": {}},
-        {"name": "modify_split", "params": {}},
-//        {"name": "reset_split", "params": {}}
+        {"name": "modify_split", "params": {}}
     ]
 }
