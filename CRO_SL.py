@@ -79,11 +79,13 @@ class CRO_SL:
 
         larvae = self.population.evolve_with_substrates()
 
-        rl.fill_metrics(self.config, [i.solution for i in larvae], alpha=self.alpha, episodes=self.episodes,
-                        should_norm_state=self.should_norm_state, penalize_std=self.should_penalize_std,
-                        task_solution_threshold=self.task_solution_threshold, n_jobs=self.n_jobs)
+        rl.fill_metrics(self.config, [i.solution for i in larvae if not i.fitness_calculated],
+                        alpha=self.alpha, episodes=self.episodes, should_norm_state=self.should_norm_state,
+                        penalize_std=self.should_penalize_std, task_solution_threshold=self.task_solution_threshold,
+                        n_jobs=self.n_jobs)
         for i in larvae:
             i.fitness_calculated = True
+            i.fitness = i.solution.fitness
 
         self.population.larvae_setting(larvae)
 
