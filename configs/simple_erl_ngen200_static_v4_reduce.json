@@ -26,10 +26,11 @@
     },
     
     "substrates_tree": [
-        {"name": "truncate", "params": {}},
         {"name": "replace_child", "params": {}},
         {"name": "modify_leaf", "params": {}},
         {"name": "modify_split", "params": {}},
-        {"name": "reset_split", "params": {}}
+        {"name": "reset_split", "params": {}},
+        {"name": "prune_by_visits", "params": {}},
+        {"name": "cut_parent", "params": {}}
     ]
 }
