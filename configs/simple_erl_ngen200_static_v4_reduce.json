@@ -1,11 +1,11 @@
 {
     "general": {
-        "popSize": 100,
+        "popSize": 50,
         "rho": 0.6,
-        "Fb": 0.98,
+        "Fb": 0.5,
         "Fd": 0.05,
         "Pd": 0.2,
-        "k": 1,
+        "k": 5,
         "K": 1,
         "group_subs": true,
 
