@@ -96,6 +96,7 @@ def run_cro_dt_rl(config, cro_configs, alpha, episodes,
                                   depth_random_indiv=depth_random_indiv, n_jobs=n_jobs,
                                   should_penalize_std=True, should_norm_state=should_norm_state,
                                   episodes=100, initial_pop=initial_pop)
+
     c.population.population = []
     for tree in initial_pop:
         coral = Coral(tree, objfunc=objfunc)
