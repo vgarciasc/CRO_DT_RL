@@ -123,6 +123,7 @@ if __name__ == "__main__":
     parser.add_argument('-s', '--simulations', help="How many simulations?", required=True, type=int)
     parser.add_argument('-d', '--depth', help="Depth of tree", required=True, type=int)
     parser.add_argument('-i', '--initial_pop', help="File with initial population", required=False, default=None, type=str)
+    parser.add_argument('--start_from_idx', help="Start from idx", required=False, default=0, type=int)
     parser.add_argument('--initial_pop_individual', help="Should iterate over initial pop file to use individuals as starting population?", required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--should_norm_state', help="Should normalize state?", required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--task_solution_threshold', help='Minimum reward to solve task', required=True, default=None, type=int)
@@ -155,6 +156,7 @@ if __name__ == "__main__":
         initial_pop = [Individual.read_from_string(config, json_str) for json_str in json_obj]
 
     history = []
+    simulation = args['start_from_idx']
     for simulation in range(args['simulations']):
         console.rule(f"[red]Simulation #{simulation} / {args['simulations']} [/red]:")
 
