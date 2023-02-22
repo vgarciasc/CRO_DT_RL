@@ -157,7 +157,7 @@ if __name__ == "__main__":
 
     history = []
     simulation = args['start_from_idx']
-    for simulation in range(args['simulations']):
+    while simulation < args['simulations']:
         console.rule(f"[red]Simulation #{simulation} / {args['simulations']} [/red]:")
 
         if args['initial_pop']:
