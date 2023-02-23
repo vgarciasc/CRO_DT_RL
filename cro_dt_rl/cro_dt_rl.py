@@ -180,3 +180,5 @@ if __name__ == "__main__":
 
         save_history_to_file(config, history, output_path, None, command_line)
         print(f"Saved to '{output_path}'.")
+
+        simulation += 1
