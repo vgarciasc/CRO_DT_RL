@@ -1,0 +1,104 @@
+{'task': 'cartpole', 'cro_config': 'configs\\simple_erl_ngen200_static.json', 'episodes': 100, 'simulations': 50, 'depth': 3, 'initial_pop': None, 'should_norm_state': True, 'task_solution_threshold': 495, 'output_prefix': 'cartpole_CRO-DT-RL-only_', 'alpha': 0.1, 'verbose': True, 'n_jobs': 8}
+
+python -m cro_dt_rl.cro_dt_rl --task cartpole --cro_config configs\simple_erl_ngen200_static.json --episodes 100 --simulations 50 --depth 3 --initial_pop None --should_norm_state True --task_solution_threshold 495 --output_prefix cartpole_CRO-DT-RL-only_ --alpha 0.1 --verbose True --n_jobs 8
+
+---
+
+{'general': {'popSize': 50, 'rho': 0.8, 'Fb': 0.98, 'Fd': 0.1, 'Pd': 0.4, 'k': 3, 'K': 1, 'group_subs': True, 'stop_cond': 'ngen', 'time_limit': 4000.0, 'Ngen': 200, 'Neval': 1000.0, 'fit_target': 1000, 'verbose': True, 'v_timer': 1, 'dynamic': False, 'dyn_method': 'success', 'dyn_metric': 'avg', 'dyn_steps': 100, 'prob_amp': 0.01}, 'substrates_tree': [{'name': 'expand_leaf', 'params': {}}, {'name': 'add_inner_node', 'params': {}}, {'name': 'truncate', 'params': {}}, {'name': 'replace_child', 'params': {}}, {'name': 'modify_leaf', 'params': {}}, {'name': 'modify_split', 'params': {}}, {'name': 'reset_split', 'params': {}}]}
+Mean Best Reward: 499.57388888888886 +- 1.0406014761179039
+Mean Best Size: 7.0
+Average Evaluations to Success: -------
+Success Rate: 1.0
+
+-----
+
+Tree #0 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 1643.929131269455)
+----------
+- Cart Velocity <= 0.43206
+-- Pole Angle <= -0.05422
+--- LEFT
+--- RIGHT
+-- LEFT
+
+Tree #1 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 1779.1772758960724)
+----------
+- Pole Angle <= -0.05282
+-- LEFT
+-- Cart Velocity <= 0.51691
+--- RIGHT
+--- LEFT
+
+Tree #2 (Reward: 499.986 +- 0.4424974576198148, Size: 7, Elapsed time: 1852.8292078971863)
+----------
+- Pole Angle <= 0.63379
+-- Pole Angle <= 0.05441
+--- Cart Velocity <= -0.67346
+---- RIGHT
+---- LEFT
+--- RIGHT
+-- RIGHT
+
+Tree #3 (Reward: 499.98 +- 0.4812483766206387, Size: 5, Elapsed time: 1677.2073514461517)
+----------
+- Pole Angle <= -0.05007
+-- LEFT
+-- Pole Angular Velocity <= -0.66356
+--- LEFT
+--- RIGHT
+
+Tree #4 (Reward: 499.599 +- 5.547810288753573, Size: 9, Elapsed time: 1891.3558371067047)
+----------
+- Pole Angle <= -0.05582
+-- Pole Angular Velocity <= 0.09708
+--- LEFT
+--- Cart Velocity <= 0.05319
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= -0.81550
+--- LEFT
+--- RIGHT
+
+Tree #5 (Reward: 499.949 +- 1.6119550241864695, Size: 5, Elapsed time: 1493.8077087402344)
+----------
+- Pole Angular Velocity <= -0.55009
+-- LEFT
+-- Pole Angle <= -0.04647
+--- LEFT
+--- RIGHT
+
+Tree #6 (Reward: 496.651 +- 20.198197914665553, Size: 15, Elapsed time: 2443.353152513504)
+----------
+- Pole Angular Velocity <= -0.04610
+-- Pole Angular Velocity <= 0.56172
+--- LEFT
+--- Pole Angular Velocity <= 0.85492
+---- LEFT
+---- Pole Angle <= -0.41800
+----- LEFT
+----- LEFT
+-- Cart Position <= -0.81617
+--- LEFT
+--- Pole Angle <= -0.73739
+---- RIGHT
+---- Pole Angle <= -0.06442
+----- LEFT
+----- RIGHT
+
+Tree #7 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 1982.0177569389343)
+----------
+- Cart Velocity <= -0.26740
+-- RIGHT
+-- Pole Angle <= 0.04462
+--- LEFT
+--- RIGHT
+
+Tree #8 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 2085.5105240345)
+----------
+- Pole Angular Velocity <= 0.09099
+-- Pole Angular Velocity <= -0.70887
+--- LEFT
+--- Pole Angle <= 0.02906
+---- LEFT
+---- RIGHT
+-- RIGHT
+

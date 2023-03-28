@@ -4,7 +4,9 @@ python -m cro_dt_rl.cro_dt_rl --task mountain_car --cro_config configs/simple_er
 
 ---
 
-{'general': {'popSize': 50, 'rho': 0.8, 'Fb': 0.98, 'Fd': 0.1, 'Pd': 0.4, 'k': 3, 'K': 1, 'group_subs': True, 'stop_cond': 'ngen', 'time_limit': 4000.0, 'Ngen': 200, 'Neval': 1000.0, 'fit_target': 1000, 'verbose': True, 'v_timer': 1, 'dynamic': False, 'dyn_method': 'success', 'dyn_metric': 'avg', 'dyn_steps': 100, 'prob_amp': 0.01}, 'substrates_tree': [{'name': 'expand_leaf', 'params': {}}, {'name': 'add_inner_node', 'params': {}}, {'name': 'truncate', 'params': {}}, {'name': 'replace_child', 'params': {}}, {'name': 'modify_leaf', 'params': {}}, {'name': 'modify_split', 'params': {}}, {'name': 'reset_split', 'params': {}}]}Mean Best Reward: -104.98432352941177 +- 4.539095288974176
+{'general': {'popSize': 50, 'rho': 0.8, 'Fb': 0.98, 'Fd': 0.1, 'Pd': 0.4, 'k': 3, 'K': 1, 'group_subs': True, 'stop_cond': 'ngen', 'time_limit': 4000.0, 'Ngen': 200, 'Neval': 1000.0, 'fit_target': 1000, 'verbose': True, 'v_timer': 1, 'dynamic': False, 'dyn_method': 'success', 'dyn_metric': 'avg', 'dyn_steps': 100, 'prob_amp': 0.01}, 'substrates_tree': [{'name': 'expand_leaf', 'params': {}}, {'name': 'add_inner_node', 'params': {}}, {'name': 'truncate', 'params': {}}, {'name': 'replace_child', 'params': {}}, {'name': 'modify_leaf', 'params': {}}, {'name': 'modify_split', 'params': {}}, {'name': 'reset_split', 'params': {}}]}
+
+Mean Best Reward: -104.98432352941177 +- 4.539095288974176
 Mean Best Size: 10.647058823529411
 Average Evaluations to Success: -------
 Success Rate: 0.5588235294117647
