@@ -175,8 +175,9 @@ if __name__ == "__main__":
                                 command_line=command_line, output_path_temp=output_path_temp,
                                 initial_pop=initial_pop_now)
 
-        collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000, should_norm_state=args['should_norm_state'], penalize_std=True, should_fill_attributes=True)
-        history.append((tree, tree.reward, tree.std_reward, tree.get_tree_size(), None))
+        collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000, should_norm_state=args['should_norm_state'],
+                        penalize_std=True, should_fill_attributes=True, task_solution_threshold=config['task_solution_threshold'],)
+        history.append((tree, tree.reward, tree.std_reward, tree.get_tree_size(), tree.success_rate))
 
         save_history_to_file(config, history, output_path, None, command_line)
         print(f"Saved to '{output_path}'.")
