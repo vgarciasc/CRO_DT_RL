@@ -104,9 +104,9 @@ def run_cro_dt_rl(config, cro_configs, alpha, episodes,
         c.population.population.append(coral)
 
     # Running optimization
-    start_time = time.time()
+    start_time = time.perf_counter()
     _, fit = c.optimize()
-    end_time = time.time()
+    end_time = time.perf_counter()
     elapsed_time = end_time - start_time
 
     tree, _ = c.population.best_solution()
@@ -131,7 +131,8 @@ if __name__ == "__main__":
     parser.add_argument('--alpha', help="How to penalize tree multivariateness?", required=True, type=float)
     parser.add_argument('--verbose', help='Is verbose?', required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--n_jobs', help='How many jobs to parallelize?', required=False, default=-1, type=int)
-    args = vars(parser.parse_args())
+    # args = vars(parser.parse_args())
+    args = vars(parser.parse_args(["-t","cartpole","-c","configs/simple_erl_test.json","-e","100","-s","1","-d","2","--should_norm_state","True","--task_solution_threshold","495","--output_prefix","\"my-test_\"","--alpha","0.01","--verbose","True","--n_jobs","-1"]))
 
     depth = args["depth"]
     alpha = args["alpha"]
