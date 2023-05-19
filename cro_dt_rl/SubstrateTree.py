@@ -27,6 +27,8 @@ class SubstrateTree(Substrate):
 
         if self.evolution_method == "expand_leaf":
             result = expand_leaf(solution.solution.copy())
+        elif self.evolution_method == "expand_leaf_continuous":
+            result = expand_leaf_continuous(solution.solution.copy())
         elif self.evolution_method == "add_inner_node":
             result = add_inner_node(solution.solution.copy())
         elif self.evolution_method == "truncate":
@@ -35,6 +37,8 @@ class SubstrateTree(Substrate):
             result = replace_child(solution.solution.copy())
         elif self.evolution_method == "modify_leaf":
             result = modify_leaf(solution.solution.copy())
+        elif self.evolution_method == "modify_leaf_continuous":
+            result = modify_leaf_continuous(solution.solution.copy())
         elif self.evolution_method == "modify_split":
             result = modify_split(solution.solution.copy())
         elif self.evolution_method == "reset_split":
