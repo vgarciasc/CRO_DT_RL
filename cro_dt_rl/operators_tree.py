@@ -39,6 +39,11 @@ def expand_leaf(solution: Individual):
     leaf.mutate_is_leaf()
     return solution
 
+def expand_leaf_continuous(solution: Individual):
+    leaf = solution.get_random_node(get_inners=False, get_leaves=True)
+    leaf.mutate_is_leaf_continuous()
+    return solution
+
 def add_inner_node(solution: Individual):
     node = solution.get_random_node(get_inners=True, get_leaves=False)
     node.mutate_add_inner_node()
@@ -63,6 +68,11 @@ def replace_child(solution: Individual):
 def modify_leaf(solution: Individual):
     leaf = solution.get_random_node(get_inners=False, get_leaves=True)
     leaf.mutate_label()
+    return solution
+
+def modify_leaf_continuous(solution: Individual):
+    leaf = solution.get_random_node(get_inners=False, get_leaves=True)
+    leaf.mutate_label_continuous()
     return solution
 
 def modify_split(solution: Individual):

@@ -123,16 +123,16 @@ if __name__ == "__main__":
     parser.add_argument('-s', '--simulations', help="How many simulations?", required=True, type=int)
     parser.add_argument('-d', '--depth', help="Depth of tree", required=True, type=int)
     parser.add_argument('-i', '--initial_pop', help="File with initial population", required=False, default=None, type=str)
+    parser.add_argument('--episodes_to_evaluate_best', help="Episodes to evaluate best", required=False, default=1000, type=int)
     parser.add_argument('--start_from_idx', help="Start from idx", required=False, default=0, type=int)
     parser.add_argument('--initial_pop_individual', help="Should iterate over initial pop file to use individuals as starting population?", required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--should_norm_state', help="Should normalize state?", required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
-    parser.add_argument('--task_solution_threshold', help='Minimum reward to solve task', required=True, default=None, type=int)
     parser.add_argument('--output_prefix', help='Which output name to use?', required=False, default="cro-dt-rl", type=str)
     parser.add_argument('--alpha', help="How to penalize tree multivariateness?", required=True, type=float)
     parser.add_argument('--verbose', help='Is verbose?', required=False, default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--n_jobs', help='How many jobs to parallelize?', required=False, default=-1, type=int)
-    # args = vars(parser.parse_args())
-    args = vars(parser.parse_args(["-t","cartpole","-c","configs/simple_erl_test.json","-e","100","-s","1","-d","2","--should_norm_state","True","--task_solution_threshold","495","--output_prefix","\"my-test_\"","--alpha","0.01","--verbose","True","--n_jobs","-1"]))
+    args = vars(parser.parse_args())
+    # args = vars(parser.parse_args(["-t","cartpole","-c","configs/simple_erl_test.json","-e","100","-s","1","-d","2","--should_norm_state","True","--task_solution_threshold","495","--output_prefix","\"my-test_\"","--alpha","0.01","--verbose","True","--n_jobs","-1"]))
 
     depth = args["depth"]
     alpha = args["alpha"]
@@ -151,14 +151,14 @@ if __name__ == "__main__":
     output_path = f"results/{args['output_prefix']}_{curr_time}.txt"
     output_path_temp = f"results/{args['output_prefix']}_tmp_{curr_time}.txt"
 
-    if args['initial_pop']:
-        with open(args['initial_pop']) as f:
-            json_obj = json.load(f)
-        initial_pop = [Individual.read_from_string(config, json_str) for json_str in json_obj]
-
     history = []
     simulation = args['start_from_idx']
     while simulation < args['simulations']:
+        if args['initial_pop']:
+            with open(args['initial_pop']) as f:
+                json_obj = json.load(f)
+            initial_pop = [Individual.read_from_string(config, json_str) for json_str in json_obj]
+
         console.rule(f"[red]Simulation #{simulation} / {args['simulations']} [/red]:")
 
         if args['initial_pop']:
@@ -172,11 +172,11 @@ if __name__ == "__main__":
         tree, c = run_cro_dt_rl(config, cro_configs, alpha, args['episodes'],
                                 depth_random_indiv=depth, n_jobs=args['n_jobs'],
                                 should_norm_state=args['should_norm_state'],
-                                task_solution_threshold=args['task_solution_threshold'],
+                                task_solution_threshold=config['task_solution_threshold'],
                                 command_line=command_line, output_path_temp=output_path_temp,
                                 initial_pop=initial_pop_now)
 
-        collect_metrics(config, [tree], alpha=args["alpha"], episodes=1000, should_norm_state=args['should_norm_state'],
+        collect_metrics(config, [tree], alpha=args["alpha"], episodes=args["episodes_to_evaluate_best"], should_norm_state=args['should_norm_state'],
                         penalize_std=True, should_fill_attributes=True, task_solution_threshold=config['task_solution_threshold'],)
         history.append((tree, tree.reward, tree.std_reward, tree.get_tree_size(), tree.success_rate))
 
