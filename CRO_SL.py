@@ -1,6 +1,7 @@
 import time
 import pdb
 
+from datetime import datetime
 import numpy as np
 from CoralPopulation import CoralPopulation
 from matplotlib import pyplot as plt
@@ -197,6 +198,7 @@ class CRO_SL:
     """
     def step_info(self, gen, start_time):
         print(f"Time Spent {round(time.time() - start_time,2)}s:")
+        print(f"\tTimestamp: {datetime.now()}")
         print(f"\tGeneration: {gen}")
         best_coral = sorted(self.population.population, reverse=True, key = lambda c: c.get_fitness())[0]
         best_coral.fitness_calculated = False
