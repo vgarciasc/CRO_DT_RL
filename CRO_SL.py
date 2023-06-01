@@ -83,21 +83,11 @@ class CRO_SL:
         larvae = self.population.evolve_with_substrates()
         solutions_to_fill = [i.solution for i in larvae if not i.fitness_calculated]
 
-        was_successful = False
         if len(solutions_to_fill) > 0:
-            while not was_successful:
-                p = mp.Process(target=rl.fill_metrics, args=(self.config, solutions_to_fill, self.alpha,
-                                                             self.episodes, self.should_norm_state,
-                                                             self.should_penalize_std,
-                                                             self.task_solution_threshold, self.n_jobs))
-                p.start()
-                p.join(30*60) # Wait 30 minutes
-                if p.is_alive():
-                    print(f"Fitness calculation process got stuck (waited 30 minutes). Killing it.")
-                    p.terminate()
-                    p.join()
-                else:
-                    was_successful = True
+            rl.fill_metrics(self.config, solutions_to_fill, self.alpha,
+                            self.episodes, self.should_norm_state,
+                            self.should_penalize_std,
+                            self.task_solution_threshold, self.n_jobs)
 
         for i in larvae:
             i.fitness_calculated = True

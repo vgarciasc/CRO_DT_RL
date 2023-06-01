@@ -18,8 +18,8 @@ from erltrees.rl.utils import collect_metrics
 from erltrees.evo.evo_tree import Individual
 from erltrees.evo.utils import get_initial_pop
 
-from rich import print
-
+from rich import print, console
+console = console.Console()
 
 def get_substrates_tree(cro_configs):
     substrates = []
@@ -98,10 +98,13 @@ def run_cro_dt_rl(config, cro_configs, alpha, episodes,
                                   episodes=100, initial_pop=initial_pop)
 
     c.population.population = []
+    console.log(f"Calculating fitness for initial population...")
     for tree in initial_pop:
         coral = Coral(tree, objfunc=objfunc)
         coral.get_fitness()
         c.population.population.append(coral)
+    console.log(f"Calculated fitness for initial population.")
+    console.log(f"Starting optimization...")
 
     # Running optimization
     start_time = time.perf_counter()
