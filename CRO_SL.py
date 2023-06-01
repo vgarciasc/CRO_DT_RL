@@ -1,11 +1,13 @@
+from datetime import datetime
+import multiprocessing as mp
+import numpy as np
 import time
 import pdb
 
-from datetime import datetime
-import numpy as np
 from CoralPopulation import CoralPopulation
 from matplotlib import pyplot as plt
 import erltrees.rl.utils as rl
+
 
 """
 Coral reef optimization with substrate layers
@@ -54,7 +56,7 @@ class CRO_SL:
         self.objfunc = objfunc
         self.substrates = substrates
         self.population = CoralPopulation(objfunc, substrates, params)
-        
+
         # Metrics
         self.history = []
         self.pop_size = []
@@ -80,10 +82,23 @@ class CRO_SL:
 
         larvae = self.population.evolve_with_substrates()
         solutions_to_fill = [i.solution for i in larvae if not i.fitness_calculated]
-        rl.fill_metrics(self.config, solutions_to_fill,
-                        alpha=self.alpha, episodes=self.episodes, should_norm_state=self.should_norm_state,
-                        penalize_std=self.should_penalize_std, task_solution_threshold=self.task_solution_threshold,
-                        n_jobs=self.n_jobs)
+
+        was_successful = False
+        if len(solutions_to_fill) > 0:
+            while not was_successful:
+                p = mp.Process(target=rl.fill_metrics, args=(self.config, solutions_to_fill, self.alpha,
+                                                             self.episodes, self.should_norm_state,
+                                                             self.should_penalize_std,
+                                                             self.task_solution_threshold, self.n_jobs))
+                p.start()
+                p.join(10*60) # Wait 10 minutes
+                if p.is_alive():
+                    print(f"Fitness calculation process got stuck (waited 10 minutes). Killing it.")
+                    p.terminate()
+                    p.join()
+                else:
+                    was_successful = True
+
         for i in larvae:
             i.fitness_calculated = True
             i.fitness = i.solution.fitness
@@ -97,7 +112,7 @@ class CRO_SL:
 
         _, best_fitness = self.population.best_solution()
         self.history.append(best_fitness)
-    
+
     """
     Stopping conditions given by a parameter
     """
@@ -125,7 +140,7 @@ class CRO_SL:
         if self.stop_cond == "neval":
             prog = self.objfunc.counter/self.Neval
         elif self.stop_cond == "ngen":
-            prog = gen/self.Ngen 
+            prog = gen/self.Ngen
         elif self.stop_cond == "time":
             prog = (time.time()-time_start)/self.time_limit
         elif self.stop_cond == "fit_target":
@@ -154,13 +169,13 @@ class CRO_SL:
             if self.verbose and time.time() - display_timer > self.v_timer:
                 self.step_info(gen, real_time_start)
                 display_timer = time.time()
-            
+
             self.save_info(self, gen)
-                
+
         self.real_time_spent = time.time() - real_time_start
         self.time_spent = time.process_time() - time_start
         return self.population.best_solution()
-    
+
     """
     Execute the classic version of the algorithm
     """
@@ -179,7 +194,7 @@ class CRO_SL:
             if self.verbose and time.time() - display_timer > self.v_timer:
                 self.step_info(gen, real_time_start)
                 display_timer = time.time()
-                
+
         self.real_time_spent = time.time() - real_time_start
         self.time_spent = time.process_time() - time_start
         return self.population.best_solution()
@@ -216,7 +231,7 @@ class CRO_SL:
             for idx, val in enumerate(subs_names):
                 print(f"\t\t{val}:".ljust(adjust+3, " ") + f"{weights[idx]}")
         print()
-    
+
     """
     Shows a summary of the execution of the algorithm
     """
@@ -245,24 +260,24 @@ class CRO_SL:
         adjust = max([len(i) for i in subs_names])
         for idx, val in enumerate(subs_names):
             print(f"\t\t{val}:".ljust(adjust+3, " ") + f"{weights[idx]}")
-        
+
         best_fitness = self.population.best_solution()[1]
         print("Best fitness:", best_fitness)
 
         if show_plots:
             # Plot fitness history
-            
-            
+
+
             fig, (ax1, ax2) = plt.subplots(2, 2, figsize=(10,10))
             fig.suptitle("CRO_SL")
             plt.subplot(2, 2, 1)
-            
+
             plt.plot(self.history, "blue")
             plt.xlabel("generations")
             plt.ylabel("fitness")
             plt.title("CRO_SL fitness")
 
-            
+
             plt.subplot(2, 2, 2)
             m = np.array(self.population.substrate_history)[1:].T
             for i in m:
@@ -300,7 +315,7 @@ class CRO_SL:
         adjust = max([len(i) for i in subs_names])
         for idx, val in enumerate(subs_names):
             print(f"\t\t{val}:".ljust(adjust+3, " ") + f"{weights[idx]}")
-        
+
         best_fitness = self.population.best_solution()[1]
         print("Best fitness:", best_fitness)
 
@@ -309,7 +324,7 @@ class CRO_SL:
             fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
             fig.suptitle("CRO_SL")
             plt.subplot(1, 2, 1)
-            
+
             plt.plot(self.history, "blue")
             plt.xlabel("generations")
             plt.ylabel("fitness")
@@ -324,6 +339,6 @@ class CRO_SL:
             plt.ylabel("fitness")
             plt.title("Fitness of each substrate")
             plt.show()
-    
+
     def save_info(self, gen):
         pass
