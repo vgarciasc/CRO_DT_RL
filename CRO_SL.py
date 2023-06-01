@@ -91,9 +91,9 @@ class CRO_SL:
                                                              self.should_penalize_std,
                                                              self.task_solution_threshold, self.n_jobs))
                 p.start()
-                p.join(10*60) # Wait 10 minutes
+                p.join(30*60) # Wait 30 minutes
                 if p.is_alive():
-                    print(f"Fitness calculation process got stuck (waited 10 minutes). Killing it.")
+                    print(f"Fitness calculation process got stuck (waited 30 minutes). Killing it.")
                     p.terminate()
                     p.join()
                 else:
