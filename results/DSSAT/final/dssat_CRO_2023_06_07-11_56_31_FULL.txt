@@ -4,7 +4,9 @@ python -m cro_dt_rl.cro_dt_rl --task dssat --cro_config configs/simple_erl_ngen2
 
 ---
 
-{'general': {'popSize': 50, 'rho': 0.6, 'Fb': 0.98, 'Fd': 0.05, 'Pd': 0.2, 'k': 1, 'K': 1, 'group_subs': True, 'stop_cond': 'ngen', 'time_limit': 4000.0, 'Ngen': 50, 'Neval': 1000.0, 'fit_target': 1000, 'verbose': True, 'v_timer': 1, 'dynamic': False, 'dyn_method': 'success', 'dyn_metric': 'avg', 'dyn_steps': 100, 'prob_amp': 0.01}, 'substrates_tree': [{'name': 'expand_leaf_continuous', 'params': {}}, {'name': 'add_inner_node', 'params': {}}, {'name': 'replace_child', 'params': {}}, {'name': 'modify_leaf_continuous', 'params': {}}, {'name': 'modify_split', 'params': {}}, {'name': 'reset_split', 'params': {}}]}Mean Best Reward: 2.004134840231443 +- 26.00736207963322
+{'general': {'popSize': 50, 'rho': 0.6, 'Fb': 0.98, 'Fd': 0.05, 'Pd': 0.2, 'k': 1, 'K': 1, 'group_subs': True, 'stop_cond': 'ngen', 'time_limit': 4000.0, 'Ngen': 50, 'Neval': 1000.0, 'fit_target': 1000, 'verbose': True, 'v_timer': 1, 'dynamic': False, 'dyn_method': 'success', 'dyn_metric': 'avg', 'dyn_steps': 100, 'prob_amp': 0.01}, 'substrates_tree': [{'name': 'expand_leaf_continuous', 'params': {}}, {'name': 'add_inner_node', 'params': {}}, {'name': 'replace_child', 'params': {}}, {'name': 'modify_leaf_continuous', 'params': {}}, {'name': 'modify_split', 'params': {}}, {'name': 'reset_split', 'params': {}}]}
+
+Mean Best Reward: 2.004134840231443 +- 26.00736207963322
 Mean Best Size: 12.133333333333333
 Average Evaluations to Success: -------
 Success Rate: 0.35777777777777775
