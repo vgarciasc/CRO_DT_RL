@@ -1,0 +1,485 @@
+{'task': 'cartpole', 'cro_config': 'configs/simple_erl_ngen200_static_v3.json', 'episodes': 100, 'simulations': 50, 'depth': 3, 'initial_pop': None, 'start_from_idx': 0, 'initial_pop_individual': True, 'should_norm_state': True, 'task_solution_threshold': 495, 'output_prefix': 'cartpole_CRO_', 'alpha': 0.1, 'verbose': True, 'n_jobs': 8}
+
+python -m cro_dt_rl.cro_dt_rl --task cartpole --cro_config configs/simple_erl_ngen200_static_v3.json --episodes 100 --simulations 50 --depth 3 --initial_pop None --start_from_idx 0 --initial_pop_individual True --should_norm_state True --task_solution_threshold 495 --output_prefix cartpole_CRO_ --alpha 0.1 --verbose True --n_jobs 8
+
+---
+
+{'general': {'popSize': 100, 'rho': 0.6, 'Fb': 0.98, 'Fd': 0.05, 'Pd': 0.2, 'k': 1, 'K': 1, 'group_subs': True, 'stop_cond': 'ngen', 'time_limit': 4000.0, 'Ngen': 200, 'Neval': 1000.0, 'fit_target': 1000, 'verbose': True, 'v_timer': 1, 'dynamic': False, 'dyn_method': 'success', 'dyn_metric': 'avg', 'dyn_steps': 100, 'prob_amp': 0.01}, 'substrates_tree': [{'name': 'expand_leaf', 'params': {}}, {'name': 'add_inner_node', 'params': {}}, {'name': 'truncate', 'params': {}}, {'name': 'replace_child', 'params': {}}, {'name': 'modify_leaf', 'params': {}}, {'name': 'modify_split', 'params': {}}, {'name': 'reset_split', 'params': {}}]}
+
+Mean Best Reward: 499.92274000000003 +- 0.3321987242600413
+Mean Best Size: 6.4
+Average Evaluations to Success: -------
+Success Rate: 1.0
+
+-----
+
+Tree #0 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3345.8205325603485)
+----------
+- Pole Angle <= 0.05429
+-- Cart Velocity <= -0.47464
+--- RIGHT
+--- LEFT
+-- RIGHT
+
+Tree #1 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3378.7232718467712)
+----------
+- Pole Angle <= -0.26567
+-- LEFT
+-- Pole Angular Velocity <= 0.41453
+--- Pole Angle <= 0.04050
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #2 (Reward: 500.0 +- 0.0, Size: 9, Elapsed time: 3450.591884613037)
+----------
+- Pole Angle <= -0.07429
+-- LEFT
+-- Pole Angular Velocity <= 0.02663
+--- Pole Angular Velocity <= -0.43986
+---- LEFT
+---- Cart Velocity <= 0.10428
+----- LEFT
+----- RIGHT
+--- RIGHT
+
+Tree #3 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3071.6887295246124)
+----------
+- Pole Angular Velocity <= -0.34929
+-- LEFT
+-- Pole Angle <= -0.03992
+--- LEFT
+--- RIGHT
+
+Tree #4 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3113.082262277603)
+----------
+- Pole Angular Velocity <= -0.42990
+-- LEFT
+-- Pole Angular Velocity <= 0.39868
+--- Pole Angle <= 0.00273
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #5 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3389.416804790497)
+----------
+- Cart Position <= 1.02413
+-- Pole Angle <= 0.03926
+--- Cart Velocity <= -0.30718
+---- RIGHT
+---- LEFT
+--- RIGHT
+-- RIGHT
+
+Tree #6 (Reward: 499.974 +- 0.5825152358522477, Size: 5, Elapsed time: 3365.8687167167664)
+----------
+- Pole Angle <= -0.04745
+-- LEFT
+-- Pole Angular Velocity <= -0.57071
+--- LEFT
+--- RIGHT
+
+Tree #7 (Reward: 499.859 +- 2.328759111630055, Size: 5, Elapsed time: 3370.4012603759766)
+----------
+- Pole Angular Velocity <= -0.45011
+-- LEFT
+-- Pole Angle <= -0.04697
+--- LEFT
+--- RIGHT
+
+Tree #8 (Reward: 499.792 +- 2.926898699989461, Size: 7, Elapsed time: 3238.4160993099213)
+----------
+- Pole Angle <= 0.41800
+-- Pole Angular Velocity <= 0.60570
+--- Pole Angle <= 0.04849
+---- LEFT
+---- RIGHT
+--- RIGHT
+-- RIGHT
+
+Tree #9 (Reward: 499.98 +- 0.6013318551349164, Size: 7, Elapsed time: 3205.3807470798492)
+----------
+- Cart Position <= 0.47289
+-- Pole Angular Velocity <= -0.58474
+--- LEFT
+--- Pole Angle <= -0.04866
+---- LEFT
+---- RIGHT
+-- RIGHT
+
+Tree #10 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3818.308074951172)
+----------
+- Pole Angle <= 0.02000
+-- Pole Angular Velocity <= 0.38179
+--- LEFT
+--- RIGHT
+-- Pole Angular Velocity <= -0.60041
+--- LEFT
+--- RIGHT
+
+Tree #11 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3618.900638818741)
+----------
+- Pole Angle <= -0.50356
+-- LEFT
+-- Pole Angle <= -0.05603
+--- LEFT
+--- Cart Velocity <= 0.59813
+---- RIGHT
+---- LEFT
+
+Tree #12 (Reward: 499.99 +- 0.3160696125855822, Size: 7, Elapsed time: 3485.0844674110413)
+----------
+- Cart Position <= 0.42218
+-- Pole Angular Velocity <= -0.46120
+--- LEFT
+--- Pole Angle <= -0.04574
+---- LEFT
+---- RIGHT
+-- RIGHT
+
+Tree #13 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3217.14848279953)
+----------
+- Cart Velocity <= -0.30783
+-- RIGHT
+-- Pole Angle <= 0.03875
+--- LEFT
+--- RIGHT
+
+Tree #14 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3137.51962184906)
+----------
+- Pole Angle <= 0.04862
+-- Cart Velocity <= -0.49466
+--- RIGHT
+--- LEFT
+-- RIGHT
+
+Tree #15 (Reward: 497.658 +- 16.88161828735622, Size: 11, Elapsed time: 4249.331426858902)
+----------
+- Cart Position <= -0.45340
+-- LEFT
+-- Pole Angle <= -0.06658
+--- LEFT
+--- Pole Angular Velocity <= -1.26980
+---- LEFT
+---- Cart Velocity <= 0.77812
+----- RIGHT
+----- Pole Angular Velocity <= -0.22250
+------ LEFT
+------ RIGHT
+
+Tree #16 (Reward: 499.977 +- 0.7269601089468393, Size: 9, Elapsed time: 3582.528140068054)
+----------
+- Cart Velocity <= 0.43341
+-- Pole Angular Velocity <= -0.20808
+--- LEFT
+--- Pole Angle <= -0.02302
+---- Pole Angular Velocity <= 0.37320
+----- LEFT
+----- RIGHT
+---- RIGHT
+-- LEFT
+
+Tree #17 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3253.307213306427)
+----------
+- Pole Angle <= -0.04056
+-- LEFT
+-- Cart Velocity <= 0.35396
+--- RIGHT
+--- LEFT
+
+Tree #18 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3229.053389787674)
+----------
+- Pole Angular Velocity <= 0.26418
+-- Pole Angular Velocity <= -0.22294
+--- LEFT
+--- Pole Angle <= 0.00063
+---- LEFT
+---- RIGHT
+-- RIGHT
+
+Tree #19 (Reward: 499.973 +- 0.8533879539810717, Size: 7, Elapsed time: 3524.456380844116)
+----------
+- Pole Angle <= -0.41800
+-- RIGHT
+-- Pole Angular Velocity <= 0.35786
+--- Pole Angle <= 0.03833
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #20 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3431.608271598816)
+----------
+- Cart Position <= 0.68965
+-- Pole Angular Velocity <= 0.44580
+--- Pole Angle <= 0.04309
+---- LEFT
+---- RIGHT
+--- RIGHT
+-- RIGHT
+
+Tree #21 (Reward: 499.899 +- 1.9674346240726783, Size: 5, Elapsed time: 3227.653848171234)
+----------
+- Pole Angle <= 0.04773
+-- Pole Angular Velocity <= 0.59039
+--- LEFT
+--- RIGHT
+-- RIGHT
+
+Tree #22 (Reward: 499.911 +- 1.6453203335521018, Size: 7, Elapsed time: 3446.8039095401764)
+----------
+- Pole Angle <= 0.32401
+-- Pole Angular Velocity <= 0.55367
+--- Pole Angle <= 0.04693
+---- LEFT
+---- RIGHT
+--- RIGHT
+-- RIGHT
+
+Tree #23 (Reward: 499.957 +- 1.3590993341180033, Size: 11, Elapsed time: 3431.103006362915)
+----------
+- Pole Angle <= -0.11302
+-- LEFT
+-- Pole Angle <= -0.02369
+--- Cart Velocity <= -0.63659
+---- LEFT
+---- Cart Velocity <= 0.44281
+----- RIGHT
+----- LEFT
+--- Cart Velocity <= 0.68082
+---- RIGHT
+---- LEFT
+
+Tree #24 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3108.2665634155273)
+----------
+- Pole Angular Velocity <= 0.34761
+-- Pole Angle <= 0.03717
+--- LEFT
+--- RIGHT
+-- RIGHT
+
+Tree #25 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3393.666639328003)
+----------
+- Pole Angle <= 0.98568
+-- Pole Angle <= -0.03720
+--- LEFT
+--- Pole Angular Velocity <= -0.34969
+---- LEFT
+---- RIGHT
+-- RIGHT
+
+Tree #26 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3262.9804825782776)
+----------
+- Pole Angular Velocity <= -0.38182
+-- LEFT
+-- Pole Angular Velocity <= 0.15127
+--- Pole Angle <= 0.01427
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #27 (Reward: 499.981 +- 0.6005322639126061, Size: 5, Elapsed time: 3375.9293296337128)
+----------
+- Pole Angular Velocity <= 0.22925
+-- Pole Angle <= 0.03607
+--- LEFT
+--- RIGHT
+-- RIGHT
+
+Tree #28 (Reward: 499.921 +- 1.8233921684596543, Size: 5, Elapsed time: 3186.042813539505)
+----------
+- Pole Angle <= 0.04789
+-- Pole Angular Velocity <= 0.57161
+--- LEFT
+--- RIGHT
+-- RIGHT
+
+Tree #29 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3351.460520505905)
+----------
+- Cart Position <= 0.92281
+-- Cart Velocity <= -0.65709
+--- RIGHT
+--- Pole Angle <= 0.05784
+---- LEFT
+---- RIGHT
+-- RIGHT
+
+Tree #30 (Reward: 500.0 +- 0.0, Size: 9, Elapsed time: 3159.334998846054)
+----------
+- Pole Angular Velocity <= 0.57204
+-- Cart Velocity <= -0.10960
+--- Pole Angle <= -0.00016
+---- LEFT
+---- RIGHT
+--- Pole Angular Velocity <= -0.04048
+---- LEFT
+---- RIGHT
+-- RIGHT
+
+Tree #31 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3408.050019264221)
+----------
+- Pole Angle <= -0.03891
+-- LEFT
+-- Cart Velocity <= 0.31180
+--- RIGHT
+--- LEFT
+
+Tree #32 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3247.7503578662872)
+----------
+- Pole Angle <= 0.04072
+-- Pole Angular Velocity <= 0.39630
+--- LEFT
+--- RIGHT
+-- RIGHT
+
+Tree #33 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3114.380896806717)
+----------
+- Cart Velocity <= -0.63781
+-- RIGHT
+-- Pole Angle <= 0.05640
+--- LEFT
+--- RIGHT
+
+Tree #34 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3933.103581428528)
+----------
+- Pole Angular Velocity <= 0.02219
+-- Pole Angle <= 0.06690
+--- LEFT
+--- RIGHT
+-- Pole Angle <= -0.08058
+--- LEFT
+--- RIGHT
+
+Tree #35 (Reward: 499.565 +- 7.026078209072254, Size: 5, Elapsed time: 3529.6608588695526)
+----------
+- Pole Angular Velocity <= 0.07406
+-- Pole Angle <= 0.05060
+--- LEFT
+--- RIGHT
+-- RIGHT
+
+Tree #36 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3308.7665555477142)
+----------
+- Cart Velocity <= 0.28035
+-- Pole Angle <= -0.03921
+--- LEFT
+--- RIGHT
+-- LEFT
+
+Tree #37 (Reward: 499.976 +- 0.6981575753366858, Size: 7, Elapsed time: 3640.059025287628)
+----------
+- Pole Angular Velocity <= 0.77137
+-- Pole Angle <= 0.04398
+--- Pole Angular Velocity <= 0.44052
+---- LEFT
+---- RIGHT
+--- RIGHT
+-- LEFT
+
+Tree #38 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3447.7602245807648)
+----------
+- Pole Angle <= 0.41800
+-- Pole Angular Velocity <= 0.47179
+--- Pole Angle <= 0.04377
+---- LEFT
+---- RIGHT
+--- RIGHT
+-- RIGHT
+
+Tree #39 (Reward: 499.787 +- 2.660005827061287, Size: 5, Elapsed time: 3282.044302225113)
+----------
+- Pole Angular Velocity <= -0.70418
+-- LEFT
+-- Pole Angle <= -0.05286
+--- LEFT
+--- RIGHT
+
+Tree #40 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3072.7424309253693)
+----------
+- Pole Angular Velocity <= 0.46672
+-- Pole Angular Velocity <= -0.28984
+--- LEFT
+--- Pole Angle <= -0.01086
+---- LEFT
+---- RIGHT
+-- RIGHT
+
+Tree #41 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3135.9448833465576)
+----------
+- Cart Velocity <= -0.27395
+-- RIGHT
+-- Pole Angle <= 0.03578
+--- LEFT
+--- RIGHT
+
+Tree #42 (Reward: 499.937 +- 1.3217530026445945, Size: 7, Elapsed time: 3458.554485797882)
+----------
+- Pole Angle <= 0.41800
+-- Pole Angle <= 0.04794
+--- Pole Angular Velocity <= 0.56881
+---- LEFT
+---- RIGHT
+--- RIGHT
+-- LEFT
+
+Tree #43 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 2939.736260652542)
+----------
+- Cart Velocity <= 0.48893
+-- Pole Angle <= -0.04938
+--- LEFT
+--- RIGHT
+-- LEFT
+
+Tree #44 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3242.1429023742676)
+----------
+- Pole Angular Velocity <= -0.91997
+-- LEFT
+-- Pole Angle <= 0.02020
+--- Pole Angular Velocity <= 0.70042
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #45 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3024.199362039566)
+----------
+- Cart Velocity <= 0.35401
+-- Pole Angle <= -0.04486
+--- LEFT
+--- RIGHT
+-- LEFT
+
+Tree #46 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3239.781138896942)
+----------
+- Cart Position <= 0.94438
+-- Pole Angular Velocity <= -0.48631
+--- LEFT
+--- Pole Angle <= -0.04462
+---- LEFT
+---- RIGHT
+-- RIGHT
+
+Tree #47 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3180.0693533420563)
+----------
+- Pole Angle <= 0.04152
+-- Cart Velocity <= -0.34220
+--- RIGHT
+--- LEFT
+-- RIGHT
+
+Tree #48 (Reward: 500.0 +- 0.0, Size: 5, Elapsed time: 3189.390382051468)
+----------
+- Cart Velocity <= 0.34949
+-- Pole Angle <= -0.03485
+--- LEFT
+--- RIGHT
+-- LEFT
+
+Tree #49 (Reward: 500.0 +- 0.0, Size: 7, Elapsed time: 3269.3646218776703)
+----------
+- Cart Position <= -0.22554
+-- LEFT
+-- Pole Angle <= -0.05047
+--- LEFT
+--- Cart Velocity <= 0.58318
+---- RIGHT
+---- LEFT
+

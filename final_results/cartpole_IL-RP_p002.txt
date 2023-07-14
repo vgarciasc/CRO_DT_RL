@@ -1,0 +1,755 @@
+{'task': 'cartpole', 'input': 'results/complete/cartpole_ppo_p002.txt', 'alpha': 0.0001, 'output': 'results/complete/cartpole_ppo_p002_reward_pruning.txt', 'should_use_kstest': False, 'kstest_threshold': 0.1, 'rounds': 10, 'simulations': 50, 'episodes': 1000, 'norm_state': False, 'n_jobs': 8, 'task_solution_threshold': 495}
+
+python -m erltrees.experiments.reward_pruning --task cartpole --input results/complete/cartpole_ppo_p002.txt --alpha 0.0001 --output results/complete/cartpole_ppo_p002_reward_pruning.txt --should_use_kstest False --kstest_threshold 0.1 --rounds 10 --simulations 50 --episodes 1000 --norm_state False --n_jobs 8 --task_solution_threshold 495
+
+
+
+Mean Best Reward: 499.64956 +- 0.20007310264000489
+Mean Best Size: 11.84
+Average Evaluations to Success: -------
+Success Rate: 0.99354
+
+-----
+
+Tree #0 (Reward: 499.147 +- 8.281, Success Rate: 0.987, Size: 11); elapsed time: 62.41 seconds; ((original tree #0))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #1 (Reward: 499.758 +- 4.908, Success Rate: 0.997, Size: 13); elapsed time: 58.24 seconds; ((original tree #1))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= -0.00623
+---- LEFT
+---- Pole Angular Velocity <= -0.00160
+----- LEFT
+----- RIGHT
+--- RIGHT
+
+Tree #2 (Reward: 499.538 +- 5.300, Success Rate: 0.992, Size: 11); elapsed time: 57.98 seconds; ((original tree #2))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #3 (Reward: 499.866 +- 2.153, Success Rate: 0.996, Size: 11); elapsed time: 67.09 seconds; ((original tree #3))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #4 (Reward: 499.837 +- 3.286, Success Rate: 0.997, Size: 11); elapsed time: 62.41 seconds; ((original tree #4))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00078
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #5 (Reward: 499.520 +- 5.785, Success Rate: 0.992, Size: 11); elapsed time: 59.28 seconds; ((original tree #5))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #6 (Reward: 499.710 +- 4.754, Success Rate: 0.996, Size: 11); elapsed time: 56.95 seconds; ((original tree #6))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #7 (Reward: 499.857 +- 2.691, Success Rate: 0.996, Size: 15); elapsed time: 74.57 seconds; ((original tree #7))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- Pole Angle <= -0.00623
+----- LEFT
+----- Pole Angular Velocity <= 0.02911
+------ LEFT
+------ RIGHT
+---- RIGHT
+--- RIGHT
+
+Tree #8 (Reward: 499.225 +- 7.708, Success Rate: 0.989, Size: 11); elapsed time: 60.04 seconds; ((original tree #8))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #9 (Reward: 499.964 +- 1.138, Success Rate: 0.999, Size: 11); elapsed time: 52.26 seconds; ((original tree #9))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00078
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #10 (Reward: 499.703 +- 4.624, Success Rate: 0.995, Size: 11); elapsed time: 68.04 seconds; ((original tree #10))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #11 (Reward: 499.751 +- 4.650, Success Rate: 0.996, Size: 15); elapsed time: 75.31 seconds; ((original tree #11))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- Pole Angular Velocity <= 0.02911
+----- LEFT
+----- Pole Angle <= -0.00271
+------ LEFT
+------ RIGHT
+---- RIGHT
+--- RIGHT
+
+Tree #12 (Reward: 499.546 +- 4.867, Success Rate: 0.989, Size: 11); elapsed time: 68.76 seconds; ((original tree #12))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #13 (Reward: 499.387 +- 6.018, Success Rate: 0.987, Size: 11); elapsed time: 60.53 seconds; ((original tree #13))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #14 (Reward: 499.427 +- 6.896, Success Rate: 0.992, Size: 11); elapsed time: 44.24 seconds; ((original tree #14))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #15 (Reward: 499.852 +- 3.966, Success Rate: 0.998, Size: 15); elapsed time: 83.49 seconds; ((original tree #15))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- Pole Angle <= -0.00623
+----- LEFT
+----- Pole Angular Velocity <= 0.02911
+------ LEFT
+------ RIGHT
+---- RIGHT
+--- RIGHT
+
+Tree #16 (Reward: 499.406 +- 6.188, Success Rate: 0.987, Size: 11); elapsed time: 57.76 seconds; ((original tree #16))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #17 (Reward: 499.779 +- 4.031, Success Rate: 0.996, Size: 15); elapsed time: 80.84 seconds; ((original tree #17))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- Pole Angular Velocity <= 0.02911
+----- LEFT
+----- Pole Angle <= -0.00271
+------ LEFT
+------ RIGHT
+---- RIGHT
+--- RIGHT
+
+Tree #18 (Reward: 499.875 +- 2.381, Success Rate: 0.997, Size: 13); elapsed time: 68.34 seconds; ((original tree #18))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= -0.00623
+---- LEFT
+---- Pole Angular Velocity <= -0.00160
+----- LEFT
+----- RIGHT
+--- RIGHT
+
+Tree #19 (Reward: 499.482 +- 6.050, Success Rate: 0.991, Size: 11); elapsed time: 72.15 seconds; ((original tree #19))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #20 (Reward: 499.841 +- 3.261, Success Rate: 0.997, Size: 11); elapsed time: 63.01 seconds; ((original tree #20))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00078
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #21 (Reward: 499.697 +- 4.065, Success Rate: 0.994, Size: 13); elapsed time: 67.31 seconds; ((original tree #21))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= -0.00623
+---- LEFT
+---- Pole Angular Velocity <= -0.00160
+----- LEFT
+----- RIGHT
+--- RIGHT
+
+Tree #22 (Reward: 499.639 +- 6.652, Success Rate: 0.997, Size: 13); elapsed time: 61.77 seconds; ((original tree #22))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= -0.00623
+---- LEFT
+---- Pole Angular Velocity <= -0.00160
+----- LEFT
+----- RIGHT
+--- RIGHT
+
+Tree #23 (Reward: 499.783 +- 3.246, Success Rate: 0.994, Size: 11); elapsed time: 54.94 seconds; ((original tree #23))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #24 (Reward: 499.630 +- 5.383, Success Rate: 0.994, Size: 11); elapsed time: 63.37 seconds; ((original tree #24))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #25 (Reward: 499.357 +- 6.409, Success Rate: 0.988, Size: 11); elapsed time: 74.67 seconds; ((original tree #25))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #26 (Reward: 499.389 +- 6.757, Success Rate: 0.991, Size: 11); elapsed time: 60.44 seconds; ((original tree #26))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #27 (Reward: 499.393 +- 6.097, Success Rate: 0.989, Size: 11); elapsed time: 71.60 seconds; ((original tree #27))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #28 (Reward: 499.850 +- 2.037, Success Rate: 0.994, Size: 11); elapsed time: 72.56 seconds; ((original tree #28))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #29 (Reward: 499.804 +- 3.035, Success Rate: 0.995, Size: 13); elapsed time: 74.92 seconds; ((original tree #29))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- Pole Angle <= -0.00623
+----- LEFT
+----- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #30 (Reward: 499.866 +- 2.832, Success Rate: 0.997, Size: 15); elapsed time: 81.91 seconds; ((original tree #30))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- Pole Angle <= -0.00623
+----- LEFT
+----- Pole Angular Velocity <= 0.02911
+------ LEFT
+------ RIGHT
+---- RIGHT
+--- RIGHT
+
+Tree #31 (Reward: 499.854 +- 2.812, Success Rate: 0.996, Size: 11); elapsed time: 47.79 seconds; ((original tree #31))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00078
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #32 (Reward: 499.641 +- 4.558, Success Rate: 0.988, Size: 11); elapsed time: 62.98 seconds; ((original tree #32))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= -0.00271
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #33 (Reward: 499.353 +- 6.799, Success Rate: 0.989, Size: 11); elapsed time: 46.06 seconds; ((original tree #33))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #34 (Reward: 499.814 +- 3.379, Success Rate: 0.996, Size: 11); elapsed time: 50.54 seconds; ((original tree #34))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00078
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #35 (Reward: 499.677 +- 5.005, Success Rate: 0.993, Size: 11); elapsed time: 74.36 seconds; ((original tree #35))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #36 (Reward: 499.761 +- 4.342, Success Rate: 0.996, Size: 15); elapsed time: 77.22 seconds; ((original tree #36))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- Pole Angular Velocity <= 0.02911
+----- LEFT
+----- Pole Angle <= -0.00271
+------ LEFT
+------ RIGHT
+---- RIGHT
+--- RIGHT
+
+Tree #37 (Reward: 499.498 +- 5.847, Success Rate: 0.992, Size: 11); elapsed time: 63.14 seconds; ((original tree #37))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #38 (Reward: 499.881 +- 2.216, Success Rate: 0.997, Size: 11); elapsed time: 52.83 seconds; ((original tree #38))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00078
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #39 (Reward: 499.439 +- 6.196, Success Rate: 0.991, Size: 11); elapsed time: 52.30 seconds; ((original tree #39))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #40 (Reward: 499.501 +- 5.918, Success Rate: 0.991, Size: 11); elapsed time: 54.22 seconds; ((original tree #40))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #41 (Reward: 499.747 +- 4.216, Success Rate: 0.996, Size: 11); elapsed time: 68.04 seconds; ((original tree #41))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #42 (Reward: 499.780 +- 3.314, Success Rate: 0.995, Size: 11); elapsed time: 56.07 seconds; ((original tree #42))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #43 (Reward: 499.888 +- 3.326, Success Rate: 0.998, Size: 13); elapsed time: 67.41 seconds; ((original tree #43))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= -0.00623
+---- LEFT
+---- Pole Angular Velocity <= -0.00160
+----- LEFT
+----- RIGHT
+--- RIGHT
+
+Tree #44 (Reward: 499.893 +- 2.869, Success Rate: 0.998, Size: 13); elapsed time: 67.68 seconds; ((original tree #44))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= -0.00623
+---- LEFT
+---- Pole Angular Velocity <= -0.00160
+----- LEFT
+----- RIGHT
+--- RIGHT
+
+Tree #45 (Reward: 499.496 +- 5.535, Success Rate: 0.988, Size: 11); elapsed time: 63.69 seconds; ((original tree #45))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #46 (Reward: 499.432 +- 6.499, Success Rate: 0.99, Size: 11); elapsed time: 54.97 seconds; ((original tree #46))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #47 (Reward: 499.592 +- 5.558, Success Rate: 0.994, Size: 11); elapsed time: 67.72 seconds; ((original tree #47))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+
+Tree #48 (Reward: 499.823 +- 3.808, Success Rate: 0.997, Size: 15); elapsed time: 79.62 seconds; ((original tree #48))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- Pole Angular Velocity <= 0.02911
+----- LEFT
+----- Pole Angle <= -0.00271
+------ LEFT
+------ RIGHT
+---- RIGHT
+--- RIGHT
+
+Tree #49 (Reward: 499.529 +- 5.789, Success Rate: 0.993, Size: 11); elapsed time: 60.52 seconds; ((original tree #49))
+----------
+- Pole Angular Velocity <= -0.02406
+-- Pole Angular Velocity <= -0.11328
+--- LEFT
+--- Pole Angle <= 0.00163
+---- LEFT
+---- RIGHT
+-- Pole Angular Velocity <= 0.09357
+--- Pole Angle <= 0.00372
+---- LEFT
+---- RIGHT
+--- RIGHT
+

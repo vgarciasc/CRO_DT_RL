@@ -1,0 +1,453 @@
+{'task': 'lunar_lander', 'cro_config': 'configs/simple_erl_ngen200_static_v3.json', 'episodes': 100, 'simulations': 50, 'depth': 5, 'initial_pop': None, 'start_from_idx': 0, 'initial_pop_individual': True, 'should_norm_state': True, 'task_solution_threshold': 200, 'output_prefix': 'CRO_LL_', 'alpha': 2.0, 'verbose': True, 'n_jobs': 32}
+
+python -m cro_dt_rl.cro_dt_rl --task lunar_lander --cro_config configs/simple_erl_ngen200_static_v3.json --episodes 100 --simulations 50 --depth 5 --initial_pop None --start_from_idx 0 --initial_pop_individual True --should_norm_state True --task_solution_threshold 200 --output_prefix CRO_LL_ --alpha 2.0 --verbose True --n_jobs 32
+
+---
+
+{'general': {'popSize': 100, 'rho': 0.6, 'Fb': 0.98, 'Fd': 0.05, 'Pd': 0.2, 'k': 1, 'K': 1, 'group_subs': True, 'stop_cond': 'ngen', 'time_limit': 4000.0, 'Ngen': 200, 'Neval': 1000.0, 'fit_target': 1000, 'verbose': True, 'v_timer': 1, 'dynamic': False, 'dyn_method': 'success', 'dyn_metric': 'avg', 'dyn_steps': 100, 'prob_amp': 0.01}, 'substrates_tree': [{'name': 'expand_leaf', 'params': {}}, {'name': 'add_inner_node', 'params': {}}, {'name': 'truncate', 'params': {}}, {'name': 'replace_child', 'params': {}}, {'name': 'modify_leaf', 'params': {}}, {'name': 'modify_split', 'params': {}}, {'name': 'reset_split', 'params': {}}]}
+
+Mean Best Reward: -52.56624769744511 +- 32.415026151161726
+Mean Best Size: 5.76
+Average Evaluations to Success: -------
+Success Rate: 0.0
+
+-----
+
+Tree #0 (Reward: -36.07388017350018 +- 23.14729079510672, Size: 5, Elapsed time: 2570.2698147296906)
+----------
+- Angular Velocity <= -0.00283
+-- LEFT ENGINE
+-- Y Velocity <= -0.17254
+--- MAIN ENGINE
+--- RIGHT ENGINE
+
+Tree #1 (Reward: -45.027181902384385 +- 22.567225074520323, Size: 5, Elapsed time: 1564.3847975730896)
+----------
+- Angle <= 0.00122
+-- LEFT ENGINE
+-- Y Velocity <= -0.17447
+--- MAIN ENGINE
+--- RIGHT ENGINE
+
+Tree #2 (Reward: -31.855175518614836 +- 21.304556385537808, Size: 7, Elapsed time: 2990.3697249889374)
+----------
+- Leg 1 is Touching <= 0.50000
+-- Y Velocity <= -0.17479
+--- MAIN ENGINE
+--- Angle <= 0.00168
+---- LEFT ENGINE
+---- RIGHT ENGINE
+-- MAIN ENGINE
+
+Tree #3 (Reward: -111.33186652818448 +- 12.416764811411104, Size: 3, Elapsed time: 1309.4492061138153)
+----------
+- Angle <= -0.00094
+-- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #4 (Reward: -110.50721126692116 +- 11.901990567966553, Size: 3, Elapsed time: 1286.7310485839844)
+----------
+- Angle <= 0.00071
+-- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #5 (Reward: -33.18113799232036 +- 22.216569660993493, Size: 5, Elapsed time: 2107.9428684711456)
+----------
+- Y Velocity <= -0.16203
+-- MAIN ENGINE
+-- Angle <= 0.00184
+--- LEFT ENGINE
+--- RIGHT ENGINE
+
+Tree #6 (Reward: -34.789663980280956 +- 27.734742973006423, Size: 7, Elapsed time: 1897.0906403064728)
+----------
+- X Velocity <= -0.32572
+-- MAIN ENGINE
+-- Y Velocity <= -0.15049
+--- MAIN ENGINE
+--- Angle <= -0.00938
+---- LEFT ENGINE
+---- RIGHT ENGINE
+
+Tree #7 (Reward: -24.308302326865647 +- 19.78366953734672, Size: 7, Elapsed time: 1869.3396487236023)
+----------
+- Y Velocity <= -0.09680
+-- Y Velocity <= -0.15865
+--- MAIN ENGINE
+--- Angle <= 0.00518
+---- LEFT ENGINE
+---- RIGHT ENGINE
+-- NOP
+
+Tree #8 (Reward: -48.37385511130094 +- 27.092054892883827, Size: 5, Elapsed time: 1326.0369989871979)
+----------
+- Angle <= 0.00082
+-- Y Position <= 0.42360
+--- MAIN ENGINE
+--- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #9 (Reward: -33.01381809097383 +- 25.163583870817675, Size: 5, Elapsed time: 2654.2406058311462)
+----------
+- Y Velocity <= -0.14861
+-- MAIN ENGINE
+-- Angle <= -0.00307
+--- LEFT ENGINE
+--- RIGHT ENGINE
+
+Tree #10 (Reward: -31.99453594503715 +- 22.90920632438723, Size: 7, Elapsed time: 1575.9073543548584)
+----------
+- Leg 2 is Touching <= 0.50000
+-- Angular Velocity <= -0.00042
+--- LEFT ENGINE
+--- Y Position <= 0.45451
+---- MAIN ENGINE
+---- RIGHT ENGINE
+-- LEFT ENGINE
+
+Tree #11 (Reward: -24.384953036092085 +- 18.466022739791033, Size: 7, Elapsed time: 1738.982568025589)
+----------
+- Y Velocity <= -0.09764
+-- Y Velocity <= -0.16152
+--- MAIN ENGINE
+--- Angle <= -0.00093
+---- LEFT ENGINE
+---- RIGHT ENGINE
+-- NOP
+
+Tree #12 (Reward: -23.174666388930753 +- 20.020234907955523, Size: 7, Elapsed time: 1914.65456199646)
+----------
+- Y Velocity <= -0.07964
+-- Y Velocity <= -0.15310
+--- MAIN ENGINE
+--- Angle <= 0.00308
+---- LEFT ENGINE
+---- RIGHT ENGINE
+-- NOP
+
+Tree #13 (Reward: -36.66157786922627 +- 22.47692624718754, Size: 7, Elapsed time: 2316.4333736896515)
+----------
+- X Velocity <= -0.33879
+-- RIGHT ENGINE
+-- Angular Velocity <= 0.00279
+--- Y Velocity <= -0.17167
+---- MAIN ENGINE
+---- LEFT ENGINE
+--- RIGHT ENGINE
+
+Tree #14 (Reward: -38.21581695834373 +- 21.67249547202953, Size: 5, Elapsed time: 1693.4453964233398)
+----------
+- Angular Velocity <= -0.00355
+-- LEFT ENGINE
+-- Y Velocity <= -0.17944
+--- MAIN ENGINE
+--- RIGHT ENGINE
+
+Tree #15 (Reward: -110.92958374802997 +- 11.896561402346219, Size: 3, Elapsed time: 1334.9996099472046)
+----------
+- Angle <= 0.00026
+-- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #16 (Reward: -80.33392822894761 +- 47.014622322670284, Size: 9, Elapsed time: 1032.7180740833282)
+----------
+- Leg 2 is Touching <= 0.50000
+-- Y Position <= 0.50574
+--- Y Position <= 0.28953
+---- MAIN ENGINE
+---- X Position <= 0.02029
+----- RIGHT ENGINE
+----- LEFT ENGINE
+--- NOP
+-- RIGHT ENGINE
+
+Tree #17 (Reward: -34.38223919450997 +- 25.05216507283604, Size: 7, Elapsed time: 1586.0377125740051)
+----------
+- Leg 1 is Touching <= 0.50000
+-- Y Velocity <= -0.15141
+--- MAIN ENGINE
+--- Angle <= -0.00258
+---- LEFT ENGINE
+---- RIGHT ENGINE
+-- NOP
+
+Tree #18 (Reward: -37.538802242474965 +- 21.24616585141018, Size: 7, Elapsed time: 2460.096084356308)
+----------
+- X Position <= -0.66812
+-- RIGHT ENGINE
+-- Angular Velocity <= -0.00303
+--- LEFT ENGINE
+--- Y Velocity <= -0.17573
+---- MAIN ENGINE
+---- RIGHT ENGINE
+
+Tree #19 (Reward: -39.18502405812117 +- 38.2605329430275, Size: 7, Elapsed time: 1567.5402238368988)
+----------
+- Leg 1 is Touching <= 0.50000
+-- Y Position <= 0.41955
+--- MAIN ENGINE
+--- Angle <= -0.00086
+---- LEFT ENGINE
+---- RIGHT ENGINE
+-- NOP
+
+Tree #20 (Reward: -110.79585071006159 +- 12.333671176013695, Size: 3, Elapsed time: 1278.645079612732)
+----------
+- Angle <= 0.00025
+-- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #21 (Reward: -33.05832610429577 +- 23.034899988659046, Size: 5, Elapsed time: 2537.7683506011963)
+----------
+- Y Velocity <= -0.16185
+-- MAIN ENGINE
+-- Angle <= 0.00244
+--- LEFT ENGINE
+--- RIGHT ENGINE
+
+Tree #22 (Reward: -37.217553832671506 +- 40.323270726136805, Size: 7, Elapsed time: 1712.0825493335724)
+----------
+- Leg 1 is Touching <= 0.50000
+-- Y Position <= 0.43221
+--- MAIN ENGINE
+--- Angle <= 0.00378
+---- LEFT ENGINE
+---- RIGHT ENGINE
+-- LEFT ENGINE
+
+Tree #23 (Reward: -27.72520836764241 +- 20.800121221268014, Size: 7, Elapsed time: 2671.9354498386383)
+----------
+- Y Velocity <= -0.15672
+-- MAIN ENGINE
+-- Y Position <= 0.90758
+--- Angle <= -0.00176
+---- LEFT ENGINE
+---- RIGHT ENGINE
+--- NOP
+
+Tree #24 (Reward: -30.773228872134354 +- 24.05702302611859, Size: 7, Elapsed time: 3122.9341723918915)
+----------
+- Leg 1 is Touching <= -0.93279
+-- Y Velocity <= -0.16649
+--- MAIN ENGINE
+--- Angle <= -0.00850
+---- LEFT ENGINE
+---- RIGHT ENGINE
+-- MAIN ENGINE
+
+Tree #25 (Reward: -49.14866934396669 +- 21.518238899307274, Size: 5, Elapsed time: 1419.6903657913208)
+----------
+- Angle <= -0.00170
+-- LEFT ENGINE
+-- Y Velocity <= -0.19032
+--- MAIN ENGINE
+--- RIGHT ENGINE
+
+Tree #26 (Reward: -32.256162652564875 +- 34.75706052999613, Size: 7, Elapsed time: 2060.58705329895)
+----------
+- X Position <= 0.82400
+-- Angular Velocity <= -0.00493
+--- LEFT ENGINE
+--- Y Position <= 0.45355
+---- MAIN ENGINE
+---- RIGHT ENGINE
+-- NOP
+
+Tree #27 (Reward: -111.9378383382415 +- 12.193483999147285, Size: 3, Elapsed time: 1278.8505017757416)
+----------
+- Angle <= -0.00270
+-- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #28 (Reward: -31.234375465334764 +- 24.694280543913607, Size: 7, Elapsed time: 2038.9180464744568)
+----------
+- Angle <= 0.01221
+-- Angular Velocity <= 0.00667
+--- Y Velocity <= -0.15210
+---- MAIN ENGINE
+---- LEFT ENGINE
+--- RIGHT ENGINE
+-- RIGHT ENGINE
+
+Tree #29 (Reward: -31.40485081380061 +- 24.493140353688535, Size: 7, Elapsed time: 2598.4787480831146)
+----------
+- Leg 2 is Touching <= 0.50000
+-- Y Velocity <= -0.16673
+--- MAIN ENGINE
+--- Angle <= 0.00454
+---- LEFT ENGINE
+---- RIGHT ENGINE
+-- MAIN ENGINE
+
+Tree #30 (Reward: -26.613655940789947 +- 30.811268249499093, Size: 11, Elapsed time: 1660.31960105896)
+----------
+- Angular Velocity <= 0.83855
+-- Angular Velocity <= -0.06688
+--- LEFT ENGINE
+--- Leg 1 is Touching <= -0.24844
+---- Angular Velocity <= 0.00357
+----- Y Position <= 0.48099
+------ MAIN ENGINE
+------ LEFT ENGINE
+----- RIGHT ENGINE
+---- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #31 (Reward: -51.41912491568101 +- 19.831577991234045, Size: 5, Elapsed time: 1446.337239742279)
+----------
+- Angle <= 0.00198
+-- Y Velocity <= -0.19918
+--- MAIN ENGINE
+--- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #32 (Reward: -32.5308564205984 +- 30.273142597358305, Size: 7, Elapsed time: 1781.1488811969757)
+----------
+- X Velocity <= 0.30552
+-- Angular Velocity <= 0.00005
+--- Y Position <= 0.44910
+---- MAIN ENGINE
+---- LEFT ENGINE
+--- RIGHT ENGINE
+-- NOP
+
+Tree #33 (Reward: -31.520617776349106 +- 28.82565067697612, Size: 5, Elapsed time: 2120.7638578414917)
+----------
+- Angular Velocity <= 0.00268
+-- Y Position <= 0.44193
+--- MAIN ENGINE
+--- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #34 (Reward: -26.897401680114267 +- 35.017608500241344, Size: 7, Elapsed time: 1404.340446472168)
+----------
+- Leg 1 is Touching <= 0.50000
+-- Angular Velocity <= -0.00215
+--- LEFT ENGINE
+--- Y Position <= 0.48273
+---- MAIN ENGINE
+---- RIGHT ENGINE
+-- RIGHT ENGINE
+
+Tree #35 (Reward: -111.19088001659115 +- 12.275034146703208, Size: 3, Elapsed time: 1254.3603284358978)
+----------
+- Angle <= -0.00106
+-- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #36 (Reward: -110.92644313829378 +- 11.968155320206723, Size: 3, Elapsed time: 1341.6531252861023)
+----------
+- Angle <= 0.00035
+-- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #37 (Reward: -17.489334504926752 +- 28.787571890430844, Size: 7, Elapsed time: 1681.9985692501068)
+----------
+- Angular Velocity <= -0.00063
+-- Y Velocity <= -0.10472
+--- Y Position <= 0.52970
+---- MAIN ENGINE
+---- LEFT ENGINE
+--- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #38 (Reward: -47.535342498401135 +- 21.63914027852726, Size: 5, Elapsed time: 1435.3769748210907)
+----------
+- Angle <= 0.00063
+-- Y Velocity <= -0.18500
+--- MAIN ENGINE
+--- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #39 (Reward: -32.97587785305108 +- 33.57480878139116, Size: 7, Elapsed time: 1981.2732224464417)
+----------
+- Leg 1 is Touching <= 0.50000
+-- Y Position <= 0.43116
+--- MAIN ENGINE
+--- Angular Velocity <= 0.00155
+---- LEFT ENGINE
+---- RIGHT ENGINE
+-- NOP
+
+Tree #40 (Reward: -111.15921294322371 +- 11.9012851574733, Size: 3, Elapsed time: 1651.8866539001465)
+----------
+- Angle <= 0.00059
+-- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #41 (Reward: -39.84115445990487 +- 23.233421438129255, Size: 7, Elapsed time: 2618.377854347229)
+----------
+- Angle <= -0.00052
+-- Y Velocity <= -0.19138
+--- MAIN ENGINE
+--- LEFT ENGINE
+-- Y Position <= 0.13218
+--- MAIN ENGINE
+--- RIGHT ENGINE
+
+Tree #42 (Reward: -110.85432333291479 +- 11.617181670920216, Size: 3, Elapsed time: 2008.5842394828796)
+----------
+- Angle <= -0.00127
+-- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #43 (Reward: -32.36058831617242 +- 23.396351718698963, Size: 7, Elapsed time: 3781.068536043167)
+----------
+- Leg 1 is Touching <= 0.21523
+-- Y Velocity <= -0.17467
+--- MAIN ENGINE
+--- Angle <= -0.00221
+---- LEFT ENGINE
+---- RIGHT ENGINE
+-- MAIN ENGINE
+
+Tree #44 (Reward: -35.29178128218195 +- 22.88116838816727, Size: 7, Elapsed time: 3277.7792723178864)
+----------
+- Angle <= 0.00005
+-- Angular Velocity <= -0.00892
+--- LEFT ENGINE
+--- Y Velocity <= -0.15914
+---- MAIN ENGINE
+---- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #45 (Reward: -111.8326471680537 +- 12.255116673744435, Size: 3, Elapsed time: 2023.2395684719086)
+----------
+- Angle <= 0.00501
+-- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #46 (Reward: -35.97582079059645 +- 27.626050589109727, Size: 9, Elapsed time: 3654.9570441246033)
+----------
+- Leg 2 is Touching <= 0.50000
+-- Y Position <= 0.41230
+--- MAIN ENGINE
+--- Angular Velocity <= -0.01504
+---- LEFT ENGINE
+---- Angle <= -0.00667
+----- LEFT ENGINE
+----- RIGHT ENGINE
+-- LEFT ENGINE
+
+Tree #47 (Reward: -45.88660591008495 +- 21.63368191172526, Size: 5, Elapsed time: 2133.5272731781006)
+----------
+- Angle <= -0.00084
+-- Y Velocity <= -0.17787
+--- MAIN ENGINE
+--- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #48 (Reward: -44.21172685996805 +- 22.501569883856604, Size: 5, Elapsed time: 2335.5420911312103)
+----------
+- Angle <= -0.00060
+-- Y Velocity <= -0.17440
+--- MAIN ENGINE
+--- LEFT ENGINE
+-- RIGHT ENGINE
+
+Tree #49 (Reward: -110.98370400258295 +- 12.41769869354919, Size: 3, Elapsed time: 2250.609445810318)
+----------
+- Angle <= -0.00008
+-- LEFT ENGINE
+-- RIGHT ENGINE
+
