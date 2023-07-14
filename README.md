@@ -7,10 +7,10 @@ It uses the Coral Reef Optimization algorithm (implemented through [PyCRO-SL](ht
 
 The code was tested with Python 3.10. To install the dependencies, clone the repository, `cd` into the folder and run:
 
-    ```bash
-    pip install -r requirements.txt
-    pip install -e .
-    ```
+```bash
+pip install -r requirements.txt
+pip install -e .
+```
 
 ## How to run
 
@@ -33,4 +33,4 @@ Two output files will be created: one with the best individual from each simulat
 ## Initial population
 
 The initial population can be provided through the `--initial_pop` parameter. Examples of these files can be found in the `final_results` folder.
-Note that to obtain these files, it is required to run Imitation Learning and Reward Pruning algorithms. The code for these algorithms can be found in the [erltrees](github.com/vgarciasc/erltrees) repository.
+Note that to obtain these files, it is required to run Imitation Learning and Reward Pruning algorithms. The code for these algorithms can be found in the [erltrees](https://github.com/vgarciasc/erltrees) repository.
