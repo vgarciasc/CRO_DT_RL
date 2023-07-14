@@ -119,10 +119,10 @@ def run_cro_dt_rl(config, cro_configs, alpha, episodes,
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='PCRO-SL for Supervised Tree Induction')
+    parser = argparse.ArgumentParser(description='CRO-DT-RL')
     parser.add_argument('-t', '--task', help="What dataset to use?", required=True, type=str)
     parser.add_argument('-c', '--cro_config', help="How many function evaluations to stop at?", required=True, type=str)
-    parser.add_argument('-e', '--episodes', help="How many episodes to use to evaluate an inividual?", required=True, type=int)
+    parser.add_argument('-e', '--episodes', help="How many episodes to use to evaluate an individual?", required=True, type=int)
     parser.add_argument('-s', '--simulations', help="How many simulations?", required=True, type=int)
     parser.add_argument('-d', '--depth', help="Depth of tree", required=True, type=int)
     parser.add_argument('-i', '--initial_pop', help="File with initial population", required=False, default=None, type=str)
