@@ -33,4 +33,4 @@ Two output files will be created: one with the best individual from each simulat
 ## Initial population
 
 The initial population can be provided through the `--initial_pop` parameter. Examples of these files can be found in the `final_results` folder.
-Note that to obtain these files, it is required to run Imitation Learning and Reward Pruning algorithms. The code for these algorithms can be found in the [erltrees](https://github.com/vgarciasc/erltrees) repository.
+Note that to obtain these files, it is required to run Imitation Learning and Reward Pruning algorithms. **The code for these algorithms can be found in the [erltrees](https://github.com/vgarciasc/erltrees) repository, alongside the DT real-time visualization tool**. These two repositories are separated to facilitate users who want to simply toy with DTs for RL, without using CRO-DT-RL specifically.
