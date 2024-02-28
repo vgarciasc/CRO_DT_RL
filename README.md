@@ -3,15 +3,6 @@
 This repository contains the code for the paper "Evolving Interpretable Decision Trees for Reinforcement Learning". 
 It uses the Coral Reef Optimization algorithm (implemented through [PyCRO-SL](https://github.com/jperezaracil/PyCROSL)) to evolve DTs for RL.
 
-## How to install
-
-The code was tested with Python 3.10. To install the dependencies, clone the repository, `cd` into the folder and run:
-
-```bash
-pip install -r requirements.txt
-pip install -e .
-```
-
 ## How to run
 
 The entry point is the file `cro_dt_rl/cro_dt_rl.py`, which effectively runs the CRO algorithm. It has the following params:
